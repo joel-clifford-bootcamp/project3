@@ -5,7 +5,7 @@ function Nav() {
   return (
 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
-        Project 3
+        Link N Park
       </Link>
       <div>
         <ul className="navbar-nav">
@@ -29,22 +29,22 @@ function Nav() {
               Profile
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               to="/search"
               className={window.location.pathname === "/search" ? "nav-link active" : "nav-link"}
             >
               Search
             </Link>
-          </li>
-          <li className="nav-item">
-            {/* <Link
+          </li> */}
+          {/* <li className="nav-item">
+            <Link
               to="/contact"
               className={window.location.pathname === "/contact" ? "nav-link active" : "nav-link"}
             >
               Contact
-            </Link> */}
-          </li>
+            </Link>
+          </li> */}
         </ul>
       </div>
     </nav>
