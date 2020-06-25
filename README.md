@@ -68,4 +68,4 @@ THEN…
 
 ## Links
 * Deployed URL: 
-* GitHub repository: https://github.com/MG-cpu90/project3
+* GitHub repository: https://github.com/joel-clifford-bootcamp/project3
