@@ -9,16 +9,14 @@ function SignIn() {
                     <form className="col s12">
                         <div className="row">
                             <div className="input-field col s12">
-                                <input id="email" type="email" class="validate">
+                                <input id="email" type="email" className="validate"/>
                                     <label for="email">Email</label>
-                                </input>
                             </div>
                         </div>
                         <div className="row">
                             <div classNme="input-field col s12">
-                                <input id="password" type="password" class="validate">
+                                <input id="password" type="password" className="validate"/>
                                     <label for="password">Password</label>
-                                </input>
                             </div>
                         </div>
                     </form>
