@@ -20,7 +20,7 @@ function SignIn() {
                             </div>
                         </div>
                     </form>
-                    <a class="waves-effect waves-light btn">Sing In</a>
+                    <a className="waves-effect waves-light btn">Sign In</a>
                 </div>
       </div>
   );
