@@ -22,7 +22,6 @@ function SignIn() {
                             </div>
                         </div>
                     </form>
-                    <h6>Forgot password?</h6>
                     <a class="waves-effect waves-light btn">Sing In</a>
                 </div>
       </div>

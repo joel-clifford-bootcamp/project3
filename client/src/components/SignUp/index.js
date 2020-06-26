@@ -9,35 +9,30 @@ function SignUp() {
             <form className="col s12">
                 <div className="row">
                     <div className="input-field col s6">
-                        <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                        <input placeholder="Placeholder" id="first_name" type="text" className="validate"/>
                         <label for="first_name">First Name</label>
-                        </input>
                     </div>
                     <div className="input-field col s6">
-                        <input id="last_name" type="text" class="validate">
+                        <input id="last_name" type="text" className="validate"/>
                         <label for="last_name">Last Name</label>
-                        </input>
                     </div>
                 </div>
                 <div className="row">
                         <div className="input-field col s12">
-                            <input id="email" type="email" class="validate">
+                            <input id="email" type="email" className="validate"/>
                                 <label for="email">Email</label>
-                            </input>
                         </div>
                     </div>
                     <div className="row">
                         <div classNme="input-field col s12">
-                            <input id="password" type="password" class="validate">
+                            <input id="password" type="password" className="validate"/>
                                 <label for="password">Password</label>
-                            </input>
                         </div>
                     </div>
                     <div className="row">
                         <div classNme="input-field col s12">
-                            <input id="confirmPassword" type="password" class="validate">
+                            <input id="confirmPassword" type="password" className="validate"/>
                                 <label for="confirmPassword">Confirm Password</label>
-                            </input>
                         </div>
                     </div>
             </form>
