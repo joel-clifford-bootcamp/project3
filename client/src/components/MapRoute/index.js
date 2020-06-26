@@ -1,93 +1,64 @@
 import React from "react";
 import "./index.css";
 
-function mapRoute() {
+function MapRoute() {
   return (
     <div>
-       <div id="map-canvas"></div>
-    <div id="right-panel">
-        <section class="profile">
-            <h5 id="detour" class="carpool" style="width:95%; padding-left: 10px; color: green; display: none;">
-                Your route...
-            </h5>
-            <table id="pRoute" class="carpool" style="width:95%;  display: none;">
-                <tr>
-                    <th>Origin address</th>
-                    <th>Destination address</th>
-                </tr>
-                <tr>
-                    <td id="pOrigin" class="detour"></td>
-                    <td id="pDestination" class="detour"></td>
-                </tr>
-                <tr class="passengerDirect">
-                    <th>Distance</th>
-                    <th>Duration</th>
-                </tr>
-                <tr class="passengerDirect">
-                    <td id="dDistance" class="detour"></td>
-                    <td id="dDuration" class="detour"></td>
-                </tr>
-            </table>
-            <h5 id="detour" class="carpool" style="width:95%; padding-left: 10px; color: green; display: none;">
-                Driver detour...
-            </h5>
-            <table class="carpool" style="width:95%; display: none;">
-                <tr>
-                    <th>Route to parking</th>
-                    <th>Duration to parking</th>
-                    <th>Time difference</th>
-                </tr>
-                <tr>
-                    <td id="distanceToParking" class="detour">wait...</td>
-                    <td id="detouredTime" class="detour">wait...</td>
-                    <td id="difference" class="detour">wait...</td>
-                </tr>
-            </table>
-        </section>
-    </div>
-              <section class="profile">
-                  <h5 id="detour" class="carpool" style="width:95%; padding-left: 10px; color: green; display: none;">
-                    Your route...
-                </h5>
-                <table id="pRoute" class="carpool" style="width:95%;  display: none;">
-                    <tr>
-                        <th>Origin address</th>
-                        <th>Destination address</th>
-                    </tr>
-                    <tr>
-                        <td id="pOrigin" class="detour"></td>
-                        <td id="pDestination" class="detour"></td>
-                    </tr>
-                    <tr class="passengerDirect">
-                        <th>Distance</th>
-                        <th>Duration</th>
-                    </tr>
-                    <tr class="passengerDirect">
-                        <td id="dDistance" class="detour"></td>
-                        <td id="dDuration" class="detour"></td>
-                    </tr>
-                </table>
-                <h5 id="detour" class="carpool" style="width:95%; padding-left: 10px; color: green; display: none;">
-                    Driver detour...
-                </h5>
-                <table class="carpool" style="width:95%; display: none;">
-                    <tr>
-                        <th>Route to parking</th>
-                        <th>Duration to parking</th>
-                        <th>Time difference</th>
-                    </tr>
-                    <tr>
-                        <td id="distanceToParking" class="detour">wait...</td>
-                        <td id="detouredTime" class="detour">wait...</td>
-                        <td id="difference" class="detour">wait...</td>
-                    </tr>
-                </table>
-                <div>
-                </div>
-            </section>
-        </div>
+        <div id="map-canvas"></div>
+            <div id="right-panel">
+                <section className="profile">
+                    <h5 id="detour" className="carpool">
+                        Your route...
+                    </h5>
+                  <table id="pRoute" className="carpool">
+                      <thead>
+                        <tr>
+                            <th>Origin address</th>
+                            <th>Destination address</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td id="pOrigin" className="detour"></td>
+                            <td id="pDestination" className="detour"></td>
+                          </tr>
+                      </tbody>
+                      <thead>
+                        <tr className="passengerDirect">
+                            <th>Distance</th>
+                            <th>Duration</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="passengerDirect">
+                            <td id="dDistance" className="detour"></td>
+                            <td id="dDuration" className="detour"></td>
+                          </tr>
+                        </tbody>
+                    </table>
+                    <h5 id="detour" className="carpool">
+                        Driver detour...
+                    </h5>
+                  <table className="carpool">
+                      <thead>
+                        <tr>
+                            <th>Route to parking</th>
+                            <th>Duration to parking</th>
+                            <th>Time difference</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td id="distanceToParking" className="detour">wait...</td>
+                            <td id="detouredTime" className="detour">wait...</td>
+                            <td id="difference" className="detour">wait...</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                </section>
+            </div>
     </div>
     );
 }
 
-export default mapRoute;
+export default MapRoute;
