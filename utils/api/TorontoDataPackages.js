@@ -1,6 +1,5 @@
-const
-    https = require("https"),
-    packageId = "71e6c206-96e1-48f1-8f6f-0e804687e3be";
+const https = require("https");
+let packageId = "";
 
 // promise to retrieve the package
 const getPackage = new Promise((resolve, reject) => {
@@ -20,17 +19,12 @@ const getPackage = new Promise((resolve, reject) => {
     });
 });
 
-getPackage.then(pkg => {
-    // this is the metadata of the package
-    console.log(pkg);
-}).catch(error => {
-    console.error(error);
-})
 // since this package has resources in the datastore, one can get the data rather than just the metadata of the resources
 // promise to retrieve data of a datastore resource 
 const getDatastoreResource = resource => new Promise((resolve, reject) => {
     https.get(`https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/datastore_search?id=${resource["id"]}`, (response) => {
         let dataChunks = [];
+
         response
             .on("data", (chunk) => {
                 dataChunks.push(chunk)
@@ -45,20 +39,59 @@ const getDatastoreResource = resource => new Promise((resolve, reject) => {
     })
 });
 
-// get the package information again
-getPackage.then(package => {
-    // get the datastore resources for the package
-    let datastoreResources = package["resources"].filter(r => r.datastore_active);
+/**
+ * Retrieve metadata for Toronto Open Data resource specified by package ID
+ * @param {string} pkgId 
+ * @param {function} successCb 
+ * @param {function} errorCb 
+ */
+const getPackageInfo = (pkgId, successCb, errorCb) => {
+    
+    packageId = pkgId;
+
+    getPackage.then(pkg => {
+        // this is the metadata of the package
+        successCb(pkg);
+    }).catch(error => {
+        if(errorCb)
+            errorCb(pkg)
+        else
+            console.error(error);
+    })
+};
+
+/**
+ * Retrieve data from Toronto Open Data resource specified by package ID
+ * @param {string} pkgId 
+ * @param {function} successCb 
+ * @param {fucntion} errorCb 
+ */
+const getPackageData = (pkgId, successCb, errorCb) => {
+
+    packageId = pkgId;
+
+    getPackage.then(package => {
+        // get the datastore resources for the package
+        let datastoreResources = package["resources"].filter(r => r.datastore_active);
 
     // retrieve the first datastore resource as an example
     getDatastoreResource(datastoreResources[0])
         .then(resource => {
             // this is the actual data of the resource
-            console.log(resource)
+            successCb(resource);
         })
         .catch(error => {
-            console.error(error);
+            if(errorCb)
+                errorCb(error)
+            else
+                console.errors(error);
         })
-}).catch(error => {
-    console.error(error);
-})
+    }).catch(error => {
+        if (errorCb)
+            errorCb(error);
+        else
+            console.error(error);
+    });
+};
+
+module.exports = [ getPackageInfo, getPackageData];
