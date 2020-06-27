@@ -1,5 +1,3 @@
-const User = require("./User");
-const BixiStation = require("./BixiStation")
 
 module.exports = function(sequelize, DataTypes) {
     const StationComment = sequelize.define("StationComment", {
@@ -10,9 +8,22 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     // Associations
+    StationComment.associate = function(models) {
+ 
+        StationComment.belongsTo(models.BixiStation, {
+          foreignKey: {
+            name: 'bixiStationId',
+            allowNull: false
+          }
+        });
 
-    // StationComment.belongsTo(User);
-    // StationComment.belongsTo(BixiStation);
+        StationComment.belongsTo(models.User, {
+            foreignKey: {
+                name: 'userId', 
+                allowNull: false
+            }
+        });
+    }
 
     return StationComment;
 };

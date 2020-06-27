@@ -1,4 +1,3 @@
-const StationComment = require("./StationComment");
 
 module.exports = function(sequelize, DataTypes) {
     const BixiStation = sequelize.define("BixiStation", {
@@ -30,6 +29,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER
         }
     });
+
+    // Associations
+    BixiStation.associate = function(models) {
+        BixiStation.hasMany(models.StationComment);
+    }
 
     return BixiStation;
 };
