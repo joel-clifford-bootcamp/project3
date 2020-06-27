@@ -1,6 +1,6 @@
 import React from "react";
 
-function Homepage() {
+function Home() {
   return (
     <div>
         <h1>Find Your Perfect Place.</h1>
@@ -23,4 +23,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default Home;
