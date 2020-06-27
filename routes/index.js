@@ -1,4 +1,4 @@
 module.exports = {
-    BixiStation: require("./api/bixiStation")
+    // BixiStation: require("./api/BixiStation")
   };
   
