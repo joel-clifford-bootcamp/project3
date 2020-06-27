@@ -38,15 +38,19 @@
     }
     
     #map-canvas {
-        height: 100%;
-        float: left;
+        position: absolute;
+        top: 64px;
+        left: 0px;
+        bottom: 0px;
         width: 63%;
     }
     
     #right-panel {
-        float: right;
+        position: absolute;
+        top: 64px;
+        left: 63%;
+        bottom: 0px;
         width: 37%;
-        height: 100%;
     }
     
     .panel {
@@ -96,42 +100,4 @@
     #welcome {
         margin-left: 10px;
         margin-top: 10px;
-    }
-    
-    @media screen and (max-width: 685px) {
-        main {
-            top: 112px;
-        }
-        #map-canvas {
-            height: 55%;
-            width: 100%;
-        }
-        #right-panel {
-            width: 100%;
-            height: 35%;
-        }
-        #right-panel #signIn {
-            width: 98%;
-            margin: auto;
-            padding: 5px;
-            margin-top: 2px;
-            max-width: 400px;
-        }
-        #firstName,
-        #userName,
-        #userType {
-            margin: 3px 0 3px 0;
-        }
-    }
-    
-    @media screen and (max-width: 585px) {
-        main {
-            top: 145px;
-        }
-        #map-canvas {
-            height: 52%;
-        }
-        #right-panel {
-            height: 35%;
-        }
     }
