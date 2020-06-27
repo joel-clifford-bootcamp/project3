@@ -22,7 +22,7 @@ function MapContainer() {
  
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE"
+      googleMapsApiKey="Your_api_key"
     >
       <GoogleMap
         id={"map-canvas"}
