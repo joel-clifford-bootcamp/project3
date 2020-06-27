@@ -9,7 +9,7 @@ function SignUp() {
             <form className="col s12">
                 <div className="row">
                     <div className="input-field col s6">
-                        <input placeholder="Placeholder" id="first_name" type="text" className="validate"/>
+                        <input id="first_name" type="text" className="validate"/>
                         <label for="first_name">First Name</label>
                     </div>
                     <div className="input-field col s6">
@@ -37,7 +37,7 @@ function SignUp() {
                     </div>
             </form>
             <h6>Forgot password?</h6>
-            <a class="waves-effect waves-light btn">Sing Up</a>
+            <a class="waves-effect waves-light btn">Sign Up</a>
         </div>
     </div>
     );
