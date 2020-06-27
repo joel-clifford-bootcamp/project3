@@ -1,0 +1,14 @@
+[
+    {
+        "name": "street_furniture-bicycle_parking",
+        "packageId": "71e6c206-96e1-48f1-8f6f-0e804687e3be"
+    },
+    {
+        "name": "bicycle_parking-high_capacity",
+        "packageId": "2c32f356-e0ff-4245-84ba-cc3dd71a5694"
+    },
+    {
+        "name": "bicycle_parking_racks",
+        "packageId": "4ddba232-d235-4455-b710-537c89dec7d5"
+    }
+]
