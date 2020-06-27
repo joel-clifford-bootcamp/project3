@@ -14,17 +14,25 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             unique: true
         },
+        // Name (location) of station
         name: {
             type: DataTypes.STRING
         },
         lat: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT(8),
             allowNull: false,
+            get(value){
+                this.setDatValue('lat', value / 1000000);
+            }
         },
         lng: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.FLOAT(8),
+            allowNull: false,
+            set(value) {
+                this.setDataValue('lng', value / 1000000);
+            } 
         },
+        // Total capacity (calculated as bikes + free)
         capacity: {
             type: DataTypes.INTEGER
         }
