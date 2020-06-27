@@ -1,16 +1,46 @@
-import React from "react";
+import React, { Component } from "react";
 import "./index.css";
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
-function MapRoute() {
+const center = {
+  lat: 43.651070, 
+  lng: -79.347015
+};
+
+function MapContainer() {
+  const [map, setMap] = React.useState(null)
+ 
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+ 
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+ 
   return (
-    <div>
-        <div id="map-canvas"></div>
-            <div id="right-panel">
+    <LoadScript
+      googleMapsApiKey="AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE"
+    >
+      <GoogleMap
+        id={"map-canvas"}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+        
+      </GoogleMap>
+       <div id="right-panel">
                 <section className="profile">
                     <h5 id="detour" className="carpool">
                         Your route...
                     </h5>
-                  <table id="pRoute" className="carpool">
+                  <table className="table mx-auto  mb-0  border">
                       <thead>
                         <tr>
                             <th>Origin address</th>
@@ -57,8 +87,9 @@ function MapRoute() {
                     </table>
                 </section>
             </div>
-    </div>
-    );
+    </LoadScript>
+  )
 }
+ 
+export default React.memo(MapContainer)
 
-export default MapRoute;

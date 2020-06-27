@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Nav from "./components/Nav"
+import MapContainer from "./components/MapContainer";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
 
           <Route exact path={["/signup"]}>
             <SignUp />
+          </Route>
+
+          <Route exact path={["/map"]}>
+            <MapContainer />
           </Route>
         </Switch>
       </div>
