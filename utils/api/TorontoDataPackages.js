@@ -41,9 +41,9 @@ const getDatastoreResource = resource => new Promise((resolve, reject) => {
 
 /**
  * Retrieve metadata for Toronto Open Data resource specified by package ID
- * @param {string} pkgId 
- * @param {function} successCb 
- * @param {function} errorCb 
+ * @param {string} pkgId Package identifier
+ * @param {function} successCb Callback on success
+ * @param {function} errorCb Callback on error
  */
 const getPackageInfo = (pkgId, successCb, errorCb) => {
     
@@ -62,9 +62,9 @@ const getPackageInfo = (pkgId, successCb, errorCb) => {
 
 /**
  * Retrieve data from Toronto Open Data resource specified by package ID
- * @param {string} pkgId 
- * @param {function} successCb 
- * @param {fucntion} errorCb 
+ * @param {string} pkgId Package identifier
+ * @param {function} successCb Callback on success
+ * @param {fucntion} errorCb Callback on failure
  */
 const getPackageData = (pkgId, successCb, errorCb) => {
 
@@ -94,4 +94,4 @@ const getPackageData = (pkgId, successCb, errorCb) => {
     });
 };
 
-module.exports = [ getPackageInfo, getPackageData];
+module.exports = [ getPackageInfo, getPackageData ];
