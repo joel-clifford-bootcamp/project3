@@ -21,6 +21,8 @@ const getPackage = new Promise((resolve, reject) => {
 
 // since this package has resources in the datastore, one can get the data rather than just the metadata of the resources
 // promise to retrieve data of a datastore resource 
+
+
 const getDatastoreResource = resource => new Promise((resolve, reject) => {
     https.get(`https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/datastore_search?id=${resource["id"]}`, (response) => {
         let dataChunks = [];
@@ -64,7 +66,7 @@ const getPackageInfo = (pkgId, successCb, errorCb) => {
  * Retrieve data from Toronto Open Data resource specified by package ID
  * @param {string} pkgId Package identifier
  * @param {function} successCb Callback on success
- * @param {fucntion} errorCb Callback on failure
+ * @param {function} errorCb Callback on failure
  */
 const getPackageData = (pkgId, successCb, errorCb) => {
 
@@ -93,5 +95,6 @@ const getPackageData = (pkgId, successCb, errorCb) => {
             console.error(error);
     });
 };
+
 
 module.exports = [ getPackageInfo, getPackageData ];
