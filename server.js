@@ -17,8 +17,8 @@ var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// from MERN
-const routes = require("./routes");
+const routes = require("./routes/api/BixiStation");
+app.use(routes);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
