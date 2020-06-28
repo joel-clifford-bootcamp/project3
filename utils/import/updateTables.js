@@ -41,12 +41,14 @@ const updateIfNeeded = async (existingObject, updatedObject) => {
 }
 
 /**
- * Create new instance of model type for each object
+ * Bulk add all items in array
  * @param {type} modelType derived model class 
  * @param {array} updatedObjects objects returned by api call 
  */
 const addNewObjects = async (modelType, updatedObjects) => {
     
+    const objArray = [];
+
     for(i = 0; i < updatedObjects.length; i++){
 
         const fields = {}
@@ -55,10 +57,10 @@ const addNewObjects = async (modelType, updatedObjects) => {
             fields[k] = getUpdatedValue(updatedObjects[i], map[k]);
         });
 
-        const instance = await modelType.create(fields).catch(err => console.log(err));
-
-        await instance.save().catch(err => console.log(err));
+        objArray.push(fields);
     }
+
+    await modelType.bulkCreate(objArray);
 };
 
 /**
