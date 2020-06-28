@@ -1,104 +1,23 @@
-    #right-panel #signIn {
-        position: static;
-        width: 95%;
-        margin: 1%;
-        margin-top: 20px;
-    }
-    
-    #right-panel {
-        font-family: 'Roboto', 'sans-serif';
-        line-height: 30px;
-    }
-    
-    #right-panel select,
-    #right-panel input {
-        font-size: 15px;
-    }
-    
-    #right-panel select {
-        width: 100%;
-    }
-    
-    #right-panel i {
-        font-size: 12px;
-    }
-    
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
-    main {
-        height: 100%;
-        width: 100%;
-        top: 82px;
-        position: absolute;
-    }
-    
-    #map-canvas {
-        position: absolute;
-        top: 64px;
-        left: 0px;
-        bottom: 0px;
-        width: 63%;
-    }
-    
-    #right-panel {
-        position: absolute;
-        top: 64px;
-        left: 63%;
-        bottom: 0px;
-        width: 37%;
-    }
-    
-    .panel {
-        height: 100%;
-        overflow: auto;
-    }
-    
-    table {
-        width: 100%;
-        margin: 5px;
-        margin-bottom: 20px;
-    }
-    
-    tbody th,
-    tbody td {
-        border: 1px solid black;
-        border-style: solid;
-        text-align: left;
-        padding: 0 0 0 0.625rem;
-    }
-    
-    #firstName,
-    #userName,
-    #userType {
-        height: 30px;
-    }
-    
-    #userOrigin {
-        height: 30px;
-    }
-    
-    .profile {
-        display: none;
-    }
-    
-    profile {
-        display: none;
-    }
-    
-    #list,
-    #select {
-        float: left;
-        width: 85%;
-        height: 100%;
-        margin-left: 10px;
-    }
-    
-    #welcome {
-        margin-left: 10px;
-        margin-top: 10px;
-    }
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-canvas {
+    position: absolute;
+    top: 64px;
+    left: 0px;
+    bottom: 0px;
+    width: 63%;
+}
+
+#right-panel {
+    position: absolute;
+    top: 64px;
+    left: 63%;
+    bottom: 0px;
+    width: 37%;
+    padding: 8px;
+}

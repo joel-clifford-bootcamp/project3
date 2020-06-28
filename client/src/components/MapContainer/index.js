@@ -3,7 +3,11 @@ import "./index.css";
 import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService} from '@react-google-maps/api';
 
 
-
+//Toronto, ON
+const center = {
+              lat: 43.651070,
+              lng:  -79.347015
+            }
 
   class MapContainer extends Component {
     constructor(props) {
@@ -20,7 +24,6 @@ import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService} from '@re
       this.getOrigin = this.getOrigin.bind(this)
       this.getDestination = this.getDestination.bind(this)
       this.onClick = this.onClick.bind(this)
-      this.onMapClick = this.onMapClick.bind(this)
     }
 
     directionsCallback(response) {
@@ -59,29 +62,19 @@ import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService} from '@re
       }
     }
 
-    onMapClick(...args) {
-      console.log('onClick args: ', args)
-    }
-
-
   
     render() {
       return (
         <LoadScript
-          googleMapsApiKey="YOUR_API_KEY"
+          googleMapsApiKey='AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE'
         >
            <GoogleMap
-            // required
+            // Map container
             id='map-canvas'
-            // required
-            zoom={2}
-            // required
-            center={{
-              lat: 0,
-              lng: -180
-            }}
-            // optional
-            onClick={this.onMapClick}
+            // Initial zoom
+            zoom={10}
+            // Map initial center in Toronto
+            center={center}
             // optional
             onLoad={map => {
               console.log('DirectionsRenderer onLoad map: ', map)
@@ -138,13 +131,9 @@ import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService} from '@re
             }
         
           </GoogleMap>
-          <div id="right-panel">
-            
-              <div className='map-settings'>
-          <hr className='mt-0 mb-3' />
-
-          <div className='row'>
-            <div className='col-md-6 col-lg-4'>
+          <div id="right-panel" className='center-align'>
+          <div className='row z-depth-5'>
+            <div className='col s12'>
               <div className='form-group'>
                 <label htmlFor='ORIGIN'>Origin</label>
                 <br />
@@ -152,7 +141,7 @@ import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService} from '@re
               </div>
             </div>
 
-            <div className='col-md-6 col-lg-4'>
+            <div className='col s12'>
               <div className='form-group'>
                 <label htmlFor='DESTINATION'>Destination</label>
                 <br />
@@ -160,12 +149,10 @@ import { GoogleMap, LoadScript, DirectionsRenderer, DirectionsService} from '@re
               </div>
             </div>
           </div>
-          <button className='btn btn-primary' type='button' onClick={this.onClick}>
+          <button className='btn btn-primary z-depth-5' type='button' onClick={this.onClick}>
             Build Route
           </button>
         </div>
-             
-          </div>
         </LoadScript>
       )
     }
