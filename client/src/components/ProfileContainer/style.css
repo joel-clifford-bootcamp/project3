@@ -1,0 +1,8 @@
+#pageContainer {
+  background-image: "../../public/img/background.jpg";
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;
+  /* background: #383737; */
+}
