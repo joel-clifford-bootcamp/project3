@@ -1,6 +1,11 @@
 const axios = require("axios");
 
-function getStationData(successCb, errorCb) {
+/**
+ * Retrieve data fomr Bixi Bikes Toronto
+ * @param {function} successCb callback on success
+ * @param {function} errorCb  callback on error
+ */
+module.exports = function(successCb, errorCb=null) {
     axios({
         method:'get',
         url:'http://api.citybik.es/bixi-toronto.json'})
@@ -8,11 +13,9 @@ function getStationData(successCb, errorCb) {
             successCb(response.data);
         })
     .catch(err => {
-        if(erroCb)
+        if(errorCb)
             errorCb(err);
         else
             console.log(err);
-    })
+    });
 };
-
-module.exports = getStationsData;

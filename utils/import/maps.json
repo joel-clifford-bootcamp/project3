@@ -1,0 +1,14 @@
+
+{
+    "BixiStation":{
+        "id": "number",
+        "idx": "idx",
+        "name": "name",
+        "lat": "lat",
+        "lng": "lng",
+        "capacity": {
+            "func": "sum",
+            "args": ["bikes", "free"]
+        }
+    }
+}

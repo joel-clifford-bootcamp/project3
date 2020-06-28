@@ -19,17 +19,17 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         lat: {
-            type: DataTypes.FLOAT(8),
+            type: DataTypes.DECIMAL(9,6),
             allowNull: false,
-            get(value){
-                this.setDatValue('lat', value / 1000000);
+            set(value){
+                 this.setDataValue('lat', 1.0 * value / 1000000);
             }
         },
         lng: {
-            type: DataTypes.FLOAT(8),
+            type: DataTypes.DECIMAL(9,6),
             allowNull: false,
             set(value) {
-                this.setDataValue('lng', value / 1000000);
+                this.setDataValue('lng', 1.0 * value / 1000000);
             } 
         },
         // Total capacity (calculated as bikes + free)
