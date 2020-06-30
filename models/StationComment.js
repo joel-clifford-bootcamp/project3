@@ -11,17 +11,13 @@ module.exports = function(sequelize, DataTypes) {
     StationComment.associate = function(models) {
  
         StationComment.belongsTo(models.BixiStation, {
-          foreignKey: {
-            name: 'bixiStationId',
-            allowNull: false
-          }
+            allowNull: false,
+            onDelete: 'cascade'
         });
 
         StationComment.belongsTo(models.User, {
-            foreignKey: {
-                name: 'userId', 
-                allowNull: false
-            }
+            allowNull: false,
+            onDelete: 'cascade'
         });
     }
 
