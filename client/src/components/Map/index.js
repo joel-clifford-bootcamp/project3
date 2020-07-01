@@ -78,14 +78,7 @@ let loaded = false;
             zoom={10}
             // Map initial center in Toronto
             center={center}
-            // optional
-            onLoad={map => {
-              console.log('DirectionsRenderer onLoad map: ', map)
-            }}
-            // optional
-            onUnmount={map => {
-              console.log('DirectionsRenderer onUnmount map: ', map)
-            }}
+
           >
             { /* Child components, such as markers, info windows, etc. */}
            {
@@ -137,17 +130,17 @@ let loaded = false;
           <div className='row z-depth-5'>
             <div className='col s12'>
               <div className='form-group'>
-                <label htmlFor='ORIGIN'>Origin</label>
+                <label className='white-text' htmlFor='ORIGIN'>Origin</label>
                 <br />
-                <input id='ORIGIN' className='form-control' type='text' ref={this.getOrigin} />
+                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} />
               </div>
             </div>
 
             <div className='col s12'>
               <div className='form-group'>
-                <label htmlFor='DESTINATION'>Destination</label>
+                <label className='white-text' htmlFor='DESTINATION'>Destination</label>
                 <br />
-                <input id='DESTINATION' className='form-control' type='text' ref={this.getDestination} />
+                <input id='DESTINATION' className='white' type='text' ref={this.getDestination} />
               </div>
             </div>
           </div>
