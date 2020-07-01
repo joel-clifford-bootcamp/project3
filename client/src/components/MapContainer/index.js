@@ -6,7 +6,7 @@ function MapContainer() {
   return (
     <div>
       <Nav />
-      <LoadScript googleMapsApiKey="AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE">
+      <LoadScript googleMapsApiKey="">
         <Map />
       </LoadScript>
     </div>
