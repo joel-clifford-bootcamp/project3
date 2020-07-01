@@ -25,3 +25,7 @@ body {
 label {
     font-size: 14px!important;
 }
+
+table {
+    margin-top: 20px;
+}
