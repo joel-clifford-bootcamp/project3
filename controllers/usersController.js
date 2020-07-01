@@ -2,6 +2,9 @@
 var db = require("../models");
 
 module.exports = {
+  test: function(req, res) {
+    res.json({message: "It worked!!"})
+  },
   signIn: function(req,res) {
     res.json({ 
       email: req.user.email,
@@ -14,7 +17,7 @@ module.exports = {
       email: req.body.email,
       password: req.body.password
     })
-    .then(_ => res.redirect(307, "/api/login"))
+    .then(_ => res.redirect(307, "/api/users/login"))
     .catch(err => res.status(401).json(err));
   },
   logout: function(req, res) {
