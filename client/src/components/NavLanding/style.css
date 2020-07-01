@@ -1,0 +1,12 @@
+Link {
+color: #e57373;
+  }
+
+#logoLink, #homeLink, #profileLink, #mapLink {
+  color: #e57373;
+    }
+  
+.brand-logo {
+  padding: 10px;
+  margin-left: 20px;
+}

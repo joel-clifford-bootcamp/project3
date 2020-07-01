@@ -1,13 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import NavLanding from "../components/NavLanding"
 import "../signin.css";
+import Nav from "../components/Nav";
+
 
 function SignIn() {
   return (
     <div class="row">
+        <NavLanding />
         <div class="col s12 m6">
             <div className="card signIn">
                 <h1>Welcome</h1>
-                    <h6>New to Link-N-Park? <span className="signUpLink">Sign up</span> for free!</h6>
+                    <h6>New to Link-N-Park? <span className="signUpLink">
+                        <Link className="signUpPageLink" to="/signup">Sign up</Link>
+                        </span> for free!</h6>
                         <div className="row">
                             <form className="col s12">
                                 <div className="row">

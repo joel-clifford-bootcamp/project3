@@ -1,0 +1,27 @@
+/* body {
+    background-image: url("./assets/bike.jpg");
+   } */
+
+.pageHeading, .userNameHeading, .userEmailHeading {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.pageHeading {
+    /* font-size: 46px; */
+    font-weight: 500;
+    color: white;
+}
+
+.userNameHeading {
+    text-transform: uppercase;
+}
+
+/* h1, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 46px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 0px !important;
+    text-transform: uppercase;
+} */
+
