@@ -5,6 +5,9 @@ var passport = require("../../config/passport");
 router.route("/signin")
   .post(passport.authenticate("local"), usersController.signIn);
 
+router.route("/check_input")
+  .get(usersController.validateInput);
+
 router.route("/signup")
   .post(usersController.signUp)
 
