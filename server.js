@@ -41,7 +41,7 @@ dataRefreshCron();
 db.sequelize.sync().then(function() {
   
   // Call external APIs to populate data
-  refreshBixiStations();
+   refreshBixiStations();
 
   // Start the API server
   app.listen(PORT, function() {

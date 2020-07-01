@@ -3,7 +3,7 @@ const usersController = require("../../controllers/usersController");
 var passport = require("../../config/passport");
 
 router.route("/signin")
-  .post(passport.authenticate("local"),usersController.signIn);
+  .post(passport.authenticate("local"), usersController.signIn);
 
 router.route("/signup")
   .post(usersController.signUp)
