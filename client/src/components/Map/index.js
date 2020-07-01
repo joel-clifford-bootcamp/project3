@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import { GoogleMap, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
+import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
 import "./index.css";
 
 
@@ -122,6 +122,26 @@ let loaded = false;
                     console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
                   }}
                 />
+                
+              )
+            }
+             {
+             this.state.response !== null && (
+                <DistanceMatrixService
+                  // required
+                  options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
+                    directions: this.state.response
+                  }}
+                  // optional
+                  onLoad={DistanceMatrixService => {
+                    console.log('DirectionsRenderer onLoad directionsRenderer: ', DistanceMatrixService)
+                  }}
+                  // optional
+                  onUnmount={DistanceMatrixService => {
+                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', DistanceMatrixService)
+                  }}
+                />
+                
               )
             }
         
@@ -145,9 +165,38 @@ let loaded = false;
             </div>
           </div>
           <button className='btn btn-primary z-depth-5' type='button' onClick={this.onClick}>
-            Build Route
+              Build Route
           </button>
-              </div>
+      <table className='row z-depth-5'>
+        <thead className="teal">
+          <tr>
+              <th>Origin</th>
+              <th>Destination</th>
+          </tr>
+        </thead>
+
+        <tbody  className="white">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+        <thead className="teal">
+          <tr>
+              <th>Distance</th>
+              <th>Time</th>
+          </tr>
+        </thead>
+
+        <tbody  className="white">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+          
     </div>
       )
     }
