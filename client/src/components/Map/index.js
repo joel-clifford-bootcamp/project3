@@ -7,8 +7,7 @@ import "./index.css";
 const center = {
               lat: 43.651070,
               lng:  -79.347015
-            }
-let loaded = false;
+}
 
   class Map extends Component {
     constructor(props) {
@@ -17,11 +16,16 @@ let loaded = false;
       this.state = {
         response: null,
         travelMode: 'BICYCLING',
-        origin: '',
-        destination: ''
+        origin: '', // input origin
+        destination: '', // input destination
+        originAddress: 'Submit request...', // full origin address from google
+        destinationAddress: 'Submit request...', // full destination address from google
+        distance: '', // distance in km
+        duration:'', // time in hours and minutes
       }
 
       this.directionsCallback = this.directionsCallback.bind(this)
+      this.distancesCallback = this.distancesCallback.bind(this)
       this.getOrigin = this.getOrigin.bind(this)
       this.getDestination = this.getDestination.bind(this)
       this.onClick = this.onClick.bind(this)
@@ -41,9 +45,26 @@ let loaded = false;
           console.log('response: ', response)
         }
       }
-        loaded = true;
     }
 
+    distancesCallback(results) {
+      if (results !== null) {
+        console.log('results '+results)
+         this.setState(
+          () => ({
+             originAddress: results.originAddresses[0],
+            destinationAddress: results.destinationAddresses[0],
+             distance: results.rows[0].elements[0].distance.text,
+             duration: results.rows[0].elements[0].duration.text
+           })
+         )
+        console.log('response: ', results)
+      }
+    }
+
+    getDistance(results) {
+      
+    }
 
     getOrigin(ref) {
       this.origin = ref
@@ -58,17 +79,17 @@ let loaded = false;
       if (this.origin.value !== '' && this.destination.value !== '') {
         this.setState(
           () => ({
+            //Grabbing the origin and destination from the user inputs
             origin: this.origin.value,
             destination: this.destination.value
             })
 
         )
       }
-    }
-
-    
+      }
   
     render() {
+      
       return (
      <div>
            <GoogleMap
@@ -83,7 +104,7 @@ let loaded = false;
             { /* Child components, such as markers, info windows, etc. */}
            {
               (
-                this.state.destination !== '' &&
+                this.state.duration ==='' && this.state.destination !== '' &&
                 this.state.origin !== ''
               ) && (
                 <DirectionsService
@@ -126,19 +147,27 @@ let loaded = false;
               )
             }
              {
-             this.state.response !== null && (
+             (
+                this.state.destination !== '' &&
+                this.state.origin !== ''
+              ) && (
                 <DistanceMatrixService
                   // required
+                 // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                    directions: this.state.response
+                    destinations: [this.state.destination],
+                    origins: [this.state.origin],
+                    travelMode: this.state.travelMode
+                  }}
+                   // required
+                  callback={this.distancesCallback}
+                  // optional
+                  onLoad={distanceMatrixService=> {
+                    console.log('DirectionsRenderer onLoad directionsRenderer: ', distanceMatrixService)
                   }}
                   // optional
-                  onLoad={DistanceMatrixService => {
-                    console.log('DirectionsRenderer onLoad directionsRenderer: ', DistanceMatrixService)
-                  }}
-                  // optional
-                  onUnmount={DistanceMatrixService => {
-                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', DistanceMatrixService)
+                  onUnmount={distanceMatrixService => {
+                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', distanceMatrixService)
                   }}
                 />
                 
@@ -171,14 +200,23 @@ let loaded = false;
         <thead className="teal">
           <tr>
               <th>Origin</th>
+          </tr>
+        </thead>
+
+        <tbody  className="white">
+          <tr>
+            <td>{this.state.originAddress}</td>
+          </tr>
+              </tbody>
+        <thead className="teal">
+          <tr>
               <th>Destination</th>
           </tr>
         </thead>
 
         <tbody  className="white">
           <tr>
-            <td></td>
-            <td></td>
+            <td>{this.state.destinationAddress}</td>
           </tr>
         </tbody>
         <thead className="teal">
@@ -190,8 +228,8 @@ let loaded = false;
 
         <tbody  className="white">
           <tr>
-            <td></td>
-            <td></td>
+            <td>{this.state.distance}</td>
+            <td>{this.state.duration}</td>
           </tr>
         </tbody>
       </table>
