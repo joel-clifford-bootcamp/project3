@@ -9,6 +9,7 @@ const center = {
               lng:  -79.347015
 }
 
+
   class Map extends Component {
     constructor(props) {
       super(props)
@@ -58,14 +59,10 @@ const center = {
              duration: results.rows[0].elements[0].duration.text
            })
          )
-        console.log('response: ', results)
       }
     }
 
-    getDistance(results) {
-      
-    }
-
+   
     getOrigin(ref) {
       this.origin = ref
     }
@@ -103,7 +100,7 @@ const center = {
           >
             { /* Child components, such as markers, info windows, etc. */}
            {
-              (
+              ( 
                 this.state.duration ==='' && this.state.destination !== '' &&
                 this.state.origin !== ''
               ) && (
@@ -128,7 +125,7 @@ const center = {
             }
 
             {
-             this.state.response !== null && (
+             (this.state.response !== null) && (
                 <DirectionsRenderer
                   // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
@@ -147,9 +144,8 @@ const center = {
               )
             }
              {
-             (
-                this.state.destination !== '' &&
-                this.state.origin !== ''
+             ( 
+               this.state.response !== null
               ) && (
                 <DistanceMatrixService
                   // required
@@ -199,24 +195,24 @@ const center = {
       <table className='row z-depth-5'>
         <thead className="teal">
           <tr>
-              <th>Origin</th>
+              <th colspan="2">Origin</th>
           </tr>
         </thead>
 
         <tbody  className="white">
           <tr>
-            <td>{this.state.originAddress}</td>
+            <td colspan="2">{this.state.originAddress}</td>
           </tr>
               </tbody>
         <thead className="teal">
           <tr>
-              <th>Destination</th>
+              <th colspan="2">Destination</th>
           </tr>
         </thead>
 
         <tbody  className="white">
           <tr>
-            <td>{this.state.destinationAddress}</td>
+            <td colspan="2">{this.state.destinationAddress}</td>
           </tr>
         </tbody>
         <thead className="teal">
