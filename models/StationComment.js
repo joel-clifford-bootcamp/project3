@@ -5,6 +5,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         }
+    }, 
+    {   
+        timestamps: true,
+        updatedAt: false 
     });
 
     // Associations
@@ -12,12 +16,12 @@ module.exports = function(sequelize, DataTypes) {
  
         StationComment.belongsTo(models.BixiStation, {
             allowNull: false,
-            onDelete: 'cascade'
+            onDelete: 'CASCADE'
         });
 
         StationComment.belongsTo(models.User, {
             allowNull: false,
-            onDelete: 'cascade'
+            onDelete: 'CASCADE'
         });
     }
 

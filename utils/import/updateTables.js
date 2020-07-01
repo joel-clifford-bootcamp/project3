@@ -97,7 +97,7 @@ const checkExistingObjects = async (existingObjects, updatedObjects)  => {
 module.exports = async function(modelType, updatedObjects){
     map = require('./maps.json')[modelType.name];
 
-    await modelType.destroy({truncate: true});
+    await modelType.destroy({truncate: {cascade: true }});
 
     await addNewObjects(modelType, updatedObjects);
 }

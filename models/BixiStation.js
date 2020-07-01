@@ -36,7 +36,9 @@ module.exports = function(sequelize, DataTypes) {
         capacity: {
             type: DataTypes.INTEGER
         }
-    });
+    }, 
+    {   timestamps: true,
+        createdAt: false });
 
     // Associations
     BixiStation.associate = function(models) {
