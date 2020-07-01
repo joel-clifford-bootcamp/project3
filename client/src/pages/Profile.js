@@ -8,6 +8,10 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { UserCard, RecentActivityCard } from "../components/ProfileCard";
 import ProfileContainer from "../components/ProfileContainer";
+import Nav from "../components/Nav"
+import "../profile.css";
+
+
 
 function Profile() {
   // Setting our component's initial state
@@ -56,10 +60,11 @@ function Profile() {
 
   return (
     <Container fluid>
+    <Nav />
       <Row>
         <Col size="md-12 sm-12">
           <Jumbotron>
-            <h1>Profile</h1>
+            <h1 className="pageHeading">Profile</h1>
           </Jumbotron>
         </Col>
         <Col size="md-12 sm-12">
@@ -71,9 +76,15 @@ function Profile() {
                 textAlign: "center"  
             }}>
             <UserCard />
-            <h3 className="userNameHeading red-text text-lighten-2" style={{margin: "10px", textAlign: "center"}}>USER NAME</h3>
+            <h3 className="userNameHeading red-text text-lighten-1" 
+            style={{margin: "10px", textAlign: "center"}}
+            >User Name</h3>
             <p className="userEmailHeading" style={{textAlign: "center"}}>
-              <a href="mailto:user@email.com" target="_blank" style={{margin: "10px", color: "cyan darken-1"}}>
+              <a href="mailto:user@email.com" 
+              target="_blank" 
+            //   style={{margin: "10px", color: "cyan darken-1"}}
+              style={{margin: "10px", color: "white"}}
+              >
                 user@email.com
               </a>
             </p>

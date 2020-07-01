@@ -1,8 +1,11 @@
 import React from "react";
+import Nav from "../components/Nav"
+
 
 function Home() {
   return (
     <div>
+        <Nav />
         <h1>Find Your Perfect Place.</h1>
         <div class="row">
             <div class="col s3">Map A Safe Route</div>
