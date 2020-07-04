@@ -39,7 +39,7 @@ function Home() {
               <button className="button buttonHome">
               <a href="/map"><i className="fas fa-map icon"></i></a>
               </button>
-              <a href="/map">Map A Safe Route</a>
+              <a className="linkNames" href="/map">Map A Safe Route</a>
             </li>
             <li className="tab col s3">
               <button className="button buttonHome">
@@ -47,7 +47,7 @@ function Home() {
                   <i className="fas fa-parking icon"></i>
                   </a>
               </button>
-              <a href="/map">Park Your Bike</a>
+              <a className="linkNames" href="/map">Park Your Bike</a>
             </li>
             <li className="tab col s3">
               <button className="button buttonHome">
@@ -55,8 +55,8 @@ function Home() {
                   <i className="fas fa-map-marker-alt icon"></i>
                 </a>
                 </button>
-              <a className="active" href="/map">
-                Find a Bixi Bike
+              <a className="active linkNames" href="/map">
+              Find a Bixi Bike
               </a>
             </li>
             <li className="tab col s3 disabled">
@@ -67,12 +67,7 @@ function Home() {
               </button>
               <a 
               href="/map"
-              className={
-                window.location.pathname === "/map"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-              >
+              className="linkNames">
                   Rate a Parking Spot</a>
             </li>
             {/* <li className="tab col s3">
