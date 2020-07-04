@@ -8,7 +8,7 @@ function Nav() {
   <div className="nav-wrapper">
       <Link className="brand-logo" to="/home" id="logoLink"
 >
-        Link N Park
+        Link-N-Park
       </Link>
       <div>
         <ul className="right hide-on-med-and-down" id="nav-mobile">
