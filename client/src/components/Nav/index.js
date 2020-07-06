@@ -4,45 +4,67 @@ import "./style.css";
 
 function Nav() {
   return (
-<nav className="blue-grey lighten-5">
-  <div className="nav-wrapper">
-      <Link className="brand-logo" to="/home" id="logoLink"
->
-        Link-N-Park
-      </Link>
-      <div>
-        <ul className="right hide-on-med-and-down" id="nav-mobile">
-          <li className="nav-item">
-            <Link
-              to="/home"
-              className={
-                window.location.pathname === "/home" || window.location.pathname === "/home"
-                  ? "nav-link active"
-                  : "nav-link"
-              }
-              id="homeLink"
-            >
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/profile"
-              className={window.location.pathname === "/profile" ? "nav-link active" : "nav-link"}
-              id="profileLink"
-            >
-              Profile
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              to="/map"
-              className={window.location.pathname === "/map" ? "nav-link active" : "nav-link"}
-              id="mapLink"
-            >
-              Map
-            </Link>
-          </li>
+    <nav className="blue-grey lighten-5">
+      <div className="nav-wrapper">
+        <Link className="brand-logo" to="/home" id="logoLink">
+          <i className="fas fa-biking" id="icon"></i>
+          Link-N-Park
+        </Link>
+        <div>
+          <ul className="right hide-on-med-and-down" id="nav-mobile">
+            <li className="nav-item">
+              <Link
+                to="/home"
+                className={
+                  window.location.pathname === "/home" ||
+                  window.location.pathname === "/home"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                id="homeLink"
+              >
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/profile"
+                className={
+                  window.location.pathname === "/profile"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                id="profileLink"
+              >
+                Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/map"
+                className={
+                  window.location.pathname === "/map"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                id="mapLink"
+              >
+                Map
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/signin"
+                className={
+                  window.location.pathname === "/signin"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                id="mapLink"
+              >
+                Sign Out
+              </Link>
+            </li>
             {/* <li className="nav-item">
             <Link
               to="/search"
@@ -51,7 +73,7 @@ function Nav() {
               Search
             </Link>
           </li> */}
-          {/* <li className="nav-item">
+            {/* <li className="nav-item">
             <Link
               to="/contact"
               className={window.location.pathname === "/contact" ? "nav-link active" : "nav-link"}
@@ -59,11 +81,10 @@ function Nav() {
               Contact
             </Link>
           </li> */}
-        </ul>
+          </ul>
+        </div>
       </div>
-  </div>
     </nav>
-
   );
 }
 
