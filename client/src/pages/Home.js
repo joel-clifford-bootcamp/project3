@@ -59,7 +59,8 @@ function Home() {
               Find a Bixi Bike
               </a>
             </li>
-            <li className="tab col s3 disabled">
+            <li className="tab col s3">
+            {/* <li className="tab col s3 disabled"> */}
               <button className="button buttonHome">
               <a href="/map">
                   <i className="fas fa-star icon"></i>
