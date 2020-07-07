@@ -1,0 +1,36 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map-canvas {
+    position: absolute;
+    top: 64px;
+    left: 0px;
+    bottom: 0px;
+    width: 63%;
+}
+
+#right-panel {
+    position: absolute;
+    top: 64px;
+    left: 63%;
+    bottom: 0px;
+    width: 37%;
+    padding: 8px;
+}
+
+label {
+    font-size: 14px!important;
+}
+
+table {
+    margin-top: 20px;
+}
+
+td,
+th {
+    border: 2px solid teal;
+}
