@@ -2,14 +2,17 @@
     background-image: url("./assets/bike.jpg");
    } */
 
-.pageHeading, .userNameHeading, .userEmailHeading {
+.pageHeading, .userNameHeading, .userEmailHeading, .activity {
     font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 10px;
 }
 
 .pageHeading {
     /* font-size: 46px; */
     font-weight: 500;
     color: white;
+    text-align: center;
 }
 
 .userNameHeading {
@@ -24,4 +27,3 @@
     margin-bottom: 0px !important;
     text-transform: uppercase;
 } */
-
