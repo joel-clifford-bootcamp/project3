@@ -31,7 +31,6 @@ module.exports = function(sequelize, DataTypes) {
     BikeParking.associate = function(models) {
         BikeParking.belongsTo(models.BikeParkingType, {
             foreigKey: {
-                name: "typeId",
                 allowNull: true
             }
         });
@@ -40,7 +39,6 @@ module.exports = function(sequelize, DataTypes) {
     BikeParking.associate = function(models) {
         BikeParking.belongsTo(models.BikeParkingStatus, {
             foreigKey: {
-                name: "statusId",
                 nullable: true
             }
         });

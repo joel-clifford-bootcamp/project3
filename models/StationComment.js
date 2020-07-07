@@ -5,23 +5,23 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         }
+    }, 
+    {   
+        timestamps: true,
+        updatedAt: false 
     });
 
     // Associations
     StationComment.associate = function(models) {
  
         StationComment.belongsTo(models.BixiStation, {
-          foreignKey: {
-            name: 'bixiStationId',
-            allowNull: false
-          }
+            allowNull: false,
+            onDelete: 'CASCADE'
         });
 
         StationComment.belongsTo(models.User, {
-            foreignKey: {
-                name: 'userId', 
-                allowNull: false
-            }
+            allowNull: false,
+            onDelete: 'CASCADE'
         });
     }
 

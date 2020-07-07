@@ -21,3 +21,16 @@ body {
     width: 37%;
     padding: 8px;
 }
+
+label {
+    font-size: 14px!important;
+}
+
+table {
+    margin-top: 20px;
+}
+
+td,
+th {
+    border: 2px solid teal;
+}

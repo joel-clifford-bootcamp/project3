@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-function Nav() {
+function NavLanding() {
   return (
 <nav className="blue-grey lighten-5">
   <div className="nav-wrapper">
-      <Link className="brand-logo" to="/home" id="logoLink"
+      <Link className="brand-logo" to="/signup" id="logoLink"
 >
         Link-N-Park
       </Link>
       <div>
         <ul className="right hide-on-med-and-down" id="nav-mobile">
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               to="/home"
               className={
@@ -24,8 +24,8 @@ function Nav() {
             >
               Home
             </Link>
-          </li>
-          <li className="nav-item">
+          </li> */}
+          {/* <li className="nav-item">
             <Link
               to="/profile"
               className={window.location.pathname === "/profile" ? "nav-link active" : "nav-link"}
@@ -42,7 +42,7 @@ function Nav() {
             >
               Map
             </Link>
-          </li>
+          </li> */}
             {/* <li className="nav-item">
             <Link
               to="/search"
@@ -67,4 +67,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default NavLanding;

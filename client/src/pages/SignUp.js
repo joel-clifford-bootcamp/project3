@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import "../signin.css";
+import { Link } from "react-router-dom";
+import NavLanding from "../components/NavLanding"
+import "../signup.css";
 
 
 const SignUp = () => {
@@ -24,7 +26,9 @@ const SignUp = () => {
         <div className="col s12 m6">
             <div className="card signIn">
                 <h1>Welcome</h1>
-                <h6>Already have an <span className="signUpLink">account?</span></h6>
+                <h6>Already have an <span className="signUpLink">
+                    <Link className="signInPageLink" to="/signin">account?</Link>
+                    </span></h6>
                 <div className="row">
                     <form onSubmit={handleSubmit}>
                         <div className="row">
