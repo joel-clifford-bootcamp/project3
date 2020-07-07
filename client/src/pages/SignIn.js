@@ -20,7 +20,7 @@ const SignIn = () => {
         <div className="col s12 m6">
             <div className="card signIn">
                 <h1>Welcome</h1>
-                    <h6>New to Link-N-Park? <span className="signUpLink">
+                    <h6>New to <i><b>Link-N-Park?</b></i> <span className="signUpLink">
                         <Link className="signUpPageLink" to="/signup">Sign up</Link>
                         </span> for free!</h6>
                         <div className="row">
