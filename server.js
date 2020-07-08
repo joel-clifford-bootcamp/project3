@@ -1,4 +1,6 @@
 // Requiring necessary npm packages
+const seed = require("./utils/seed");
+
 const express = require("express");
 
 const session = require("express-session");
@@ -40,8 +42,12 @@ dataRefreshCron();
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
   
-  // Call external APIs to populate data
-   refreshBixiStations();
+  refreshBixiStations();
+
+  if (process.env.NODE_ENV != "production") 
+  {
+    seed(db);
+  }
 
   // Start the API server
   app.listen(PORT, function() {
