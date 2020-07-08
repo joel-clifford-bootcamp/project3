@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import NavLanding from "../components/NavLanding"
 import "../signup.css";
+import bike from "../assets/logo1.png"
 
 
 const SignUp = () => {
@@ -20,12 +20,14 @@ const SignUp = () => {
 
   return (
     <div className="row">
-        <div className="col s12 m1">
-            <img src="../assets/logo1.png" alt="Full White Logo"></img>
+        {/* <div className="col s12 m1">
+            <img src={bike} alt="Full White Logo"></img>
         </div>
-        <div className="col s12 m6">
+    </div> */}
+    <div className="valign-wrapper signUpBackground">
+        <div className="col s12 m6 offset-m3">
             <div className="card signIn">
-                <h1>Welcome</h1>
+                <h2>Welcome</h2>
                 <h6>Already have an <span className="signUpLink">
                     <Link className="signInPageLink" to="/signin">account?</Link>
                     </span></h6>
@@ -64,35 +66,24 @@ const SignUp = () => {
                                     onChange={e => setEmail(e.target.value)}
                                     />
                                 </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input 
+                                id="password"
+                                type="password" 
+                                className="validate"
+                                placeholder="Password"
+                                name="password"
+                                onChange={e => setPassword(e.target.value)}
+                                />
                             </div>
-                            <div className="row">
-                                <div className="input-field col s12">
-                                    <input 
-                                    id="password"
-                                    type="password" 
-                                    className="validate"
-                                    placeholder="Password"
-                                    name="password"
-                                    onChange={e => setPassword(e.target.value)}
-                                    />
-                                </div>
-                            </div>
-                            {/* <div className="row">
-                                <div className="input-field col s12">
-                                    <input 
-                                    id="confirmPassword" 
-                                    type="password" 
-                                    className="validate"
-                                    placeholder="Confirm Password"
-                                    name="confirmPassword"
-                                    onChange={e => setConfirmPassword(e.target.value)}
-                                    />
-                                </div>
-                            </div> */}
+                        </div>
                             <button className="btn signInBtn" type="submit">Sign Up</button>
-                        </form>
+                    </form>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     );
