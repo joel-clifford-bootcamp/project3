@@ -1,5 +1,5 @@
 h1 {
-    color: white;
+    color: #78bcc5ff;
     padding: 65px;
 }
 
@@ -68,4 +68,9 @@ font-family: 'Montserrat', sans-serif;
 font-weight: 200;
 text-align: center;
 margin-bottom: 0px !important;
+}
+
+.material-icons{
+  color: white;
+  align: center;
 }

@@ -1,4 +1,6 @@
 // Requiring necessary npm packages
+const seed = require("./utils/seed");
+
 const express = require("express");
 
 const session = require("express-session");
@@ -38,11 +40,11 @@ app.use(passport.session());
 dataRefreshCron();
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   
   // Call external APIs to populate data
-   refreshBixiStations();
-
+  refreshBixiStations();
+  
   // Start the API server
   app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

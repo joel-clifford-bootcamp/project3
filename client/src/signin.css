@@ -1,14 +1,16 @@
-body {
+.signUpBackground {
     background-image: url("./assets/bike.jpg");
+    background-position: 25% 75%;
+    background-repeat: repeat;
+    background-attachment: fixed;
    }
 
-h1 {
+h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 46px;
     font-weight: 200;
     text-align: center;
     margin-bottom: 0px !important;
-    /* text-transform: uppercase; */
 }
 
 h6 {
@@ -17,10 +19,14 @@ h6 {
     font-weight: 100;
     text-align: center;
     margin-top: 1px;
-    /* text-transform: uppercase; */
 }
 
 .signUpLink{
+    font-weight: 600;
+    color: #d12e27ff;
+}
+
+.signInPageLink{
     font-weight: 600;
     color: #d12e27ff;
 }
@@ -32,20 +38,34 @@ h6 {
 
 .signIn{
     background-color: #ffffff;
-    /* align-content: center; */
-    /* height: 10em;
-    position: relative; */
     border-radius: 25px;
-    padding: 20px;
+    padding: 30px;
     margin-left: 200px;
     margin-right: 200px;
     margin-top: 100px;
     width: 60%;
 }
 
+form {
+    margin: 30px;
+}
+
 .signInBtn{
     background-color: #78bcc5ff;
     width: 100%;
-
-
+    border-radius: 25px;
 }
+
+.signInBtn:hover {
+    background-color: #78bcc5ff;
+}
+
+.signInBtn:active {
+  background-color: #78bcc5ff;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.signInBtn:focus {
+    background-color: #78bcc5ff;
+  }
