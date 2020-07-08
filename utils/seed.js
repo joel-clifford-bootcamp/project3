@@ -20,10 +20,10 @@ const generateComments = (db, userIds, stationIds) => {
         comments.push({
             BixiStationId: stationIds[sIdx].id, 
             UserId: userIds[uIdx].id, 
-            commentText: text})
+            commentText: text});
     }
 
-    db.StationComment.bulkCreate(comments).then(result => console.log(`seeded ${comments.length} comments` ));
+    db.StationComment.bulkCreate(comments);
 };
 
 module.exports = function(db) {
