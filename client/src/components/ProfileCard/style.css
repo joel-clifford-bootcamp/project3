@@ -53,6 +53,7 @@
     unicode-bidi: bidi-override;
     direction: rtl;
     color: red;
+    cursor: pointer;
   }
   .rating > span {
     display: inline-block;

@@ -116,7 +116,7 @@ export function RecentActivityCard(props) {
             style={{ padding: "10px", margin: "10px" }}
           >
               <div className="rating">
-                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                <span className="1star">☆</span><span className="2star">☆</span><span className="3star">☆</span><span className="4star">☆</span><span className="5star">☆</span>
               </div>
               {/* <Foo />
               <Bar /> */}
