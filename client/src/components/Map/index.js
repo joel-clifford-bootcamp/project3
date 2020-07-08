@@ -49,8 +49,8 @@ const center = {
     }
 
     distancesCallback(results) {
-      if (results !== null) {
-        console.log('results '+results)
+      if (results !== null && results.rows[0].elements[0].distance !== null && results.rows[0].elements[0].duration !== null) {
+        console.log('results '+ JSON.stringify(results))
          this.setState(
           () => ({
              originAddress: results.originAddresses[0],
@@ -145,7 +145,8 @@ const center = {
             }
              {
              ( 
-               this.state.response !== null
+               this.state.destination !== '' &&
+                this.state.origin !== '' && this.state.distance == ''
               ) && (
                 <DistanceMatrixService
                   // required
@@ -177,7 +178,7 @@ const center = {
               <div className='form-group'>
                 <label className='white-text' htmlFor='ORIGIN'>Origin</label>
                 <br />
-                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} />
+                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} value="L7A 3P6" />
               </div>
             </div>
 
@@ -185,7 +186,7 @@ const center = {
               <div className='form-group'>
                 <label className='white-text' htmlFor='DESTINATION'>Destination</label>
                 <br />
-                <input id='DESTINATION' className='white' type='text' ref={this.getDestination} />
+                <input id='DESTINATION' className='white' type='text' ref={this.getDestination} value="L7A 3P6"/>
               </div>
             </div>
           </div>
@@ -195,24 +196,24 @@ const center = {
       <table className='row z-depth-5'>
         <thead className="teal">
           <tr>
-              <th colspan="2">Origin</th>
+              <th colSpan="2">Origin</th>
           </tr>
         </thead>
 
         <tbody  className="white">
           <tr>
-            <td colspan="2">{this.state.originAddress}</td>
+            <td colSpan="2">{this.state.originAddress}</td>
           </tr>
               </tbody>
         <thead className="teal">
           <tr>
-              <th colspan="2">Destination</th>
+              <th colSpan="2">Destination</th>
           </tr>
         </thead>
 
         <tbody  className="white">
           <tr>
-            <td colspan="2">{this.state.destinationAddress}</td>
+            <td colSpan="2">{this.state.destinationAddress}</td>
           </tr>
         </tbody>
         <thead className="teal">
@@ -229,7 +230,10 @@ const center = {
           </tr>
         </tbody>
       </table>
-        </div>
+      <button className='btn btn-primary z-depth-5' type='button' onClick={this.onClick}>
+              Bike parking
+      </button>
+      </div>
           
     </div>
       )
