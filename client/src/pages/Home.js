@@ -38,22 +38,23 @@ function Home() {
           <ul className="tabs s12 m12">
             <li className="tab col s3">
               <button className="button buttonHome">
-              <a href="/map"><i className="fas fa-map icon"></i></a>
+                <i className="medium material-icons center">map</i>
+                <a href="/map"></a>
               </button>
               <a className="linkNames" href="/map">Map A Safe Route</a>
             </li>
             <li className="tab col s3">
               <button className="button buttonHome">
-              <a href="/map">
-                  <i className="fas fa-parking icon"></i>
+                <i className="medium material-icons center">local_parking</i>
+                <a href="/map">
                   </a>
               </button>
               <a className="linkNames" href="/map">Park Your Bike</a>
             </li>
             <li className="tab col s3">
               <button className="button buttonHome">
-              <a href="/map">
-                  <i className="fas fa-map-marker-alt icon"></i>
+                <i className="medium material-icons center">location_on</i>
+                <a href="/map">
                 </a>
                 </button>
               <a className="active linkNames" href="/map">
@@ -63,8 +64,8 @@ function Home() {
             <li className="tab col s3">
             {/* <li className="tab col s3 disabled"> */}
               <button className="button buttonHome">
-              <a href="/map">
-                  <i className="fas fa-star icon"></i>
+                <i className="medium material-icons center">star</i>
+                <a href="/map">
                 </a>
               </button>
               <a 
