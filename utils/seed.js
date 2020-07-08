@@ -1,9 +1,10 @@
 const {LoremIpsum } = require('lorem-ipsum');
+const { text } = require('express');
 
 const generateComments = (db, userIds, stationIds) => {
     comments = [];
     const lorem = new LoremIpsum({
-        sentencesPerParagraph:  {min: 1, max: 4},
+        sentencesPerParagraph:  {min: 1, max: 2},
         wordsPerSentence:       {min: 5, max: 10}
     });
     
@@ -11,15 +12,18 @@ const generateComments = (db, userIds, stationIds) => {
         uIdx = Math.floor(userIds.length * Math.random());
         sIdx = Math.floor(stationIds.length * Math.random());
 
-        console.log(userIds[uIdx].id, stationIds[sIdx].id);
-
+        let text = lorem.generateParagraphs(1);
+        
+        if(text.length > 255) 
+            text = text.substring(0, 254); 
+    
         comments.push({
             BixiStationId: stationIds[sIdx].id, 
             UserId: userIds[uIdx].id, 
-            commentText: lorem.generateParagraphs(1)})
+            commentText: text})
     }
 
-    // db.StationComment.bulkCreate(comments);
+    db.StationComment.bulkCreate(comments).then(result => console.log(`seeded ${comments.length} comments` ));
 };
 
 module.exports = function(db) {
@@ -27,17 +31,28 @@ module.exports = function(db) {
     console.log("seeding db");
 
     db.User.bulkCreate([
-        { email: "joel@linknpark.com", password:"testpassword"},
-        { email: "brice@linknpark.com", password:"testpassword"},
-        { email: "laura@linknpark.com", password:"testpassword"},
-        { email: "tobi@linknpark.com", password:"testpassword"},
-        { email: "massimo@linknpark.com", password:"testpassword"}
-    ]);
+        { username: "joel", email: "joel@linknpark.com", password:"testpassword"},
+        { username: "brice",  email: "brice@linknpark.com", password:"testpassword"},
+        { username: "tobi",  email: "tobi@linknpark.com", password:"testpassword"},
+        { username: "mossimo",  email: "massimo@linknpark.com", password:"testpassword"}
+    ])
+    .then(results => {
+        
+        db.User.findAll({ attributes:['id']}).then(users => {
+            db.BixiStation.findAll({ attributes: ['id'] }).then(stations => {
+                generateComments(db, users, stations)
+            });
+        });
+    })
+    .catch(err => {
+       
+        console.log("usernames already populated")
+        db.User.findAll({ attributes:['id']}).then(users => {
 
-    db.User.findAll({ attributes:['id']}).then(users => {
-        db.BixiStation.findAll({ attributes: ['id'] }).then(stations => {
-            generateComments(db, users, stations)
-        })
+            db.BixiStation.findAll({ attributes: ['id'] }).then(stations => {
+                generateComments(db, users, stations)
+            });
+        });
     });
 }
 
