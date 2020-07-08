@@ -29,6 +29,7 @@
     "if-env": "^1.0.4",
     "long": "^4.0.0",
     "lorem-ipsum": "^2.0.3",
+    "materialize-css": "^1.0.0-rc.2",
     "mysql2": "^2.1.0",
     "node-cron": "^2.0.3",
     "passport": "^0.4.1",

@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "../components/Nav";
+import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
 import "../home.css";
 
@@ -104,6 +105,8 @@ function Home() {
                     <li className="tab col s3 disabled"><a href="#test4">Rate</a></li> */}
           </ul>
         </div>
+      </div>
+      <div className="container">
       </div>
     </div>
   );
