@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import NavLanding from "../components/NavLanding"
 import "../signin.css";
-import Nav from "../components/Nav";
-
 
 const SignIn = () => {
     const [email, setEmail] = useState();
@@ -17,9 +14,10 @@ const SignIn = () => {
 
   return (
     <div className="row">
-        <div className="col s12 m6">
+        <div className="valign-wrapper signUpBackground">
+        <div className="col s12 m6 offset-m3">
             <div className="card signIn">
-                <h1>Welcome</h1>
+                <h2>Welcome</h2>
                     <h6>New to <i><b>Link-N-Park?</b></i> <span className="signUpLink">
                         <Link className="signUpPageLink" to="/signup">Sign up</Link>
                         </span> for free!</h6>
@@ -27,7 +25,7 @@ const SignIn = () => {
                             <form onSubmit={handleSubmit}>
                                 <div className="row">
                                     <div className="input-field col s12">
-                                        <input 
+                                        <input
                                         id="email" 
                                         type="email" 
                                         className="validate"
@@ -38,7 +36,7 @@ const SignIn = () => {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="input-field col s12">
+                                    <div className="input-field col s12 password">
                                         <input 
                                         id="password"
                                         type="password" 
@@ -54,6 +52,7 @@ const SignIn = () => {
                         </div>
 
             </div>
+        </div>
         </div>
     </div>
   );
