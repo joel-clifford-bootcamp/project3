@@ -40,15 +40,11 @@ app.use(passport.session());
 dataRefreshCron();
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: true }).then(function() {
   
+  // Call external APIs to populate data
   refreshBixiStations();
-
-  if (process.env.NODE_ENV != "production") 
-  {
-    seed(db);
-  }
-
+  
   // Start the API server
   app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
