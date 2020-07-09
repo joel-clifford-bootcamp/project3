@@ -178,7 +178,7 @@ const center = {
               <div className='form-group'>
                 <label className='white-text' htmlFor='ORIGIN'>Origin</label>
                 <br />
-                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} value="L7A 3P6" />
+                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" />
               </div>
             </div>
 
@@ -186,7 +186,7 @@ const center = {
               <div className='form-group'>
                 <label className='white-text' htmlFor='DESTINATION'>Destination</label>
                 <br />
-                <input id='DESTINATION' className='white' type='text' ref={this.getDestination} value="L7A 3P6"/>
+                <input id='DESTINATION' className='white' type='text' ref={this.getDestination} defaultValue="University of Toronto"/>
               </div>
             </div>
           </div>
