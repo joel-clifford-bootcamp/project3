@@ -1,6 +1,6 @@
 import React, {Component } from 'react';
 import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
-import "./index.css";
+import "./style.css";
 
 
 //Toronto, ON
@@ -190,11 +190,11 @@ const center = {
               </div>
             </div>
           </div>
-          <button className='btn btn-primary z-depth-5' type='button' onClick={this.onClick}>
+          <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
               Build Route
           </button>
       <table className='row z-depth-5'>
-        <thead className="teal">
+        <thead className="thead">
           <tr>
               <th colSpan="2">Origin</th>
           </tr>
@@ -205,7 +205,7 @@ const center = {
             <td colSpan="2">{this.state.originAddress}</td>
           </tr>
               </tbody>
-        <thead className="teal">
+        <thead className="thead">
           <tr>
               <th colSpan="2">Destination</th>
           </tr>
@@ -216,7 +216,7 @@ const center = {
             <td colSpan="2">{this.state.destinationAddress}</td>
           </tr>
         </tbody>
-        <thead className="teal">
+        <thead className="thead">
           <tr>
               <th>Distance</th>
               <th>Time</th>
@@ -230,8 +230,11 @@ const center = {
           </tr>
         </tbody>
       </table>
-      <button className='btn btn-primary z-depth-5' type='button' onClick={this.onClick}>
-              Bike parking
+      <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
+              Find parking 
+      </button>
+      <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
+              Find Bike
       </button>
       </div>
           
