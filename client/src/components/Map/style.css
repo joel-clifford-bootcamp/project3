@@ -32,5 +32,21 @@ table {
 
 td,
 th {
-    border: 2px solid teal;
+    /* border: 2px solid teal; */
+    /* border: 2px solid #78bcc5ff; */
+    border: 2px solid black;
+}
+
+button, thead {
+    background-color: #78bcc5ff;
+}
+
+button {
+    margin: 10px;
+    background-color: #78bcc5ff;
+
+}
+
+.mapButton {
+    background-color: #78bcc5ff;
 }
