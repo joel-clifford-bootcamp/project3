@@ -1,6 +1,6 @@
 import React, {Component } from 'react';
 import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
-import "./style.css";
+import "../../assets/css/style.css";
 
 
 //Toronto, ON
@@ -10,7 +10,7 @@ const center = {
 }
 
 
-  class Map extends Component {
+  class FindRoute extends Component {
     constructor(props) {
       super(props)
 
@@ -146,7 +146,7 @@ const center = {
              {
              ( 
                this.state.destination !== '' &&
-                this.state.origin !== '' && this.state.distance == ''
+                this.state.origin !== '' && this.state.distance === ''
               ) && (
                 <DistanceMatrixService
                   // required
@@ -233,9 +233,6 @@ const center = {
       <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
               Find parking 
       </button>
-      <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
-              Find Bike
-      </button>
       </div>
           
     </div>
@@ -244,4 +241,4 @@ const center = {
 
   }
 
-export default Map;
+export default FindRoute;
