@@ -1,0 +1,235 @@
+/* BEGING SIGN IN AND SIGN UP STYLING */
+
+.signUpBackground {
+    /* background-image: url(""); */
+    background: url(./assets/bike.jpg);
+    height: 100vh;
+   }
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 46px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 0px !important;
+}
+
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 100;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.signUpLink{
+    font-weight: 600;
+    color: #d12e27ff;
+}
+
+.signInPageLink{
+    font-weight: 600;
+    color: #d12e27ff;
+}
+
+.signUpPageLink {
+    font-weight: 600;
+    color: #d12e27ff;  
+}
+
+.signIn{
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 100px;
+    width: 60%;
+}
+
+form {
+    margin: 30px;
+}
+
+.signInBtn{
+    background-color: #78bcc5ff;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.signInBtn:hover {
+    background-color: #78bcc5ff;
+}
+
+.signInBtn:active {
+  background-color: #78bcc5ff;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.signInBtn:focus {
+    background-color: #78bcc5ff;
+  }
+
+
+/* END SIGN IN AND SIGN UP STYLING */
+
+
+
+/* BEGING NAV BAR STYLING */
+/* Link {
+    color: #e57373;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 0px !important;
+    } */
+
+/* #logoLink {
+    color: #e57373;
+font-family: 'Montserrat', sans-serif;
+font-size: 20px;
+font-weight: 200;
+text-align: center;
+margin-bottom: 0px !important;
+    } */
+
+#homeLink, #profileLink, #mapLink {
+    color: #e57373;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 0px !important;
+}
+    
+.brandLogo {
+    /* padding: 20px;
+    margin-left: 20px; */
+    width: 8%;
+    height: 8%;
+    float: left;
+}
+    
+/* END NAV BAR STYLING */
+
+/* START HOMEPAGE STYLING */
+.homepageBackground{
+    background-image: url("./assets/homepage.png");
+    background-repeat: no-repeat;
+    /* background-attachment: fixed; */
+    background-position: 50% 100%;
+  }
+  
+  h1 {
+      color: white;
+      padding: 65px;
+      text-align: center;
+  }
+  
+  span {
+    font-weight: bold;
+  }
+  
+  .tabs{
+    background-color: transparent;
+  }
+  
+  .buttonHome {
+    background-color: #db5b5c;
+    border: none;
+    color: white;
+    padding: 20px;
+    height: 7rem; 
+    width: 7rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .buttonHome:hover {
+      background-color: #c62828;
+  }
+  
+  .buttonHome:active {
+    background-color: #c62828;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+  
+  .buttonHome:focus {
+      background-color: #db5b5c;
+    }
+  
+  .icon {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+    display: block;
+  }
+  
+  a:visited {
+      color: #db5b5c;
+    }
+  
+  .tabs {
+      height: 15rem;
+      padding: 25px;
+      width: 100%;
+  }
+  
+  .linkName {
+  font-size: 50px;
+  color: #e57373;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 0px !important;
+  }
+  
+  .material-icons{
+    color: white;
+    align: center;
+  }
+
+  /* END HOMEPAGE STYLING */
+
+
+  /* START PROFILE STYLING */
+
+  .pageHeading, .userNameHeading, .userEmailHeading, .activity {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 10px;
+}
+
+.pageHeading {
+    /* font-size: 46px; */
+    font-weight: 500;
+    color: white;
+    text-align: center;
+}
+
+.userNameHeading {
+    text-transform: uppercase;
+}
+
+.profileBackground{
+    background-image: url("./assets/profile.png");
+    background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+    background-position: 0% 0%;
+    width: 100%;
+}
