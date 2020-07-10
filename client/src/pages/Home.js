@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Modal from "../components/Modal";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "../style.css";
 
 function Home() {
@@ -17,41 +17,37 @@ function Home() {
         <div className="col s12 m12 l12">
           <ul className="tabs s12 m12 buttonBackground">
             <li className="tab col s3">
-              <button className="button buttonHome">
-                <i className="medium material-icons center">map</i>
-                <a href="/map"></a>
-              </button>
+              <Link  to="/route" className="buttonLink">
+                  <button className="button buttonHome">
+                    <i className="medium material-icons center">map</i>
+                  </button>
+              </Link>
               <a className="linkNames" href="/route">Map A Safe Route</a>
             </li>
             <li className="tab col s3">
-              <button className="button buttonHome">
-                <i className="medium material-icons center">local_parking</i>
-                <a href="/map">
-                  </a>
-              </button>
-              <a className="linkNames" href="/parking">Park Your Bike</a>
-            </li>
-            <li className="tab col s3">
-              <button className="button buttonHome">
-                <i className="medium material-icons center">location_on</i>
-                <a href="/map">
-                </a>
+              <Link  to="/parking" className="buttonLink">
+                <button className="button buttonHome">
+                  <i className="medium material-icons center">local_parking</i>
                 </button>
-              <a className="active linkNames" href="/station">
-              Find a Bixi Bike
-              </a>
+              </Link>
+              <a className="linkNames" href="/station">Park Your Bike</a>
             </li>
             <li className="tab col s3">
-            {/* <li className="tab col s3 disabled"> */}
-              <button className="button buttonHome">
-                <i className="medium material-icons center">star</i>
-                <a href="/map">
-                </a>
-              </button>
-              <a 
-              href="/map"
-              className="linkNames">
-                  Rate a Parking Spot</a>
+             <Link  to="/station" className="buttonLink">
+                  <button className="button buttonHome">
+                    <i className="medium material-icons center">location_on</i>
+                  </button>
+              </Link> 
+              <a className="active linkNames" href="/station">Find a Bixi Bike</a>
+            </li>
+            <li className="tab col s3">
+              {/* <li className="tab col s3 disabled"> */}
+              <Link  to="/station" className="buttonLink">
+                  <button className="button buttonHome">
+                      <i className="medium material-icons center">star</i>
+                  </button>
+              </Link>
+              <a href="/map" className="linkNames">Rate a Parking Spot</a>
             </li>
             {/* <li className="tab col s3">
               <button className="button buttonHome">
