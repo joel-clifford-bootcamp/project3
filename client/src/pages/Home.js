@@ -7,7 +7,7 @@ import "../style.css";
 function Home() {
   return (
     <div className="homepageBackground">
-      <Nav />
+      <Nav/>
       <div>
         <h1>
           Find Your <span>Perfect Place.</span>
@@ -21,7 +21,7 @@ function Home() {
                 <i className="medium material-icons center">map</i>
                 <a href="/map"></a>
               </button>
-              <a className="linkNames" href="/map">Map A Safe Route</a>
+              <a className="linkNames" href="/route">Map A Safe Route</a>
             </li>
             <li className="tab col s3">
               <button className="button buttonHome">
@@ -29,7 +29,7 @@ function Home() {
                 <a href="/map">
                   </a>
               </button>
-              <a className="linkNames" href="/map">Park Your Bike</a>
+              <a className="linkNames" href="/parking">Park Your Bike</a>
             </li>
             <li className="tab col s3">
               <button className="button buttonHome">
@@ -37,7 +37,7 @@ function Home() {
                 <a href="/map">
                 </a>
                 </button>
-              <a className="active linkNames" href="/map">
+              <a className="active linkNames" href="/station">
               Find a Bixi Bike
               </a>
             </li>

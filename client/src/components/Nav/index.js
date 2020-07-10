@@ -41,19 +41,6 @@ function Nav() {
             </li>
             <li className="nav-item">
               <Link
-                to="/map"
-                className={
-                  window.location.pathname === "/map"
-                    ? "nav-link active"
-                    : "nav-link"
-                }
-                id="mapLink"
-              >
-                Map
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
                 to="/signin"
                 className={
                   window.location.pathname === "/signin"
