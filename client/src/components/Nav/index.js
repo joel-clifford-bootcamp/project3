@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
+import "../../style.css";
+import fullLogo from "../../assets/NarrowLogo.png"
 
 function Nav() {
   return (
-    <nav className="blue-grey lighten-5">
+    <nav className="transparent z-depth-0">
       <div className="nav-wrapper">
         <Link className="brand-logo" to="/home" id="logoLink">
-          <i className="fas fa-biking" id="icon"></i>
-          Link-N-Park
+          <img className="brandLogo" src={fullLogo} alt="Full White Logo"></img>
         </Link>
         <div>
           <ul className="right hide-on-med-and-down" id="nav-mobile">

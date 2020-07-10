@@ -9,7 +9,7 @@ import { Input, TextArea, FormBtn } from "../components/Form";
 import { UserCard, RecentActivityCard } from "../components/ProfileCard";
 import ProfileContainer from "../components/ProfileContainer";
 import Nav from "../components/Nav";
-import "../profile.css";
+import "../style.css";
 
 function Profile() {
   // // Setting our component's initial state
@@ -59,14 +59,8 @@ function Profile() {
   return (
     <Container fluid>
       <Nav />
+      <div className="profileBackground">
       <Container>
-        {/* <Row>
-          <Col size="md-12 sm-12"> */}
-            <Jumbotron>
-              <h1 className="pageHeading">Profile</h1>
-            </Jumbotron>
-          {/* </Col>
-        </Row> */}
         <Row>
           <Col size="md-12 sm-12">
             {/* <div className="my-wrapper left-align-wrapper"> */}
@@ -89,6 +83,7 @@ function Profile() {
           </Col>
         </Row>
       </Container>
+      </div>
     </Container>
   );
 }
