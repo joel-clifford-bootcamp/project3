@@ -10,8 +10,7 @@ import { UserCard, RecentActivityCard } from "../components/ProfileCard";
 import ProfileContainer from "../components/ProfileContainer";
 import CommentBox from "../components/CommentBox";
 import Nav from "../components/Nav";
-
-import "../profile.css";
+import "../style.css";
 
 function Profile() {
   // // Setting our component's initial state
@@ -61,14 +60,8 @@ function Profile() {
   return (
     <Container fluid>
       <Nav />
+      <div className="profileBackground">
       <Container>
-        {/* <Row>
-          <Col size="md-12 sm-12"> */}
-        <Jumbotron>
-          <h1 className="pageHeading">Profile</h1>
-        </Jumbotron>
-        {/* </Col>
-        </Row> */}
         <Row>
           <Col size="md-12 sm-12">
           <CommentBox />
@@ -154,6 +147,7 @@ function Profile() {
           </Col>
         </Row>
       </Container>
+      </div>
     </Container>
   );
 }

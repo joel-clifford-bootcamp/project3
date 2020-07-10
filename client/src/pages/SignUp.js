@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "../signup.css";
+import "../style.css";
 import bike from "../assets/logo1.png"
 
 

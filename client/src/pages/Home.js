@@ -2,40 +2,20 @@ import React from "react";
 import Nav from "../components/Nav";
 import Modal from "../components/Modal";
 import { Link } from "react-router-dom";
-import "../home.css";
+import "../style.css";
 
 function Home() {
   return (
-    <div>
+    <div className="homepageBackground">
       <Nav />
       <div>
         <h1>
           Find Your <span>Perfect Place.</span>
         </h1>
       </div>
-      {/* <div className="row mood-button-row">
-                    <div className="col s1"><button type="button" className="mood-buttons map"><img
-                                src="./assets/images/emoticons/Thankly-Face-1.png"
-                                className="mood-btn-img" /></button></div>
-                    <div className="col s1"><button type="button" className="mood-buttons park"><img
-                                src="./assets/images/emoticons/Thankly-Face-2.png"
-                                className="mood-btn-img" /></button></div>
-                    <div className="col s1"><button type="button" className="mood-buttons find"><img
-                                src="./assets/images/emoticons/Thankly-Face-3.png"
-                                className="mood-btn-img" /></button></div>
-                    <div className="col s1"><button type="button" className="mood-buttons rate"><img
-                                src="./assets/images/emoticons/Thankly-Face-4.png"
-                                className="mood-btn-img" /></button></div>
-                </div>
-        <div className="row s12 m12 l12">
-            <div className="col s3"><button className="button buttonHome"><i className="fas fa-map icon"></i></button><h5>Map A Safe Route</h5></div>
-            <div className="col s3"><button className="button buttonHome"><i className="fas fa-parking icon"></i></button>Park Your Bike</div>
-            <div className="col s3"><button className="button buttonHome"><i className="fas fa-map-marker-alt icon"></i></button>Find a Bixi Bike</div>
-            <div className="col s3"><button className="button buttonHome"><i className="fas fa-star icon"></i></button>Rate a Parking Spot</div> 
-        </div> */}
       <div className="row s12">
         <div className="col s12 m12 l12">
-          <ul className="tabs s12 m12">
+          <ul className="tabs s12 m12 buttonBackground">
             <li className="tab col s3">
               <button className="button buttonHome">
                 <i className="medium material-icons center">map</i>
