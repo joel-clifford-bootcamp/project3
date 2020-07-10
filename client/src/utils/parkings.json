@@ -1,0 +1,109 @@
+[{
+        "id": 1,
+        "parkingAddress": "205 Spadina Ave",
+        "parkingDistance": 10000000000000000
+    }, {
+        "id": 2,
+        "parkingAddress": "236 Augusta Ave",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 3,
+        "parkingAddress": "200 King St E",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 4,
+        "parkingAddress": "1184 Queen St W",
+        "parkingDistance": 10000000000000000
+    }, {
+        "id": 5,
+        "parkingAddress": "12 Emerson Ave",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 6,
+        "parkingAddress": "29 Duncan St",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 7,
+        "parkingAddress": "192 Spadina Ave",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 8,
+        "parkingAddress": "50 Portland St",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 9,
+        "parkingAddress": "92 Sudbury St",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 10,
+        "parkingAddress": "124 Spadina Ave",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 11,
+        "parkingAddress": "268 College St",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 12,
+        "parkingAddress": "213 Delaware Ave",
+        "parkingDistance": 10000000000000000
+    },
+    {
+        "id": 13,
+        "parkingAddress": "87 Front St E",
+        "parkingDistance": 0
+    },
+    {
+        "id": 14,
+        "parkingAddress": "503 College St",
+        "parkingDistance": 0
+    },
+    {
+        "id": 15,
+        "parkingAddress": "702 Bathurst St",
+        "parkingDistance": 0
+    },
+    {
+        "id": 16,
+        "parkingAddress": "1151 Queen St W",
+        "parkingDistance": 0
+    },
+    {
+        "id": 17,
+        "parkingAddress": "50 King St E",
+        "parkingDistance": 0
+    },
+    {
+        "id": 18,
+        "parkingAddress": "451 King St W",
+        "parkingDistance": 0
+    },
+    {
+        "id": 19,
+        "parkingAddress": "245 Wallace Ave",
+        "parkingDistance": 0
+    },
+    {
+        "id": 20,
+        "parkingAddress": "76 Kensington Ave",
+        "parkingDistance": 0
+    },
+    {
+        "id": 21,
+        "parkingAddress": "21 Pirandello St",
+        "parkingDistance": 0
+    },
+    {
+        "id": 22,
+        "parkingAddress": "360 Bay St",
+        "parkingDistance": 0
+    }
+]

@@ -7,7 +7,7 @@ import "../style.css";
 function Home() {
   return (
     <div className="homepageBackground">
-      <Nav />
+      <Nav/>
       <div>
         <h1>
           Find Your <span>Perfect Place.</span>
