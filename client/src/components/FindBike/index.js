@@ -181,14 +181,6 @@ const center = {
                 <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" />
               </div>
             </div>
-
-            <div className='col s12'>
-              <div className='form-group'>
-                <label className='white-text' htmlFor='DESTINATION'>Destination</label>
-                <br />
-                <input id='DESTINATION' className='white' type='text' ref={this.getDestination} defaultValue="University of Toronto"/>
-              </div>
-            </div>
           </div>
           <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
               Build Route
@@ -196,18 +188,7 @@ const center = {
       <table className='row z-depth-5'>
         <thead className="thead">
           <tr>
-              <th colSpan="2">Origin</th>
-          </tr>
-        </thead>
-
-        <tbody  className="white">
-          <tr>
-            <td colSpan="2">{this.state.originAddress}</td>
-          </tr>
-              </tbody>
-        <thead className="thead">
-          <tr>
-              <th colSpan="2">Destination</th>
+              <th colSpan="2">Your Bike Station</th>
           </tr>
         </thead>
 
