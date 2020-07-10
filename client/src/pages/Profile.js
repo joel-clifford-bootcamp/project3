@@ -64,7 +64,8 @@ function Profile() {
       <Container>
         <Row>
           <Col size="md-12 sm-12">
-          <CommentBox />
+         
+          {/* <CommentBox />
           <div className="reveal" id="commentsModal" data-reveal>
       <form>
         <span className="display-inline-block">
@@ -92,9 +93,10 @@ function Profile() {
         <button className="close-button" id="close-modal" data-close aria-label="Close modal" type="button">
           <span aria-hidden="true">&times;</span>
         </button>
-    </div>
 
-            <div className="off-canvas-wrapper">
+    </div> */}
+
+            {/* <div className="off-canvas-wrapper">
               <div
                 className="off-canvas-absolute position-right"
                 id="off-canvas"
@@ -125,7 +127,7 @@ function Profile() {
                 />
                 <div id="map"></div>
               </div>
-            </div>
+            </div> */}
 
             {/* <div className="my-wrapper left-align-wrapper"> */}
             {/* <div className="center-align"> */}

@@ -1,47 +1,57 @@
 import "./style.css";
 import React, { Component } from "react";
-import Remarkable from 'remarkable';
+// import Remarkable from "remarkable";
 // import RemarkableReactRenderer from 'remarkable-react';
 import M from "materialize-css";
 
 const data = [
-  {id: 1, author: "Pete Hunt", text: "This is one comment"},
-  {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
+  { id: 1, author: "Pete Hunt", text: "This is one comment" },
+  { id: 2, author: "Jordan Walke", text: "This is *another* comment" },
 ];
 
 class Comments extends Component {
-  
-  rawMarkup() {
-    let md = new Remarkable();
-    let rawMarkup = md.render(this.props.children.toString());
-    return { __html: rawMarkup };
-  }
+  //   rawMarkup() {
+  //     let md = new Remarkable();
+  //     let rawMarkup = md.render(this.props.children.toString());
+  //     return { __html: rawMarkup };
+  //   }
 
-  render() {
+  render(props) {
     return (
       <div className="comment">
-        <h2 className="commentAuthor">
-          {this.props.author}
-        </h2>
-        <span dangerouslySetInnerHTML={this.rawMarkup()} />
+        <h2 className="commentAuthor">{this.props.author}</h2>
+        {this.props.children}
+        {/* <span dangerouslySetInnerHTML={this.rawMarkup()} /> */}
       </div>
     );
   }
 }
 
+// class commentNode extends Component {
+//   render() {
+//     const commentNodes = this.props.data.map(function (comment) {
+//       return (
+//         <Comment author={comment.author} key={comment.id}>
+//           {comment.text}
+//         </Comment>
+//       );
+//     });
+//   }
+// }
+
 class CommentList extends Component {
-
-  render() {
-
-    const commentNodes = this.props.data.map(function(comment) {
+  render(props) {
+    const commentNodes = this.props.data.map(function (comment) {
       return (
-        <Comment author={comment.author} key={comment.id}>
+        <Comments author={comment.author} key={comment.id}>
           {comment.text}
-        </Comment>
+        </Comments>
+      );
+    });
 
     return (
       <div>
-          {commentNodes}
+        {commentNodes}
 
         <div className="commentList">
           <p>Yeahhhh I am a CommentList.</p>
