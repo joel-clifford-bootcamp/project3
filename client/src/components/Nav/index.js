@@ -1,21 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../style.css";
-import fullLogo from "../../assets/NarrowLogo.png"
-// import { M } from "materialize-css";
+import fullLogo from "../../assets/NarrowLogo.png";
 
-// const slide_menu = document.querySelectorAll(".sidenav");
-    
-//     M.Sidenav.init(slide_menu,{});
 
 function Nav() {
+  
   return (
     <nav className="transparent z-depth-0">
       <div className="nav-wrapper">
         <div>
           <img className="brandLogo" src={fullLogo} alt="Full White Logo"></img>
         </div>
-          <ul className="right hide-on-med-and-down" id="nav-mobile">
+          <ul className="right">
             <li className="nav-item">
               <Link
                 to="/home"

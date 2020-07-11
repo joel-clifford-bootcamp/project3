@@ -6,6 +6,16 @@
     height: 100vh;
 }
 
+.signinLogo {
+  /* padding: 20px;
+  margin-left: 20px; */
+  width: 20%;
+  height: 20%;
+  float: 0% 0%;
+  display: inline-block;
+  vertical-align: top;
+}
+
 h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 46px;
