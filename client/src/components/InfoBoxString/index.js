@@ -1,7 +1,7 @@
 import "./style.css";
 import React, { Component } from "react";
 import Modal from "../Modal";
-import { M } from "materialize-css";
+import M from "materialize-css";
 
 function InfoBoxString() {
   
