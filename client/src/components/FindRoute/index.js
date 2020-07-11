@@ -6,12 +6,18 @@ import {
   DistanceMatrixService,
   InfoWindow,
   Marker,
+  InfoBox,
   LoadScript,
 } from "@react-google-maps/api";
 import Modal from "../Modal";
 import InfoBoxString from "../InfoBoxString";
-import { M } from "materialize-css";
+import M from "materialize-css";
 import "../../assets/css/style.css";
+
+// const mapContainerStyle = {
+//   height: "400px",
+//   width: "800px"
+// }
 
 //Toronto, ON
 const center = {
@@ -19,51 +25,21 @@ const center = {
   lng: -79.347015,
 };
 
-// const mapContainerStyle = {
-//   height: "400px",
-//   width: "800px"
-// }
-
-// const center = {
-//   lat: 0,
-//   lng: -180
-// }
-
 const position = {
   lat: 43.6426,
   lng: -79.3871,
 };
 
-// const onLoad = marker => {
-//   console.log('marker: ', marker)
-// }
-// = infoWindow => {
-//   console.log('infoWindow: ', infoWindow)
-// }
-
 const divStyle = {
   background: `white`,
-  border: `1px solid #ccc`,
+  border: `1px solid white`,
   padding: 15,
 };
 
-//
-let infowindow = new InfoWindow({
-  content: <InfoBoxString />,
-});
-
-let marker = new Marker({
-  position: position,
-  map: Map,
-  title: "Uluru (Ayers Rock)",
-});
-
-// {infowindow.open(Map, marker)}
-
-// marker.onClick=() => {infowindow.open(Map, marker)}
-// marker.addListener('click', function() {
-//   infowindow.open(Map, marker);
-// });
+// const onLoad = marker => {
+// = infoWindow => {
+//   console.log('infoWindow: ', infoWindow)
+// }
 
 class FindRoute extends Component {
   constructor(props) {
@@ -148,7 +124,7 @@ class FindRoute extends Component {
           zoom={10}
           // Map initial center in Toronto
           center={center}
-          onClick={() => console.log("Map clicked!")}
+          // onClick={() => console.log("Map clicked!")}
         >
           {/* Child components, such as markers, info windows, etc. */}
           {this.state.duration === "" &&
@@ -175,8 +151,6 @@ class FindRoute extends Component {
                 onUnmount={(directionsService) => {}}
               />
             )}
-
-          <InfoBoxString />
           <Marker
             position={position}
             // onLoad={onLoad}
@@ -188,25 +162,15 @@ class FindRoute extends Component {
           {this.state.showInfoWindow === true && (
           <InfoWindow 
           // onLoad={onLoad} 
+          onCloseClick={() => this.setState({
+            showInfoWindow: false,
+          })}
           position={position}>
             <div style={divStyle}>
               <InfoBoxString />
             </div>
           </InfoWindow>
           )}
-          {/* <Marker
-                onLoad={onLoad}
-                position={position}
-              />
-
-    <InfoWindow
-      onLoad={onLoad}
-      position={position}
-    >
-      <div style={divStyle}>
-        <InfoBoxString />
-      </div>
-    </InfoWindow> */}
 
           {this.state.response !== null && (
             <DirectionsRenderer
