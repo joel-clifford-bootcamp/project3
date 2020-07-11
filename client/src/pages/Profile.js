@@ -8,6 +8,7 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { UserCard, RecentActivityCard } from "../components/ProfileCard";
 import ProfileContainer from "../components/ProfileContainer";
+import CommentBox from "../components/CommentBox";
 import Nav from "../components/Nav";
 import "../style.css";
 
