@@ -175,9 +175,9 @@ const center = {
           <div className='row z-depth-5'>
             <div className='col s12'>
               <div className='form-group'>
-                <label className='white-text' htmlFor='ORIGIN'>Your position</label>
+                <label  htmlFor='ORIGIN'>Your position</label>
                 <br />
-                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" />
+                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower"/>
               </div>
             </div>
           </div>
