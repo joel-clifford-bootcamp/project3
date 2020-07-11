@@ -4,6 +4,12 @@ module.exports = function(sequelize, DataTypes) {
         commentText: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        rating: {
+            type:DataTypes.INTEGER,
+            allowNull: false,
+            min: 1,
+            max: 5
         }
     }, 
     {   
