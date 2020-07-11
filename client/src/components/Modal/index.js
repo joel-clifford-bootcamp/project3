@@ -1,6 +1,6 @@
 import "./style.css";
 import React, { Component } from "react";
-import { M } from "materialize-css";
+import M from "materialize-css";
 
 class Modal extends Component {
   componentDidMount() {
