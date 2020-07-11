@@ -25,6 +25,7 @@ module.exports = {
         db.StationComment.create({
             UserId: userId,
             BixiStationId: req.body.stationId,
+            rating: req.body.rating,
             commentText: req.body.commentText
         })
         .then(data => res.status(200).send(data))

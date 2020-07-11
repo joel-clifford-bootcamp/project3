@@ -35,10 +35,13 @@ module.exports = function(sequelize, DataTypes) {
         // Total capacity (calculated as bikes + free)
         capacity: {
             type: DataTypes.INTEGER
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     }, 
-    {   timestamps: true,
-        createdAt: false });
+    {   timestamps: true });
 
     // Associations
     BixiStation.associate = function(models) {
