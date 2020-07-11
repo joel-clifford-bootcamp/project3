@@ -61,27 +61,17 @@ function Profile() {
       <Nav />
       <div className="profileBackground">
       <Container>
-        <Row>
-          <Col size="md-12 sm-12">
-            {/* <div className="my-wrapper left-align-wrapper"> */}
-            {/* <div className="center-align"> */}
-            {/* <div className="row center"> */}
-            <div className="valign-wrapper">
               <UserCard />
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="col-lg-12 md-12 s-12">
-            <h4 className="activity">Recent Activity</h4>
+          {/* <div className="col s12 m6 offset-m4"> */}
+            {/* <h4 className="activity">Recent Activity</h4>
             <Row size="row-cols-1 row-cols-md-2 pt-4 pb-4">
               <div className="container valign-wrapper center-align">
               <RecentActivityCard />
               <RecentActivityCard />
-              </div>
+              <RecentActivityCard /> */}
+              {/* </div>
             </Row>
-          </Col>
-        </Row>
+          </div> */}
       </Container>
       </div>
     </Container>
