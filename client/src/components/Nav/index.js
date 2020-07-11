@@ -11,7 +11,7 @@ function Nav() {
           <img className="brandLogo" src={fullLogo} alt="Full White Logo"></img>
         </Link>
         <div>
-          <ul className="right hide-on-med-and-down" id="nav-mobile">
+          <ul className="right" id="nav-mobile">
             <li className="nav-item">
               <Link
                 to="/home"

@@ -9,7 +9,6 @@ const center = {
               lng:  -79.347015
 }
 
-
   class FindBike extends Component {
     constructor(props) {
       super(props)

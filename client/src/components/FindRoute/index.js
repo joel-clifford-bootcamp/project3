@@ -1,5 +1,8 @@
 import React, {Component } from 'react';
-import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
+import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService, InfoWindow, Marker, LoadScript } from '@react-google-maps/api';
+import Modal from "../Modal";
+import InfoBoxString from "../InfoBoxString"
+import { M } from "materialize-css";
 import "../../assets/css/style.css";
 
 
@@ -9,8 +12,57 @@ const center = {
               lng:  -79.347015
 }
 
+// const mapContainerStyle = {
+//   height: "400px",
+//   width: "800px"
+// }
+
+// const center = {
+//   lat: 0,
+//   lng: -180
+// }
+
+const position = {
+  lat: 37.772,
+  lng: -122.214
+}
+
+const onLoad 
+= marker => {
+  console.log('marker: ', marker)
+} 
+// = infoWindow => {
+//   console.log('infoWindow: ', infoWindow)
+// }
+
+const divStyle = {
+  background: `white`,
+  border: `1px solid #ccc`,
+  padding: 15
+}
+
+// 
+let infowindow = new InfoWindow({
+  content: <InfoBoxString />
+});
+
+let marker = new Marker({
+  position: center,
+  map: Map,
+  title: 'Uluru (Ayers Rock)'
+});
+
+// {infowindow.open(Map, marker)}
+
+
+// marker.onClick={() => {infowindow.open(Map, marker)}}
+// marker.addListener('click', function() {
+//   infowindow.open(Map, marker);
+// });
 
   class FindRoute extends Component {
+
+    
     constructor(props) {
       super(props)
 
@@ -123,6 +175,20 @@ const center = {
                 />
               )
             }
+
+              <Marker
+                onLoad={onLoad}
+                position={position}
+              />
+
+    <InfoWindow
+      onLoad={onLoad}
+      position={position}
+    >
+      <div style={divStyle}>
+        <InfoBoxString />
+      </div>
+    </InfoWindow>
 
             {
              (this.state.response !== null) && (
