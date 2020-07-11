@@ -36,7 +36,7 @@ function App() {
             <Profile />
           </Route>
 
-          <Route exact path={["/home"]}>
+          <Route exact path={["/*"]}>
             <Home />
           </Route>
         </Switch>

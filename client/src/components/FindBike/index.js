@@ -176,14 +176,14 @@ const center = {
           <div className='row z-depth-5'>
             <div className='col s12'>
               <div className='form-group'>
-                <label className='white-text' htmlFor='ORIGIN'>Origin</label>
+                <label className='white-text' htmlFor='ORIGIN'>Your position</label>
                 <br />
                 <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" />
               </div>
             </div>
           </div>
           <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
-              Build Route
+              Find your bike
           </button>
       <table className='row z-depth-5'>
         <thead className="thead">
