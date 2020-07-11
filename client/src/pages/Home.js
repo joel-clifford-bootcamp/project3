@@ -85,7 +85,6 @@ function Home() {
         </div>
       </div>
       <div className="container">
-        <Modal />
       </div>
     </div>
   );
