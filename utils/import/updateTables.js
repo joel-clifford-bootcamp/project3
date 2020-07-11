@@ -1,6 +1,7 @@
 // map of model object's property names to corresponding api object property names 
 let map;
 
+
 /**
  * Calculate a fields value using the supplied params
  * @param {object} updatedObject object returned by api call 
@@ -42,19 +43,19 @@ const updateIfNeeded = async (existingObject, updatedObject) => {
 
 /**
  * Bulk add all items in array
- * @param {type} modelType derived model class 
+ * @param {type} modelType sequelize model type
  * @param {array} updatedObjects objects returned by api call 
  */
-const addNewObjects = async (modelType, updatedObjects) => {
+const addNewObjects = async (modelType, newData) => {
     
     const objArray = [];
 
-    for(i = 0; i < updatedObjects.length; i++){
+    for(i = 0; i < newData.length; i++){
 
         const fields = {}
 
         Object.keys(map).forEach( k => {
-            fields[k] = getUpdatedValue(updatedObjects[i], map[k]);
+            fields[k] = getUpdatedValue(newData[i], map[k]);
         });
 
         objArray.push(fields);
@@ -63,30 +64,40 @@ const addNewObjects = async (modelType, updatedObjects) => {
     await modelType.bulkCreate(objArray);
 };
 
+const flagMissingObjects = (modelType) => {
+    return true;
+}
+
 /**
- * Iterate over existingObjects, if updatedObjects contains an object with a matching id, 
- * check if the existing object's properties match the up-to-date object's. If the id cannot
- * be found in the updated list, delete it. Remove object from updated objects list
- * @param {array} existingObjects all intances of model object contained in db
- * @param {array} updatedObjects all objects returned by api
+ * Iterate over data array backwards. If data id field matches that of an existing object, update that object if needed and 
+ * remove it from the data array. After checking all objects, those that remain in array are saved to new model objects 
+ * @param {type} modelType sequelized model type
+ * @param {Array} updatedData array of updated data 
  */
-const checkExistingObjects = async (existingObjects, updatedObjects)  => {
+const updateExistingObjects = async (modelType, updatedData) => {
     
-    for(i = existingObjects.length - 1; i >= 0; i--){
+    try{
+        for(let i = updatedData.length - 1; i >= 0; i--){
+            
+            let currentItem = updatedData[i];
+            let currentItemId = currentItem[map["id"]];
+            let existingObject = await modelType.findAll( { where: { id: currentItemId} });
 
-        var updatedObject = updatedObjects.find(obj => obj[map["id"]] === existingObjects[i].id);
+            if(existingObject.length === 1 ){
+                await updateIfNeeded(existingObject, updatedData);
+                updatedData.splice(i, 1);
+            }
 
-        if(typeof updatedObject != "undefined"){
-            await updateIfNeeded(existingObjects[i], updatedObject);
         }
-        else{
-            console.log('remove object');
-            await existingObjects[i].destroy();
-        }
-
-        updatedObjects.splice(i, 1)
-        console.log(updatedObjects.length)
-    }   
+        
+        await addNewObjects(modelType, updatedData);    
+        
+        return null;
+    }
+    catch(err)
+    {
+        return err;
+    }
 }
 
 /**
@@ -94,10 +105,16 @@ const checkExistingObjects = async (existingObjects, updatedObjects)  => {
  * @param {type} objectName type of object to be updated
  * @param {array} updatedObjects  set of objects returned by api
  */
-module.exports = async function(modelType, updatedObjects){
-    map = require('./maps.json')[modelType.name];
+module.exports = async function(modelType, updatedData){
+    map = require('./objectMaps.json')[modelType.name];
 
-    await modelType.destroy({truncate: {cascade: true }});
+    // await modelType.destroy({truncate: {cascade: true }});
+    const err = await updateExistingObjects(modelType, updatedData);
 
-    await addNewObjects(modelType, updatedObjects);
+    if(err) 
+        console.log(err)
+    else{
+        await flagMissingObjects(modelType);
+    }
+
 }
