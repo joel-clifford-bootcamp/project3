@@ -4,8 +4,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
-import Nav from "./components/Nav"
 import MapContainer from "./components/MapContainer";
+
 
 function App() {
   return (
@@ -20,15 +20,23 @@ function App() {
             <SignUp />
           </Route>
 
-          <Route exact path={["/map"]}>
+          <Route exact path={["/route"]} >
             <MapContainer />
+          </Route>
+
+          <Route exact path={["/parking"]} >
+            <MapContainer />
+          </Route>
+
+           <Route exact path={["/station"]} >
+            <MapContainer/>
           </Route>
 
           <Route exact path={["/profile"]}>
             <Profile />
           </Route>
 
-          <Route exact path={["/home"]}>
+          <Route exact path={["/*"]}>
             <Home />
           </Route>
         </Switch>
