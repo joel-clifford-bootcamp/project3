@@ -10,12 +10,13 @@ function InfoBoxString() {
         <div id="content">
           <div id="siteNotice"></div>
           <h1 id="firstHeading" class="firstHeading">
-            Uluru
+            Location
           </h1>
           <div id="bodyContent">
+            <div></div>
             <p>
-              <Modal />
             </p>
+            <Modal />
           </div>
         </div>
       </div>

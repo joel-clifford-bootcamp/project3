@@ -1,7 +1,6 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Modal from "../components/Modal";
-import { M } from "materialize-css";
 import {Link} from "react-router-dom";
 import "../style.css";
 
