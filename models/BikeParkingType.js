@@ -7,10 +7,10 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    // Associations
-    BikeParkingType.associate = function(models){
-        BikeParkingType.hasMany(models.BikeParking);
-    };
+    // // Associations
+    // BikeParkingType.associate = function(models){
+    //     BikeParkingType.hasMany(models.BikeParking);
+    // };
 
     return BikeParkingType;
 };
