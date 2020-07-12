@@ -10,5 +10,34 @@
             "func": "sum",
             "args": ["bikes", "free"]
         }
+    },
+    "BikeParkingStreetFurniture":{
+        "id":"_id",
+        "streetNumber": "ADDRESSNUMBERTEXT",
+        "street": "ADDRESSSTREET",
+        "type": "ASSETTYPE",
+        "status": "STATUS",
+        "lat": "LATITUDE",
+        "lng": "LONGITUDE"
+    },
+    "BikeParkingHighCapacity":{
+        "id": "_id",
+        "address": "ADDRESS_FULL",
+        "type": "PARKING_TYPE",
+        "capacity": "BICYCLE_CAPACITY",
+        "details": "DETAILS",
+        "lat": "LATITUDE",
+        "lng": "LONGITUDE",
+        "geometry": "geometry"
+    },
+    "BikeParkingOutdoor":{
+        "id": "_id",
+        "address": "ADDRESS_FULL",
+        "type": "MAP_CLASS",
+        "capacity": "CAPACITY",
+        "status": "STATUS",
+        "details": "NOTES",
+        "lat": "LATITUDE",
+        "lng": "LONGITUDE"
     }
 }
