@@ -2,16 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../style.css";
 import fullLogo from "../../assets/NarrowLogo.png";
-
+// import M from "materialize-css";
+// import M from  'materialize-css/dist/js/materialize.min.js';
 
 function Nav() {
+
+//   const slide_menu = document.querySelectorAll(".sidenav");
+
+//         M.Sidenav.init(slide_menu, {});
   
   return (
     <nav className="transparent z-depth-0">
       <div className="nav-wrapper">
-        <div>
-          <img className="brandLogo" src={fullLogo} alt="Full White Logo"></img>
-        </div>
+        <div class="brand-logo">
+          <span className="hide-on-small-only">
+            <img className="primaryLogo" src={fullLogo} alt="Full White Logo"></img>
+          </span>
+        </div>  
           <ul className="right">
             <li className="nav-item">
               <Link
@@ -23,8 +30,12 @@ function Nav() {
                     : "nav-link"
                 }
                 id="homeLink"
-              >
-                Home
+              ><span className="hide-on-small-only">
+                  Home
+                </span>
+                <span className="hide-on-med-and-up">
+                  <i class="material-icons navIcons">home</i>
+                </span>
               </Link>
             </li>
             <li className="nav-item">
@@ -34,8 +45,12 @@ function Nav() {
                   window.location.pathname === "/profile" ? "nav-link active" : "nav-link"
                 }
                 id="profileLink"
-              >
-                Profile
+              ><span className="hide-on-small-only">
+              Profile
+            </span>
+            <span className="hide-on-med-and-up">
+              <i class="material-icons navIcons">person</i>
+            </span>
               </Link>
             </li>
             <li className="nav-item">
@@ -46,17 +61,18 @@ function Nav() {
                     ? "nav-link active"
                     : "nav-link"
                 }
-                id="mapLink"
-              >
-                Sign Out
+                id="signoutLink"
+              ><span className="hide-on-small-only">
+              Sign Out
+            </span>
+            <span className="hide-on-med-and-up">
+              <i class="material-icons navIcons">exit_to_app</i>
+            </span>
               </Link>
             </li>
-            
           </ul>
-        {/* </div> */}
       </div>
     </nav>
-  // );
   );
 }
 
