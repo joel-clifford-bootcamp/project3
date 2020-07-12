@@ -1,8 +1,10 @@
 const https = require("https");
-let packageId = "";
+const packageInfo = require("./data-packages.json");
+const db = require('../../models');
+const updateTables = require('../import/updateTables');
 
 // promise to retrieve the package
-const getPackage = new Promise((resolve, reject) => {
+const getPackage = packageId => new Promise((resolve, reject) => {
     https.get(`https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/package_show?id=${packageId}`, (response) => {
         let dataChunks = [];
         response
@@ -21,8 +23,6 @@ const getPackage = new Promise((resolve, reject) => {
 
 // since this package has resources in the datastore, one can get the data rather than just the metadata of the resources
 // promise to retrieve data of a datastore resource 
-
-
 const getDatastoreResource = resource => new Promise((resolve, reject) => {
     https.get(`https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/datastore_search?id=${resource["id"]}`, (response) => {
         let dataChunks = [];
@@ -41,60 +41,34 @@ const getDatastoreResource = resource => new Promise((resolve, reject) => {
     })
 });
 
-/**
- * Retrieve metadata for Toronto Open Data resource specified by package ID
- * @param {string} pkgId Package identifier
- * @param {function} successCb Callback on success
- * @param {function} errorCb Callback on error
- */
-const getPackageInfo = (pkgId, successCb, errorCb) => {
-    
-    packageId = pkgId;
+module.exports = function() {
 
-    getPackage.then(pkg => {
-        // this is the metadata of the package
-        successCb(pkg);
-    }).catch(error => {
-        if(errorCb)
-            errorCb(pkg)
-        else
-            console.error(error);
-    })
-};
+    packageInfo
+    .forEach(pkg => {
+        getPackage(pkg.packageId)
+        .then(metadata => {
 
-/**
- * Retrieve data from Toronto Open Data resource specified by package ID
- * @param {string} pkgId Package identifier
- * @param {function} successCb Callback on success
- * @param {function} errorCb Callback on failure
- */
-const getPackageData = (pkgId, successCb, errorCb) => {
+            db.BikeParkingMetaData
+            .findAll( { where: { packageId: metadata.id } } )
+            .then( result => {  
 
-    packageId = pkgId;
+                if(result.revisionId != metadata.revision_id){
+                    let datastoreResources = metadata["resources"].filter(r => r.datastore_active);
 
-    getPackage.then(package => {
-        // get the datastore resources for the package
-        let datastoreResources = package["resources"].filter(r => r.datastore_active);
-
-    // retrieve the first datastore resource as an example
-    getDatastoreResource(datastoreResources[0])
-        .then(resource => {
-            // this is the actual data of the resource
-            successCb(resource);
-        })
-        .catch(error => {
-            if(errorCb)
-                errorCb(error)
-            else
-                console.errors(error);
-        })
-    }).catch(error => {
-        if (errorCb)
-            errorCb(error);
-        else
-            console.error(error);
+                    // retrieve the first datastore resource as an example
+                    getDatastoreResource(datastoreResources[0])
+                    .then(resource => {
+                        // this is the actual data of the resource
+                        console.log(resource);
+                        console.log(pkg.model);
+                        updateTables(db[pkg.model], resource);
+                    })
+                    .catch(error => console.errors(error));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        });
     });
 };
-
-
-module.exports = [ getPackageInfo, getPackageData ];
