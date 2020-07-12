@@ -11,6 +11,8 @@ const dataRefreshCron = require("./utils/cron/index");
 
 const refreshBixiStations = require('./utils/import/bixiStations'); 
 
+const updateAllPackages = require('./utils/api/TorontoDataPackages');
+
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 3001;
 var db = require("./models");
@@ -44,6 +46,7 @@ db.sequelize.sync({ force: false }).then(function() {
   
   // Call external APIs to populate data
   refreshBixiStations();
+  updateAllPackages(db);
   
   // Start the API server
   app.listen(PORT, function() {
