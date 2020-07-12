@@ -15,13 +15,16 @@ const SignIn = () => {
     };
 
   return ( 
-    <div className="valign-wrapper signUpBackground">         
-    <div className="row">
-        <div className="col s12 m12 align-left">      
-            <img className="signinLogo" src={logo} alt="Full White Logo"></img> 
-        </div>     
-    <div className="row">      
-        <div className="col s12 m6 offset-m3">    
+    <div className="signUpBackground">  
+        <nav className="transparent z-depth-0">
+            <div className="nav-wrapper">
+                <div class="brand-logo">
+                    <img className="signinLogo" src={logo} alt="Full White Logo"></img>
+                </div> 
+            </div>
+        </nav>              
+    <div className="row valign-wrapper primary">      
+        <div className="col s12 m6 offset-m2">    
             <div className="card signIn">
                 <h2>Welcome</h2>
                     <h6>New to <i><b>Link-N-Park?</b></i> <span className="signUpLink">
@@ -61,7 +64,6 @@ const SignIn = () => {
         </div>
     </div>    
         </div>
-    </div>
   );
 }
 

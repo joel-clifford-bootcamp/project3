@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
-import bike from "../assets/logo1.png"
+import logo from "../assets/link-n-park.png";
 
 
 const SignUp = () => {
@@ -19,13 +19,16 @@ const SignUp = () => {
     };
 
   return (
-    <div className="row">
-        {/* <div className="col s12 m1">
-            <img src={bike} alt="Full White Logo"></img>
+<div className="signUpBackground">  
+    <nav className="transparent z-depth-0">
+        <div className="nav-wrapper">
+            <div class="brand-logo">
+                <img className="signinLogo" src={logo} alt="Full White Logo"></img>
+            </div> 
         </div>
-    </div> */}
-    <div className="valign-wrapper signUpBackground">
-        <div className="col s12 m6 offset-m3">
+    </nav>              
+<div className="row valign-wrapper primary">      
+    <div className="col s12 m6 offset-m2 cardSize">    
             <div className="card signIn">
                 <h2>Welcome</h2>
                 <h6>Already have an <span className="signUpLink">
