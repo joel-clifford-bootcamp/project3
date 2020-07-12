@@ -88,6 +88,14 @@ form {
     } */
 
 
+    Link:hover {
+        cursor: pointer;
+    }
+
+    .nav-item:hover {
+        cursor: pointer;
+    }
+
 /* #logoLink {
     color: #e57373;
 font-family: 'Montserrat', sans-serif;

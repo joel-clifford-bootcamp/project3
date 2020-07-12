@@ -7,9 +7,16 @@ function Nav() {
   return (
     <nav className="transparent z-depth-0">
       <div className="nav-wrapper">
-        <Link className="brand-logo" to="/home" id="logoLink">
+        {/* <div className="brand-logo" */}
+        {/* <a href="#" className="brand-logo" */}
+          <Link className="brand-logo"
+          to="/home" 
+          // to="#" 
+          id="logoLink">
           <img className="brandLogo" src={fullLogo} alt="Full White Logo"></img>
-        </Link>
+          </Link>
+          {/* </a> */}
+        {/* </div> */}
         <div>
           <ul className="right hide-on-med-and-down" id="nav-mobile">
             <li className="nav-item">
