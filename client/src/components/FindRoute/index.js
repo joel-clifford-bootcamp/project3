@@ -9,7 +9,7 @@ import {
   InfoBox,
   LoadScript,
 } from "@react-google-maps/api";
-import Modal from "../Modal";
+import ModalComment from "../ModalComment";
 import InfoBoxString from "../InfoBoxString";
 import M from "materialize-css";
 import "../../assets/css/style.css";
@@ -171,7 +171,7 @@ class FindRoute extends Component {
             </div>
           </InfoWindow>
           )}
-
+          <ModalComment />
           {this.state.response !== null && (
             <DirectionsRenderer
               // required

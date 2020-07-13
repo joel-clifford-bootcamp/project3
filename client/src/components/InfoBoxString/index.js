@@ -1,6 +1,6 @@
 import "./style.css";
 import React, { Component } from "react";
-import Modal from "../Modal";
+import { ModalButton, ModalComment } from "../Modal";
 import M from "materialize-css";
 
 function InfoBoxString() {
@@ -27,7 +27,7 @@ function InfoBoxString() {
             <p className="capacity">Capacity: 0</p>
           </div>
           <div>
-            <Modal />
+            <ModalButton />
           </div>
         </div>
       </div>
