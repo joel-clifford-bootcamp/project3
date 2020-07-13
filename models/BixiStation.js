@@ -8,12 +8,6 @@ module.exports = function(sequelize, DataTypes) {
             unique: true,
             primaryKey: true
         },
-        // Index of object in array of stations returned by API call - used for locating object faster 
-        idx: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
-        },
         // Name (location) of station
         name: {
             type: DataTypes.STRING
