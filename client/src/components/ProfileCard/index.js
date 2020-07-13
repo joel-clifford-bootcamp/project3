@@ -64,7 +64,7 @@ export function UserCard(props) {
     <div className="row">
       <div className="col s12 m6 offset-m4">
         <h3 className="userName">User Name</h3>
-        <h6 className="userEmail">user@email.com</h6>
+        <h6 className="userEmail"><a href="mailto:user@email.com" target="_blank">user@email.com</a></h6>
       </div>
     </div>
     </div>

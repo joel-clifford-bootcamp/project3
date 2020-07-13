@@ -328,6 +328,22 @@ li{
   color: #d12e27ff;
 }
 
+
+.clickHere:hover{
+    cursor: pointer;
+    color: #c62828;
+}
+
+.clickHere:active{
+    cursor: pointer;
+    color: #b71c1c;
+}
+
+.clickHere:visited{
+    color: #d12e27ff;
+}
+
+
 .userName{
   text-align: center;
   width: 300px;

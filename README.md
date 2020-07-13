@@ -132,6 +132,10 @@ THEN...I am presented with a list of cards.
 ### Third-party APIs 
 
 
+## Usage
+* In order to run the application, after cloning the repository, open node in the project root directory and run 'npm install' in the terminal window
+* The run 'npm start'
+
 ## Links
 * Deployed URL: https://link-n-park.herokuapp.com/
 * GitHub repository: https://github.com/joel-clifford-bootcamp/project3
