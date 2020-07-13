@@ -2,6 +2,8 @@ const https = require("https");
 const packagesInfo = require("./maps/BicycleParking.json");
 const db = require('../../models');
 const updateTables = require('../import/updateTables');
+const { promises } = require("fs");
+const { resolve } = require("path");
 
 // promise to retrieve the package
 const getPackage = packageId => new Promise((resolve, reject) => {
@@ -92,41 +94,11 @@ module.exports = _ => {
             Promise.all(resourcesNeedingUpdate.map(resource => getDatastoreResource(resource, )))
             .then(updatedResources => {
 
-                console.log(updatedResources[1].map);
-                // Promise.all(updatedResources.map(updatedResource => update));
+                Promise.updateTables(updatedResources.map(res => updateTables(res.map, db.BicycleParking, res.data)))
+                .then(results => resolve(results))
+                .catch(err => err);
             })
-            .catch(err => reject(err));
-
-            // Promise.all(packagesNeedingUpdate.map(package => { console.log(package.resources[0]); getDatastoreResource(package["resources"][0]);}))
-            // .then(updatedPackages => {
-            //     console.log(updatedPackages.length)
-            // });
+            .catch(err => err);
         });
     });
 };
-    // Promise.all()kg => {
-    //     getPackage(pkg.packageId)
-    //     .then(metadata => {
-
-    //         db.BikeParkingMetaData
-    //         .findAll( { where: { packageId: metadata.id } } )
-    //         .then( result => {  
-
-    //             if(result.revisionId != metadata.revision_id){
-    //                 let datastoreResources = metadata["resources"].filter(r => r.datastore_active);
-
-    //                 // retrieve the first datastore resource as an example
-    //                 getDatastoreResource(datastoreResources[0])
-    //                 .then(async resource => {
-    //                     console.log(db[pkg.model])
-    //                     // this is the actual data of the resource
-    //                     updateTables(db[pkg.model], resource);
-    //                 })
-    //                 .catch(error => console.log(error));
-    //             }
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         });
-    //     });
-    // });
