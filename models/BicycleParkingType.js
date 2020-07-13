@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    const BikeParkingStatus = sequelize.define("BikeParkingStatus", {
+    const BicycleParkingType = sequelize.define("BicycleParkingType", {
         name: {
             type: DataTypes.STRING(10),
             allowNull: false,
@@ -8,9 +8,9 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     // // Associations
-    // BikeParkingStatus.associate = function(models){
-    //     BikeParkingStatus.hasMany(models.BikeParking);
+    // BikeParkingType.associate = function(models){
+    //     BikeParkingType.hasMany(models.BikeParking);
     // };
 
-    return BikeParkingStatus;
+    return BicycleParkingType;
 };
