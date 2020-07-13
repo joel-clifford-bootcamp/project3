@@ -20,7 +20,8 @@
             "type": "ASSETTYPE",
             "status": "STATUS",
             "lat": "LATITUDE",
-            "lng": "LONGITUDE"
+            "lng": "LONGITUDE",
+            "geometry": "geometry"
         }
     },
     {
@@ -66,7 +67,8 @@
             "status": "STATUS",
             "details": "NOTES",
             "lat": "LATITUDE",
-            "lng": "LONGITUDE"
+            "lng": "LONGITUDE",
+            "geometry": "geometry"
         }
     }
 ]
