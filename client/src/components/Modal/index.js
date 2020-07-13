@@ -5,7 +5,7 @@ import M from "materialize-css";
 export function ModalButton() {
 
     return (
-      <div>
+      <div class="div">
         <a
           className="waves-effect waves-light btn modal-trigger"
           data-target="modal1"

@@ -171,7 +171,7 @@ class FindRoute extends Component {
             </div>
           </InfoWindow>
           )}
-          <ModalComment />
+          <ModalComment addComment={this.addComment}/>
           {this.state.response !== null && (
             <DirectionsRenderer
               // required

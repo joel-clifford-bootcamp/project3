@@ -57,7 +57,7 @@ class ModalComment extends Component {
         [name]: value
       }
     });
-    console.log("this.state.comment", this.state.comment);
+    console.log("this.state.comment.message", this.state.comment.message);
     console.log("event.target.value", event.target.value);
 
   };
@@ -76,7 +76,7 @@ class ModalComment extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:7777", {
+    fetch("http://localhost:3001", {
       method: "post",
       body: JSON.stringify(comment)
     })
@@ -171,7 +171,7 @@ class ModalComment extends Component {
                   data-length="350"
                   placeholder="What did you think of this location?"
                   onChange={this.handleFieldChange}
-                  value={this.state.comment.name}
+                  value={this.state.comment.message}
                 ></textarea>
                 <label for="textarea2"></label>
               </label>
