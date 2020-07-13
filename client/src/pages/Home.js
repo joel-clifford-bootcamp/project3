@@ -47,7 +47,7 @@ function Home() {
                       <i className="medium material-icons center">star</i>
                   </button>
               </Link>
-              <a href="/map" className="linkNames">Rate a Parking Spot</a>
+              <a href="/parking" className="linkNames">Rate a Parking Spot</a>
             </li>
           </ul>
         </div> 
@@ -93,7 +93,7 @@ function Home() {
               </Link>
             </li>
             <li>  
-              <a href="/map" className="linkNames">Rate a Parking Spot</a>
+              <a href="/parking" className="linkNames">Rate a Parking Spot</a>
             </li>
           </ul>
         </div>    

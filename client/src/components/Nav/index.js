@@ -18,7 +18,6 @@ function Nav() {
           <span className="hide-on-small-only">
             <img className="primaryLogo" src={fullLogo} alt="Full White Logo"></img>
           </span>
-        </div>  
           <ul className="right">
             <li className="nav-item">
               <Link
@@ -71,6 +70,7 @@ function Nav() {
               </Link>
             </li>
           </ul>
+          </div>  
       </div>
     </nav>
   );
