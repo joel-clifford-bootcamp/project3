@@ -9,28 +9,49 @@ const center = {
               lng:  -79.347015
 }
 
-
   class FindBike extends Component {
     constructor(props) {
       super(props)
 
       this.state = {
         response: null,
+        results: null,
+        position: null,
         travelMode: 'BICYCLING',
-        origin: '', // input origin
-        destination: '', // input destination
+        origin: '', // origin input
+        originLat: '', // origin latitude
+        originLong: '',// origin longitude
+        destination: '', // selected station
         originAddress: 'Submit request...', // full origin address from google
         destinationAddress: 'Submit request...', // full destination address from google
         distance: '', // distance in km
         duration:'', // time in hours and minutes
       }
-
       this.directionsCallback = this.directionsCallback.bind(this)
       this.distancesCallback = this.distancesCallback.bind(this)
       this.getOrigin = this.getOrigin.bind(this)
       this.getDestination = this.getDestination.bind(this)
       this.onClick = this.onClick.bind(this)
     }
+
+    componentDidMount() {
+      if (navigator.geolocation) {
+        let currentComponent = this;
+        navigator.geolocation.getCurrentPosition(function (position) {
+       currentComponent.setState(
+          () => ({
+             originLat: position.coords.latitude,
+             originLong: position.coords.longitude,
+           })
+       )
+      console.log(position.coords.longitude);
+    });
+      } else {
+        prompt("Geolocation is not supported by this browser.");
+      }
+    };
+  
+    
 
     directionsCallback(response) {
       console.log(response)
@@ -86,7 +107,6 @@ const center = {
       }
   
     render() {
-      
       return (
      <div>
            <GoogleMap
@@ -176,7 +196,7 @@ const center = {
           <div className='row z-depth-5'>
             <div className='col s12'>
               <div className='form-group'>
-                <label className='white-text' htmlFor='ORIGIN'>Your position</label>
+                <label htmlFor='ORIGIN'>Your position</label>
                 <br />
                 <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" />
               </div>

@@ -6,6 +6,18 @@
     height: 100vh;
 }
 
+.signinLogo {
+  /* padding: 20px;
+  margin-left: 20px; */
+  width: 30%;
+  height: 30%;
+  padding: 5% 0 0 5%;
+}
+
+.primary{
+  margin: 0px;
+}
+
 h2 {
     font-family: 'Montserrat', sans-serif;
     font-size: 46px;
@@ -72,34 +84,45 @@ form {
 }
 
 
+@media only screen and (max-width: 768px) {
+  .signUpBackground {
+    /* background-image: url(""); */
+    background: url(./assets/bike.jpg);
+    height: 100vh;
+    width: 100%;
+    background-position: right top;
+  }
+
+  .signIn{
+    margin: 30px 0 0 0;
+    width: 100%;
+  }
+
+  .signinLogo{
+    width: 40%;
+    height: 40%;
+    padding: 10% 0 10% 0;
+  }
+
+  .cardSize{
+    padding: 0px;
+  }
+
+  .brand-logo{
+    left: 62.5% !important;
+  }
+}  
+
+
 /* END SIGN IN AND SIGN UP STYLING */
 
 
 /* BEGING NAV BAR STYLING */
 
 
-/* Link {
-    color: #e57373;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 20px;
-    font-weight: 200;
-    text-align: center;
-    margin-bottom: 0px !important;
-    } */
-
-
-/* #logoLink {
-    color: #e57373;
-font-family: 'Montserrat', sans-serif;
-font-size: 20px;
-font-weight: 200;
-text-align: center;
-margin-bottom: 0px !important;
-    } */
-
 #homeLink,
 #profileLink,
-#mapLink {
+#signoutLink {
     color: #e57373;
     font-family: 'Quicksand', sans-serif;
     font-size: 18px;
@@ -108,7 +131,7 @@ margin-bottom: 0px !important;
     margin-bottom: 0px !important;
 }
 
-.brandLogo {
+.primaryLogo {
     /* padding: 20px;
     margin-left: 20px; */
     width: 8%;
@@ -116,6 +139,11 @@ margin-bottom: 0px !important;
     float: left;
 }
 
+@media only screen and (max-width: 768px) {
+.navIcons{
+  color: #e57373 !important;
+}
+}  
 
 /* END NAV BAR STYLING */
 
@@ -148,8 +176,8 @@ span {
     border: none;
     color: white;
     /* padding: 20px; */
-    height: 7rem;
-    width: 7rem;
+    height: 10rem;
+    width: 10rem;
     text-align: center;
     text-decoration: none;
     /* display: inline-block; */
@@ -208,7 +236,46 @@ a:visited {
 
 .material-icons {
     color: white;
-    align: center;
+    align-items: center;
+}
+
+.buttonLink {
+  border: none;
+  padding: 0px!important;
+  height: fit-content!important;
+  width: fit-content!important;
+  display: inline-block;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  position: relative;
+} 	
+
+@media only screen and (max-width: 768px) {
+h1{
+  padding: 0px;
+  font-size: 30px;
+}
+
+.buttonHome{
+  height: 5rem;
+  width: 5rem;
+  padding: 0px;
+  float: center;
+}
+
+.buttonHome{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 5px;
+}
+
+li{
+  padding-top: 7px;
+  }
 }
 
 
@@ -217,43 +284,77 @@ a:visited {
 
 /* START PROFILE STYLING */
 
-.pageHeading,
-.userNameHeading,
-.userEmailHeading,
 .activity {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     padding: 10px;
 }
 
-.pageHeading {
-    /* font-size: 46px; */
-    font-weight: 500;
-    color: white;
-    text-align: center;
-}
-
-.userNameHeading {
-    text-transform: uppercase;
-}
-
 .profileBackground {
     background-image: url("./assets/profile.png");
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
     background-position: 0% 0%;
     width: 100%;
+    height: 100vh;
 }
 
-.buttonLink {
-    border: none;
-    padding: 0px!important;
-    height: fit-content!important;
-    width: fit-content!important;
-    display: inline-block;
-    margin: 0 auto;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    cursor: pointer;
-    position: relative;
+/* END PROFILE PAGE STYLING */
+
+
+/* START PROFILE CARD STYLING */
+
+.profile-image{
+  border-radius: 25px !important;
+  height: 300px;
+  width: 300px;
 }
+
+.profileInstructions{
+  padding: 20px;
+  text-align: center;
+  padding-top: 125px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.profilePic{
+  border-radius: 25px !important;
+  padding: 15px;
+}
+
+.clickHere{
+  font-weight: 600;
+  color: #d12e27ff;
+}
+
+
+.clickHere:hover{
+    cursor: pointer;
+    color: #c62828;
+}
+
+.clickHere:active{
+    cursor: pointer;
+    color: #b71c1c;
+}
+
+.clickHere:visited{
+    color: #d12e27ff;
+}
+
+
+.userName{
+  text-align: center;
+  width: 300px;
+  font-family: 'Montserrat', sans-serif;
+  color: #db5b5c;
+  font-weight: 50px;
+  /* margin-right: 10px; */
+}
+
+.userEmail{
+  width:300px;
+}
+
+/* END OF PROFILE CARD STYLING */

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
+import logo from "../assets/link-n-park.png";
+
 
 const SignIn = () => {
     const [email, setEmail] = useState();
@@ -12,10 +14,17 @@ const SignIn = () => {
       console.log("password is " + password);
     };
 
-  return (
-    <div className="row">
-        <div className="valign-wrapper signUpBackground">
-        <div className="col s12 m6 offset-m3">
+  return ( 
+    <div className="signUpBackground">  
+        <nav className="transparent z-depth-0">
+            <div className="nav-wrapper">
+                <div class="brand-logo">
+                    <img className="signinLogo" src={logo} alt="Full White Logo"></img>
+                </div> 
+            </div>
+        </nav>              
+    <div className="row valign-wrapper primary">      
+        <div className="col s12 m6 offset-m2">    
             <div className="card signIn">
                 <h2>Welcome</h2>
                     <h6>New to <i><b>Link-N-Park?</b></i> <span className="signUpLink">
@@ -53,8 +62,8 @@ const SignIn = () => {
 
             </div>
         </div>
+    </div>    
         </div>
-    </div>
   );
 }
 
