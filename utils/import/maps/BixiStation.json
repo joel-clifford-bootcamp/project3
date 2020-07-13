@@ -1,0 +1,10 @@
+{
+    "id": "number",
+    "name": "name",
+    "lat": "lat",
+    "lng": "lng",
+    "capacity": {
+        "func": "sum",
+        "args": ["bikes", "free"]
+    }
+}
