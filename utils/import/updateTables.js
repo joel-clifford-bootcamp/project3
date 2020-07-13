@@ -28,23 +28,43 @@ const getForeignKey = ( { referenceModelType, keyColumn, valueColumn, value} ) =
  * @param {object} updatedObject object returned by api call 
  * @param {object} calcDetails calculation parameters 
  */
-const calculateField = async (updatedObject, calcDetails) => {
+const calculateField = (updatedObject, calcDetails) => new Promise((resolve, reject) => {
+
     switch(calcDetails.func){
         case "sum":
-            return calcDetails.args.reduce((a,b) => updatedObject[a] + updatedObject[b]);
+            resolve(calcDetails.args.reduce((a,b) => updatedObject[a] + updatedObject[b]));
         case "concat":
-            return calcDetails.args.reduce((a,b) => `${updatedObject[a]} ${updatedObject[b]}`);
+            resolve(calcDetails.args.map(arg => updatedObject[arg]).join(' '));
         case "foreignKey":
-            return await getForeignKey(calcDetails);
+            resolve(1);
+        // return await getForeignKey(calcDetails);
     }
-};
+});
 
-const getUpdatedValue = (updatedObject, property) => {
-    if(typeof property === 'string')
-        return updatedObject[property]; 
-    else if (typeof property === 'object')
-        return calculateField(updatedObject, property);
-};
+/**
+ * Get either the field value, or result of a calculation basedon several field value, from an object returned
+ * by and api; based on the map provided
+ * @param {object} updatedObject updated object
+ * @param {string} propertyName property name in map 
+ */
+const getUpdatedValue = (map, updatedObject, propertyName) => new Promise((resolve, reject) => {
+
+    if(typeof map[propertyName] === 'string')
+        resolve( [propertyName, updatedObject[map[propertyName]]]); 
+    else if (typeof map[propertyName] === 'object') {
+        calculateField(updatedObject, map[propertyName])
+        .then(value =>  resolve( [propertyName, value]))
+        .catch(err => reject(err));}
+});
+
+const getUpdatedValues = (map, updatedObject) => new Promise((resolve, reject) => {
+
+    const properties = Object.keys(map)
+    
+    Promise.all(properties.map(prop => getUpdatedValue(map, updatedObject, prop)))
+    .then(results => resolve(results))
+    .catch(err => reject(err));
+});
 
 /**
  * If any model instance properties in map differ from their up-to-date counterpart from
@@ -66,34 +86,33 @@ const updateSingleObject = (map, modelType, existingObjects, updatedObject) => n
     if(existingObjects.length > 0){
         existingObject = existingObject[0];
 
-        // for each mapped property compare value of eixsting object and updated object 
-        // update existing object if necessary
-        Object.keys(map).forEach(k => {
-            if(existingObject[k] != updatedObject[map[k]]) {
-                //console.log(`${k}: ${existingObject[k]} != ${updatedObject[map[k]]}`)
-                existingObject[k] = updatedObject[map[k]];
-                propertyUpdateCount++;
-            }
-        });
-        
-        // if any properties needed updating, save updated existing object
-        if(propertyUpdateCount > 0) {
-            console.log(existingObject);
-            console.log(updatedObject);
+        getUpdatedValues(map, updatedObject)
+        .then(updatedValues => {
 
-            existingObject
-            .save()
-            .then(result => resolve(result))
-            .catch(err => reject(err));
-        }else
-            resolve();
+            updatedValues.forEach(([key, updatedValue]) => {
+
+                if(existingObject[key] != updatedValue) {
+                    existingObject[key] = updatedValue;
+                    propertyUpdateCount++;
+                } 
+
+                // if any properties needed updating, save updated existing object
+                if(propertyUpdateCount > 0)
+                    existingObject
+                    .save()
+                    .then(result => resolve(result))
+                    .catch(err => reject(err));
+                else
+                    resolve();
+            });
+        })
+        .catch(err => reject(err));
     }
     // if no corresponding existing object, create new instance
-    else{
+    else
         addNewObject(map, modelType, updatedObject)
         .then(result => resolve(result))
         .catch(err => reject(err));
-    }
 });
 
 /**
@@ -117,15 +136,17 @@ const updateExistingObjects = (map, modelType, existingObjects, updatedObjects) 
  */
 const addNewObject = (map, modelType, updatedObject) => new Promise((resolve, reject) => {
     
-    const fields = {};
+    getUpdatedValues(map, updatedObject)
+    .then(data => {
 
-    Object.keys(map).forEach( k => { 
-        fields[k] = getUpdatedValue(updatedObject[i], map[k]);
-    });
-
-    modelType.create(fields)
-    .then(result => resolve(result))
-    .catch(err => reject(err))
+        const fields = {};
+        data.forEach(([key, value]) => { fields[key] = value; });
+           
+        modelType.create(fields)
+            .then(result => resolve(result))
+            .catch(err => reject(err))
+    })
+    .catch(err => reject(err));
 });
 
 
@@ -183,8 +204,5 @@ module.exports = (map, modelType, updatedData) => new Promise((resolve, reject) 
 
     })
     .catch(err => reject(err));
-    
-        // flagMissingObjects(modelType);
-
 
 });
