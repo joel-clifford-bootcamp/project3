@@ -11,7 +11,7 @@ const passport = require("./config/passport");
 
 const refreshBixiStations = require('./utils/import/bixiStations'); 
 
-// const updateAllPackages = require('./utils/api/TorontoDataPackages');
+const updateAllPackages = require('./utils/import/TorontoDataPackages');
 
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 3001;
@@ -45,8 +45,8 @@ app.use(passport.session());
 db.sequelize.sync({ force: false }).then(function() {
   
   // Call external APIs to populate data
-  refreshBixiStations.then(data => console.log(data));
-  //updateAllPackages(db);
+  refreshBixiStations;
+  updateAllPackages();
   
   // Start the API server
   app.listen(PORT, function() {
