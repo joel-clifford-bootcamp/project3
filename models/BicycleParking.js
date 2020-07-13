@@ -1,12 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
     const BicycleParking = sequelize.define("BicycleParking", {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true,
-            primaryKey: true
-        },
         // Id of dataset record comes from
         dataSetId: {
             type: DataTypes.INTEGER,
@@ -37,11 +31,16 @@ module.exports = function(sequelize, DataTypes) {
         },
         lng:  {
             type: DataTypes.DECIMAL(9,6),
-        },
-        geometry:{
-            type: DataTypes.GEOMETRY,
-            // allowNull: false
         }
+        // ,
+        // geometry:{
+        //     type: DataTypes.GEOMETRY('POINT'),
+        //     // allowNull: false
+        // }
+    },
+    {
+        freezeTableName: true,
+        tableName: "BicycleParkingSpots"
     });
 
     return BicycleParking;
