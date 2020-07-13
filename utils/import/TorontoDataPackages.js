@@ -1,5 +1,5 @@
 const https = require("https");
-const packageInfo = require("./data-packages.json");
+const packagesInfo = require("./maps/BicycleParking.json");
 const db = require('../../models');
 const updateTables = require('../import/updateTables');
 
@@ -23,7 +23,7 @@ const getPackage = packageId => new Promise((resolve, reject) => {
 
 // since this package has resources in the datastore, one can get the data rather than just the metadata of the resources
 // promise to retrieve data of a datastore resource 
-const getDatastoreResource = resource => new Promise((resolve, reject) => {
+const getDatastoreResource = (resource) => new Promise((resolve, reject) => {
     https.get(`https://ckan0.cf.opendata.inter.prod-toronto.ca/api/3/action/datastore_search?id=${resource["id"]}`, (response) => {
         let dataChunks = [];
 
@@ -33,19 +33,16 @@ const getDatastoreResource = resource => new Promise((resolve, reject) => {
             })
             .on("end", () => {
                 let data = Buffer.concat(dataChunks)
-                resolve(JSON.parse(data.toString())["result"]["records"])
+                const jsonData = JSON.parse(data.toString())["result"]["records"];
+                resolve({
+                    map: resource._modelMap,
+                    data: jsonData
+                });
             })
             .on("error", (error) => {
                 reject(error)
             })
     })
-});
-
-const updatePackages = datastoreResource => new Promise((resolve, reject) => {
-
-    
-
-
 });
 
 
@@ -56,7 +53,7 @@ const updatePackages = datastoreResource => new Promise((resolve, reject) => {
  */
 const packageNeedsUpdate = (package, packagesLastUpdated) => {
 
-    const currentPackage = packagesLastUpdated.filter(pkg => pkg.packageId === package.packageId)
+    const currentPackage = packagesLastUpdated.filter(pkg => pkg.packageId === package.packageId)   
 
     if(currentPackage.length === 0)
         return true;
@@ -65,19 +62,48 @@ const packageNeedsUpdate = (package, packagesLastUpdated) => {
 
 }
 
-module.exports = function() {
+/**
+ * Add model field mapping to each resource in a package
+ * @param {object} package Package to wich maping will be added
+ */
+const addMap = (package) => {
 
-    Promise.all(packageInfo.map(pkg => getPackage(pkg.packageId))).then(allPackages => {
+    const currentPackageInfo = packagesInfo.filter(pkg => pkg.packageId === package.id)[0];
 
-        db.BikeParkingMetaData.findAll( { attributes: [ "packageId", "revisionId" ] } ).then(packagesLastUpdated => {
-
-        const packagesNeedingUpdate = allPackages.filter(pkg => packageNeedsUpdate(pkg, packagesLastUpdated));
-
-        const updatedPackages = Promise.all()
-
-        console.log(packagesNeedingUpdate);
+    package.resources.forEach(res => {
+        res["_modelMap"] = currentPackageInfo["mapping"];
     });
-});
+}
+
+module.exports = _ => {
+    Promise.all(packagesInfo.map(pkg => getPackage(pkg.packageId)))
+    .then(allPackages => {
+
+        db.BicycleParkingMetaData.findAll( { attributes: [ "packageId", "revisionId" ] } )
+        .then(packagesLastUpdated => {
+
+            allPackages.forEach(pkg => addMap(pkg));
+
+            const resourcesNeedingUpdate = allPackages
+                .filter(pkg => packageNeedsUpdate(pkg, packagesLastUpdated))
+                .map(pkg => pkg["resources"][0])
+                .filter(resource => resource.datastore_active);
+
+            Promise.all(resourcesNeedingUpdate.map(resource => getDatastoreResource(resource, )))
+            .then(updatedResources => {
+
+                console.log(updatedResources[1].map);
+                // Promise.all(updatedResources.map(updatedResource => update));
+            })
+            .catch(err => reject(err));
+
+            // Promise.all(packagesNeedingUpdate.map(package => { console.log(package.resources[0]); getDatastoreResource(package["resources"][0]);}))
+            // .then(updatedPackages => {
+            //     console.log(updatedPackages.length)
+            // });
+        });
+    });
+};
     // Promise.all()kg => {
     //     getPackage(pkg.packageId)
     //     .then(metadata => {
@@ -104,4 +130,3 @@ module.exports = function() {
     //         });
     //     });
     // });
-};
