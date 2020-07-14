@@ -6,11 +6,10 @@ const map = require("./maps/BixiStation.json");
 /**
  * Update BixiBikes table with latest dta from bikeshare api
  */
-module.exports = new Promise((resolve, reject) => {
+module.exports = _ => new Promise((resolve, reject) => {
     db.BixiStation.findAll()
         .then(results => {
-
-            getRealTimeData
+            getRealTimeData()
             .then(data => {
                 updateTables(map, db.BixiStation, data)
                 .then(result => resolve(result))
