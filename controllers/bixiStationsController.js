@@ -1,7 +1,7 @@
 const db = require("../models");
 const seed = require("../utils/seed");
 const getRealTimeData = require("../utils/api/StationsData");
-const StationComment = require("../models/StationComment");
+const { red } = require("chalk");
 
 module.exports = {
 
@@ -28,12 +28,15 @@ module.exports = {
         .catch(err => res.status(400).json(err));
     },
     
-    // to be redone
     getRealTime:  function(req, res) {
-        getRealTimeData(data => {
-            const stationsArray = [];
+        getRealTimeData()
+        .then(data => {
+            
+            const selectedStations = data.filter(station => req.body.stations.includes(station.number));
 
-        });
+            res.status(200).json(selectedStations);
+        })
+        .catch(err => res.status(400).json(err))
     }
 
 }
