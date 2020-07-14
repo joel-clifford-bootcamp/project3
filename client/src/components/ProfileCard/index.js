@@ -1,6 +1,7 @@
 // import React from "react";
 import React, { useState } from "react";
 import "./style.css";
+
 import profilePicture from "./placeholder.png";
 import placeholder from "./placeholder2.jpg";
 
@@ -36,7 +37,7 @@ export function UserCard(props) {
   <div>
     <div className="row">
     <div className="valign-wrapper">
-      <div className="col s12 m6 offset-m4">
+      <div className="col s12 m6 offset-m4 offset-s1">
         <div className="card profile-image align-center">
             <label htmlFor="upload-button">
               {image.preview ? (
