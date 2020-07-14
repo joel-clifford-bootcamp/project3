@@ -1,6 +1,3 @@
-// Requiring necessary npm packages
-const seed = require("./utils/seed");
-
 const express = require("express");
 
 const session = require("express-session");
