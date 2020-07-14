@@ -13,9 +13,9 @@ function Nav() {
   
   return (
     <nav className="transparent z-depth-0">
-      <div className="nav-wrapper">
+      <div className="nav-wrapper hide-on-med-and-down">
         <div class="brand-logo">
-          <span className="hide-on-small-only">
+          <span className="hide-on-med-and-down">
             <img className="primaryLogo" src={fullLogo} alt="Full White Logo"></img>
           </span>
           <ul className="right">
@@ -29,10 +29,53 @@ function Nav() {
                     : "nav-link"
                 }
                 id="homeLink"
-              ><span className="hide-on-small-only">
+              ><span>
                   Home
                 </span>
-                <span className="hide-on-med-and-up">
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/profile"
+                className={
+                  window.location.pathname === "/profile" ? "nav-link active" : "nav-link"
+                }
+                id="profileLink"
+              ><span>
+              Profile
+            </span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/signin"
+                className={
+                  window.location.pathname === "/signin"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                id="signoutLink"
+              ><span>
+              Sign Out
+            </span>
+              </Link>
+            </li>
+          </ul>  
+          </div>  
+      </div>
+      <div className="nav-wrapper hide-on-large-only">
+          <ul className="right">
+            <li className="nav-item">
+              <Link
+                to="/home"
+                className={
+                  window.location.pathname === "/home" ||
+                  window.location.pathname === "/home"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+                id="homeLink"
+              ><span>
                   <i class="material-icons navIcons">home</i>
                 </span>
               </Link>
@@ -44,10 +87,7 @@ function Nav() {
                   window.location.pathname === "/profile" ? "nav-link active" : "nav-link"
                 }
                 id="profileLink"
-              ><span className="hide-on-small-only">
-              Profile
-            </span>
-            <span className="hide-on-med-and-up">
+              ><span>
               <i class="material-icons navIcons">person</i>
             </span>
               </Link>
@@ -61,17 +101,13 @@ function Nav() {
                     : "nav-link"
                 }
                 id="signoutLink"
-              ><span className="hide-on-small-only">
-              Sign Out
-            </span>
-            <span className="hide-on-med-and-up">
+              ><span>
               <i class="material-icons navIcons">exit_to_app</i>
             </span>
               </Link>
             </li>
-          </ul>
+          </ul>  
           </div>  
-      </div>
     </nav>
   );
 }

@@ -1,8 +1,8 @@
 // import React from "react";
 import React, { useState } from "react";
 import "./style.css";
-import profilePicture from "./placeholder.png";
-import placeholder from "./placeholder2.jpg";
+// import profilePicture from "./placeholder.png";
+// import placeholder from "./placeholder2.jpg";
 // import { Foo, Bar } from "../Rating";
 
 
@@ -39,7 +39,7 @@ export function UserCard(props) {
   <div>
     <div className="row">
     <div className="valign-wrapper">
-      <div className="col s12 m6 offset-m4">
+      <div className="col s12 m6 offset-m4 offset-s1">
         <div className="card profile-image align-center">
             <label htmlFor="upload-button">
               {image.preview ? (
@@ -62,9 +62,9 @@ export function UserCard(props) {
       </div>
     </div>
     <div className="row">
-      <div className="col s12 m6 offset-m4">
+      <div className="col s12 m6 offset-m4 offset-s1">
         <h3 className="userName">User Name</h3>
-        <h6 className="userEmail"><a href="mailto:user@email.com" target="_blank">user@email.com</a></h6>
+        <h6 className="userEmail"><a href="mailto:user@email.com" className="email" target="_blank">user@email.com</a></h6>
       </div>
     </div>
     </div>
