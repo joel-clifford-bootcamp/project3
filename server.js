@@ -39,11 +39,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Regularly update data from external APIs 
-// dataRefreshCron();
+dataRefreshCron();
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({ force: false }).then(function() {
   
+  refreshBixiStations();
+  updateAllPackages();
+
   // Start the API server
   app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
