@@ -9,7 +9,7 @@ import Nav from "../components/Nav";
 import "../style.css";
 
 function Profile() {
-
+  // Setting our component's initial state
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -17,37 +17,17 @@ function Profile() {
     id: ""
   });
 
-  // // Setting our component's initial state
-  // const [books, setBooks] = useState([]);
-  // const [formObject, setFormObject] = useState({});
-
-  // Load all books and store them with setBooks
+  // Load all information and store it
   useEffect(() => {
     loadUserData();
   }, []);
 
-  // Loads all books and sets them to books
+  // Loads all information and sets it
   function loadUserData() {
     API.getUserDetails()
       .then((res) => setUser(res.data))
       .catch((err) => console.log(err));
   }
-
-
-  // // When the form is submitted, use the API.saveBook method to save the book data
-  // // Then reload books from the database
-  // function handleFormSubmit(event) {
-  //   event.preventDefault();
-  //   if (formObject.title && formObject.author) {
-  //     API.saveBook({
-  //       title: formObject.title,
-  //       author: formObject.author,
-  //       synopsis: formObject.synopsis,
-  //     })
-  //       .then((res) => loadBooks())
-  //       .catch((err) => console.log(err));
-  //   }
-  // }
 
   return (
     <Container fluid>

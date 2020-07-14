@@ -26,43 +26,47 @@ class ModalComment extends Component {
     };
     M.Modal.init(this.Modal, options);
   }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-      error: "",
-
-      comment: {
-        name: "",
-        message: ""
-      }
-    };
+  state = {
+    loading: false,
+    error: "",
+    comment: "",
+  }
+  ///constructor(props) {
+    //super(props);
+    //this.state = {
+      //loading: false,
+      //error: "",
+      //comment: '',
+      //comment: {
+      //  name: "",
+      //  message: "",
+      //},
+    //};
 
     // bind context to methods
-    this.handleFieldChange = this.handleFieldChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  //   this.handleFieldChange = this.handleFieldChange.bind(this);
+  //   this.onSubmit = this.onSubmit.bind(this);
+  // }
 
   /**
    * Handle form input field changes & update the state
    */
-  handleFieldChange = event => {
+  handleFieldChange = (event) => {
     const { value, name } = event.target;
 
-    this.setState({
-      ...this.state,
-      comment: {
-        ...this.state.comment,
-        [name]: value
-      }
-    });
-    console.log("this.state.comment", this.state.comment);
-    console.log("event.target.value", event.target.value);
-
+    this.setState({comment: {message:value}})
+    // this.setState({
+    //   ...this.state,
+    //   comment: {
+    //     ...this.state.comment,
+    //     [name]: value,
+    //   },
+    // });
+    //console.log("this.state.comment.message", this.state.comment.message);
+    //console.log("event.target.value", event.target.value);
   };
 
-  onSubmit(e) {
+  onSubmit = (e) =>{
     // prevent default form submission
     e.preventDefault();
 
@@ -76,12 +80,14 @@ class ModalComment extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:7777", {
+    
+    fetch("/bixi/comments", {
       method: "post",
-      body: JSON.stringify(comment)
+      //body: JSON.stringify(comment),
+      body: comment,
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res.error) {
           this.setState({ loading: false, error: res.error });
         } else {
@@ -92,14 +98,14 @@ class ModalComment extends Component {
           // clear the message box
           this.setState({
             loading: false,
-            comment: { ...comment, message: "" }
+            comment: { ...comment, message: "" },
           });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           error: "Something went wrong while submitting form.",
-          loading: false
+          loading: false,
         });
       });
   }
@@ -114,7 +120,7 @@ class ModalComment extends Component {
     ) : null;
   }
 
-  render() {
+  render(props) {
     return (
       <>
         <div
@@ -131,50 +137,63 @@ class ModalComment extends Component {
               </span>
 
               <div>
-              <label>
-                <div className="ratingHeading">
-                Rating: 
-                </div>
-                <span className="rating">
-                  <i
-                    className="far fa-star edit-star fa-lg"
-                    data-rating="1"
-                  ></i>
-                  <i
-                    className="far fa-star edit-star fa-lg"
-                    data-rating="2"
-                  ></i>
-                  <i
-                    className="far fa-star edit-star fa-lg"
-                    data-rating="3"
-                  ></i>
-                  <i
-                    className="fas fa-star edit-star fa-lg"
-                    data-rating="4"
-                  ></i>
-                  <i
-                    className="fas fa-star edit-star fa-lg"
-                    data-rating="5"
-                  ></i>
-                </span>
-              </label>
+                <label>
+                  <div className="divLocation">
+                    Location: 
+                  </div>
+                </label>
               </div>
 
               <div>
-              <label>
-              <div className="ratingHeading">
-                Comments:
+                <label>
+                  <div className="ratingHeading">Rating:
+                  <span className="rating">
+                    <i
+                      className="far fa-star edit-star fa-lg"
+                      data-rating="1"
+                    ></i>
+                    <i
+                      className="far fa-star edit-star fa-lg"
+                      data-rating="2"
+                    ></i>
+                    <i
+                      className="far fa-star edit-star fa-lg"
+                      data-rating="3"
+                    ></i>
+                    <i
+                      className="fas fa-star edit-star fa-lg"
+                      data-rating="4"
+                    ></i>
+                    <i
+                      className="fas fa-star edit-star fa-lg"
+                      data-rating="5"
+                    ></i>
+                  </span>
+                  </div>
+                </label>
               </div>
-                <textarea
-                  id="comment"
-                  class="materialize-textarea"
-                  data-length="350"
-                  placeholder="What did you think of this location?"
-                  onChange={this.handleFieldChange}
-                  value={this.state.comment.name}
-                ></textarea>
-                <label for="textarea2"></label>
-              </label>
+              
+              <div>
+                <label>
+                  <div className="divAuthor">
+                    Author: {this.props.author}
+                  </div>
+                </label>
+              </div>
+
+              <div>
+                <label>
+                  <div className="ratingHeading">Comments:</div>
+                  <textarea
+                    id="comment"
+                    class="materialize-textarea"
+                    data-length="350"
+                    placeholder="What did you think of this location?"
+                    onChange={this.handleFieldChange}
+                    value={this.state.comment.message}
+                  ></textarea>
+                  <label for="textarea2"></label>
+                </label>
               </div>
 
               <button
@@ -207,3 +226,6 @@ class ModalComment extends Component {
 }
 
 export default ModalComment;
+
+// For back-end? .send or .json?
+// .then(data => res.status(200).json(data))
