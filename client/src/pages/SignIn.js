@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
 import logo from "../assets/link-n-park.png";
+import axios from "axios";
 
 
 const SignIn = () => {
@@ -10,15 +11,35 @@ const SignIn = () => {
   
     const handleSubmit = e => {
       e.preventDefault();
-      console.log("email is " + email);
-      console.log("password is " + password);
-    };
+    //   console.log("email is " + email);
+    //   console.log("password is " + password);
+
+      if (!email || !password) {
+        return;
+      }
+  
+      signinUser();
+    }
+
+
+  const signinUser = () => {
+    axios.post("/api/users/signin", {
+      email: email,
+      password: password
+    })
+      .then(function() {
+        window.location.replace("/home");
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
 
   return ( 
     <div className="signUpBackground">  
         <nav className="transparent z-depth-0">
             <div className="nav-wrapper">
-                <div class="brand-logo">
+                <div className="brand-logo">
                     <img className="signinLogo" src={logo} alt="Full White Logo"></img>
                 </div> 
             </div>
