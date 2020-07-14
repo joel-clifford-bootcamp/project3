@@ -1,6 +1,6 @@
 import "./style.css";
 import React, { Component } from "react";
-import { ModalButton } from "../Modal";
+import { ModalButton } from "../ModalButton";
 import ModalComment from "../ModalComment";
 import CommentBox from "../CommentBox";
 import M from "materialize-css";

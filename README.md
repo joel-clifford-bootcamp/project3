@@ -139,7 +139,7 @@ THEN...I am presented with a list of cards.
 * [Slack](https://slack.com/intl/en-ca/)
 
 ### Libraries
-
+* [chalk](https://www.npmjs.com/package/chalk)
 
 ### Websites
 * [GitHub](https://github.com/)
@@ -153,7 +153,7 @@ THEN...I am presented with a list of cards.
 ### Logos
 
 ### Third-party APIs 
-
+* [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial)
 
 ## Usage
 * In order to run the application, after cloning the repository, open node in the project root directory and run 'npm install' in the terminal window

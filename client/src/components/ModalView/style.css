@@ -1,0 +1,12 @@
+#modalLink {
+  background-color: #78bcc5ff;
+  color: white;
+}
+
+#modalLink:hover, #modalLink:active {
+  background-color: #00bfa5;
+}
+
+.div {
+  padding: 20px;
+}

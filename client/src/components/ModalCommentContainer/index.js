@@ -2,7 +2,7 @@ import "./style.css";
 import React, { Component } from "react";
 import M from "materialize-css";
 
-class ModalComment extends Component {
+class ModalCommentContainer extends Component {
   componentDidMount() {
     const options = {
       onOpenStart: () => {
@@ -57,7 +57,7 @@ class ModalComment extends Component {
         [name]: value
       }
     });
-    console.log("this.state.comment", this.state.comment);
+    console.log("this.state.comment.message", this.state.comment.message);
     console.log("event.target.value", event.target.value);
 
   };
@@ -76,7 +76,7 @@ class ModalComment extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:7777", {
+    fetch("http://localhost:3001", {
       method: "post",
       body: JSON.stringify(comment)
     })
@@ -121,7 +121,7 @@ class ModalComment extends Component {
           ref={(Modal) => {
             this.Modal = Modal;
           }}
-          id="modal1"
+          id="modal2"
           className="modal"
         >
           <div className="modal-content" id="commentsModal" data-reveal>
@@ -161,6 +161,15 @@ class ModalComment extends Component {
               </div>
 
               <div>
+                <label>
+                  <div className="divAuthor">
+                    Author: 
+                    {/* {this.props.author} */}
+                  </div>
+                </label>
+              </div>
+
+              <div>
               <label>
               <div className="ratingHeading">
                 Comments:
@@ -171,7 +180,7 @@ class ModalComment extends Component {
                   data-length="350"
                   placeholder="What did you think of this location?"
                   onChange={this.handleFieldChange}
-                  value={this.state.comment.name}
+                  value={this.state.comment.message}
                 ></textarea>
                 <label for="textarea2"></label>
               </label>
@@ -206,4 +215,4 @@ class ModalComment extends Component {
   }
 }
 
-export default ModalComment;
+export default ModalCommentContainer;

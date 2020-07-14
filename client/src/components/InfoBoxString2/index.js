@@ -1,8 +1,26 @@
 import "./style.css";
 import React, { Component } from "react";
+import { ModalButton } from "../ModalButton";
+import ModalComment from "../ModalComment";
+import CommentBox from "../CommentBox";
 import M from "materialize-css";
 
-class ModalComment extends Component {
+export function ModalView() {
+
+  return (
+    <div class="div">
+      <a
+        className="waves-effect waves-light btn modal-trigger"
+        data-target="modal2"
+        id="modalViewLink"
+      >
+        View Comments
+      </a>
+    </div>
+  );
+}
+
+class ModalCommentContainer extends Component {
   componentDidMount() {
     const options = {
       onOpenStart: () => {
@@ -57,7 +75,7 @@ class ModalComment extends Component {
         [name]: value
       }
     });
-    console.log("this.state.comment", this.state.comment);
+    console.log("this.state.comment.message", this.state.comment.message);
     console.log("event.target.value", event.target.value);
 
   };
@@ -76,7 +94,7 @@ class ModalComment extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
-    fetch("http://localhost:7777", {
+    fetch("http://localhost:3001", {
       method: "post",
       body: JSON.stringify(comment)
     })
@@ -114,80 +132,21 @@ class ModalComment extends Component {
     ) : null;
   }
 
-  render() {
+  render(props) {
     return (
       <>
         <div
           ref={(Modal) => {
             this.Modal = Modal;
           }}
-          id="modal1"
+          id="modal2"
           className="modal"
         >
           <div className="modal-content" id="commentsModal" data-reveal>
-            <form>
-              <span className="display-inline-block">
-                <h4 id="modal-title"></h4>
-              </span>
-
-              <div>
-              <label>
-                <div className="ratingHeading">
-                Rating: 
-                </div>
-                <span className="rating">
-                  <i
-                    className="far fa-star edit-star fa-lg"
-                    data-rating="1"
-                  ></i>
-                  <i
-                    className="far fa-star edit-star fa-lg"
-                    data-rating="2"
-                  ></i>
-                  <i
-                    className="far fa-star edit-star fa-lg"
-                    data-rating="3"
-                  ></i>
-                  <i
-                    className="fas fa-star edit-star fa-lg"
-                    data-rating="4"
-                  ></i>
-                  <i
-                    className="fas fa-star edit-star fa-lg"
-                    data-rating="5"
-                  ></i>
-                </span>
-              </label>
-              </div>
-
-              <div>
-              <label>
-              <div className="ratingHeading">
-                Comments:
-              </div>
-                <textarea
-                  id="comment"
-                  class="materialize-textarea"
-                  data-length="350"
-                  placeholder="What did you think of this location?"
-                  onChange={this.handleFieldChange}
-                  value={this.state.comment.name}
-                ></textarea>
-                <label for="textarea2"></label>
-              </label>
-              </div>
-
-              <button
-                type="button"
-                className="btn waves-effect waves-dark buttonTag"
-                type="submit"
-                name="action"
-                id="submitReview"
-                onClick={this.onSubmit}
-              >
-                Submit
-              </button>
-            </form>
+          <CommentBox
+              loading={this.state.loading}
+              comments={this.state.comments}
+            />
             <div class="modal-footer">
               <button
                 className="modal-close buttonTag"
@@ -206,4 +165,81 @@ class ModalComment extends Component {
   }
 }
 
-export default ModalComment;
+// export default ModalCommentContainer;
+
+
+class InfoBoxString2 extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      comments: [],
+      loading: false
+    };
+
+    this.addComment = this.addComment.bind(this);
+
+  }
+
+  componentDidMount() {
+    // loading
+    this.setState({ loading: true });
+
+    // get all the comments
+    fetch("http://localhost:3001")
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          comments: res,
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({ loading: false });
+      });
+  }
+
+  addComment(comment){
+    this.setState({
+      loading: false,
+      comments: [comment, ...this.state.comments]
+    });
+  }
+
+  render(props) {
+    return (
+      <div>
+        {/* <div id="content"> */}
+        {/* <div id="siteNotice"></div> */}
+        {/* <h1 id="firstHeading" class="firstHeading">
+          Location
+        </h1> */}
+        <div id="bodyContent">
+          <div>
+            <h5 className="LocationName">Location Name</h5>
+          </div>
+          <div>
+            <p className="addressLine1">42 Wallaby Way</p>
+            <p className="cityAndProvinceAndPostalCode">Sydney, NSW</p>
+            <p className="country">Australia</p>
+          </div>
+          <div>
+            <p className="ratingCount">No Ratings</p>
+          </div>
+          <div>
+            <p className="capacity">Capacity: 0</p>
+          </div>
+          <div>
+            <ModalButton addComment={this.addComment}/>
+          </div>
+          <div>
+            <ModalView />
+          </div>
+        </div>
+      </div>
+      // </div>
+    );
+  }
+}
+
+export { InfoBoxString2, ModalCommentContainer };

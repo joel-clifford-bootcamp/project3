@@ -1,0 +1,13 @@
+#content {
+  height: 50%;
+  width: auto;
+}
+
+.ratingHeading {
+  padding: 10px;
+}
+
+#bodyContent {
+  align-items: center;
+  text-align: center;
+}
