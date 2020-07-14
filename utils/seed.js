@@ -20,6 +20,7 @@ const generateComments = (db, userIds, stationIds) => {
         comments.push({
             BixiStationId: stationIds[sIdx].id, 
             UserId: userIds[uIdx].id, 
+            rating: 1 + Math.floor(4*  Math.random()),
             commentText: text});
     }
 
