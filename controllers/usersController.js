@@ -48,16 +48,25 @@ module.exports = {
   },
   
   userData: function(req, res) {
-      if (!req.user) {
+    if (!req.user) {
         // The user is not logged in, send back an empty object
         res.json({});
       } else {
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
-        res.json({ 
-          email: req.user.email,
-          id: req.user.id
-        });
+        db.User.findAll({where: {id: req.user.id}})
+        .then(result => {
+
+          console.log(result);
+          if(result.length > 0)
+            res.json({ 
+            firstName: result[0].firstName,
+            lastName: result[0].lastName,
+            email: result[0].email,
+            id: req.user.id
+          });
+        })
+        .catch(err => res.status(401).send());
       }
   }
 }
