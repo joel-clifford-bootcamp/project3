@@ -161,6 +161,15 @@ class ModalComment extends Component {
               </div>
 
               <div>
+                <label>
+                  <div className="divAuthor">
+                    Author: 
+                    {/* {this.props.author} */}
+                  </div>
+                </label>
+              </div>
+
+              <div>
               <label>
               <div className="ratingHeading">
                 Comments:

@@ -78,6 +78,7 @@
 // export { CommentList, CommentForm };
 
 import React from "react";
+import "./style.css";
 
 export default function Comment(props) {
   const { name, message, time } = props.comment;
