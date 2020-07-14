@@ -7,7 +7,7 @@ const session = require("express-session");
 
 const passport = require("./config/passport");
 
-// const dataRefreshCron = require("./utils/cron/index");
+const dataRefreshCron = require("./utils/cron/index");
 
 const refreshBixiStations = require('./utils/import/bixiStations'); 
 
@@ -43,10 +43,6 @@ app.use(passport.session());
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({ force: false }).then(function() {
-  
-  // Call external APIs to populate data
-  refreshBixiStations;
-  updateAllPackages();
   
   // Start the API server
   app.listen(PORT, function() {
