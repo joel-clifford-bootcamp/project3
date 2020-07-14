@@ -2,9 +2,6 @@
 var db = require("../models");
 
 module.exports = {
-  test: function(req, res) {
-    res.json({message: "It worked!!"})
-  },
 
   signIn: function(req,res) {
     res.json({ 
@@ -36,8 +33,7 @@ module.exports = {
       password: req.body.password
     })
     .then(user =>  
-      res.status(200).json(user))
-      //res.redirect(307, "/api/users/login"))
+      res.redirect(307, "/api/users/signin"))
     .catch(err => {
       // Do not return error as it can contain hashed password
       console.log(err);
