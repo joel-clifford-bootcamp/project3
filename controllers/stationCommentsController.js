@@ -12,7 +12,7 @@ module.exports = {
             where: { BixiStationId: stationId },
             order: [['createdAt', 'DESC']],
             include: [db.User],
-            limit: 10
+            limit: 50
         }).then(data => res.status(200).send(data))
         .catch(err =>  res.status(400).json(err));
     },

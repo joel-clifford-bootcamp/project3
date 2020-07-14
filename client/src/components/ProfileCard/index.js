@@ -1,11 +1,9 @@
 // import React from "react";
 import React, { useState } from "react";
 import "./style.css";
-// import profilePicture from "./placeholder.png";
-// import placeholder from "./placeholder2.jpg";
-// import { Foo, Bar } from "../Rating";
 
-
+import profilePicture from "./placeholder.png";
+import placeholder from "./placeholder2.jpg";
 
 // This file exports the UserCard and RecentActivityCard components
 export function UserCard(props) {
