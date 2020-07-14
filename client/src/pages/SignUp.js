@@ -64,7 +64,7 @@ const SignUp = () => {
                                 <input 
                                 id="first_name" 
                                 type="text"
-                                maxlength ="30" 
+                                maxLength ="30" 
                                 className="validate"
                                 placeholder="First Name"
                                 name="firstName"
@@ -74,7 +74,7 @@ const SignUp = () => {
                             <div className="input-field col s6">
                                 <input 
                                 id="last_name"
-                                maxlength="30" 
+                                maxLength="30" 
                                 type="text" 
                                 className="validate"
                                 placeholder="Last Name"
