@@ -1,6 +1,6 @@
 # Project 3: Link N Park
 
-## Group Members
+## Authors
 * [Tobi Bailey](https://github.com/tobi-bailey)
 * [Brice Boutet](BBoutet1)
 * [Joel Clifford](https://github.com/joel-clifford-bootcamp)
@@ -12,8 +12,7 @@
 ## Features
 
 
-## Usage
-### User Story
+## User Story
 ```
 AS A bike owner USER...
 I WANT...to find a safe and convenient place to park my bike,
@@ -50,7 +49,7 @@ SO THAT...to identify areas of improvement.
 ```
 - - -
 
-### Acceptance Criteria
+## Acceptance Criteria
 ```
 GIVEN I am a user...
 WHEN I...open the app,
@@ -98,11 +97,19 @@ THEN...I am presented with a list of cards.
 ```
 - - -
 
+
+
 ## Application Screenshot
+![alt text](./client/public/img/project3-ssh.png "Project 3 Screen Shot Link-N-Park")
+
 
 
 ## Accessories Used
 ### Languages
+* HTML
+* CSS
+* [Materialize CSS framework](https://materializecss.com/)
+* React JSX
 
 
 ### Programs and Applications

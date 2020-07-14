@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style.css";
 import logo from "../assets/link-n-park.png";
+import axios from "axios";
 
 
 const SignUp = () => {
@@ -12,17 +13,39 @@ const SignUp = () => {
 
     const handleSubmit = e => {
       e.preventDefault();
-      console.log("first name is " + firstName);
-      console.log("last name is " + lastName);
-      console.log("email is " + email);
-      console.log("password is " + password);
+    //   console.log("first name is " + firstName);
+    //   console.log("last name is " + lastName);
+    //   console.log("email is " + email);
+    //   console.log("password is " + password);'
+        signUpUser()
     };
+
+    const signUpUser = _ => {
+        axios.post("/api/users/signup", {
+          firstName: firstName,
+          lastName: lastName,
+          username: firstName + lastName,
+          email: email,
+          password: password
+        })
+        .then(function(data) {
+            console.log(data);
+            window.location.replace("/home");
+        // If there's an error, handle it by throwing up a bootstrap alert
+        })
+        .catch(err => handleLoginErr);
+      }
+    
+      function handleLoginErr(err) {
+        //$("#alert .msg").text(err.responseJSON);
+        // $("#alert").fadeIn(500);
+      }
 
   return (
 <div className="signUpBackground">  
     <nav className="transparent z-depth-0">
         <div className="nav-wrapper">
-            <div class="brand-logo">
+            <div className="brand-logo">
                 <img className="signinLogo" src={logo} alt="Full White Logo"></img>
             </div> 
         </div>
@@ -40,7 +63,8 @@ const SignUp = () => {
                             <div className="input-field col s6">
                                 <input 
                                 id="first_name" 
-                                type="text" 
+                                type="text"
+                                maxLength ="30" 
                                 className="validate"
                                 placeholder="First Name"
                                 name="firstName"
@@ -49,7 +73,8 @@ const SignUp = () => {
                             </div>
                             <div className="input-field col s6">
                                 <input 
-                                id="last_name" 
+                                id="last_name"
+                                maxLength="30" 
                                 type="text" 
                                 className="validate"
                                 placeholder="Last Name"

@@ -1,12 +1,21 @@
-const api = require('../api/StationsData');
+const getRealTimeData = require('../api/StationsData');
 const db = require('../../models');
 const updateTables = require('./updateTables');
+const map = require("./maps/BixiStation.json");
 
-module.exports = function() {
+/**
+ * Update BixiBikes table with latest dta from bikeshare api
+ */
+module.exports = _ => new Promise((resolve, reject) => {
     db.BixiStation.findAll()
-        .then(dbStations => {
-            api(apiStations => {
-                updateTables(db.BixiStation, apiStations)
+        .then(results => {
+            getRealTimeData()
+            .then(data => {
+                updateTables(map, db.BixiStation, data)
+                .then(result => resolve(result))
+                .catch(err => reject(err))
+            })
+            .catch(err => reject(err))
         })
-    })
-};
+        .catch(err => reject(err));            
+});

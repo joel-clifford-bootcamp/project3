@@ -2,9 +2,6 @@
 var db = require("../models");
 
 module.exports = {
-  test: function(req, res) {
-    res.json({message: "It worked!!"})
-  },
 
   signIn: function(req,res) {
     res.json({ 
@@ -30,11 +27,13 @@ module.exports = {
   signUp: function(req, res) {
     console.log(req.body)
     db.User.create({
-      username: req.body.username.toLowerCase().trim(),
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email.toLowerCase().trim(),
       password: req.body.password
     })
-    .then(_ => res.redirect(307, "/api/users/login"))
+    .then(user =>  
+      res.redirect(307, "/api/users/signin"))
     .catch(err => {
       // Do not return error as it can contain hashed password
       console.log(err);
@@ -49,17 +48,25 @@ module.exports = {
   },
   
   userData: function(req, res) {
-      if (!req.user) {
+    if (!req.user) {
         // The user is not logged in, send back an empty object
         res.json({});
       } else {
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
-        res.json({ 
-          username: req.useusername,
-          email: req.user.email,
-          id: req.user.id
-        });
+        db.User.findAll({where: {id: req.user.id}})
+        .then(result => {
+
+          console.log(result);
+          if(result.length > 0)
+            res.json({ 
+            firstName: result[0].firstName,
+            lastName: result[0].lastName,
+            email: result[0].email,
+            id: req.user.id
+          });
+        })
+        .catch(err => res.status(401).send());
       }
   }
 }

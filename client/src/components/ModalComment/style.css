@@ -1,0 +1,27 @@
+#modalLink, .buttonTag {
+  background-color: #78bcc5ff;
+  color: white;
+  /* color: grey; */
+}
+
+.rating {
+  padding: 10px;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  color: red;
+  cursor: pointer;
+}
+.rating > i {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > i:hover:before,
+.rating > i:hover ~ i:before {
+   content: "\f005";
+   font-weight: 900;
+   position: absolute;
+}
