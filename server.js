@@ -44,9 +44,13 @@ dataRefreshCron();
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({ force: false }).then(function() {
   
-  refreshBixiStations();
-  updateAllPackages();
-
+  db.BixiStation.findAll({}).then(data => {
+    if(data.length === 0){
+      refreshBixiStations();
+      updateAllPackages();
+    }
+  });
+  
   // Start the API server
   app.listen(PORT, function() {
     console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
