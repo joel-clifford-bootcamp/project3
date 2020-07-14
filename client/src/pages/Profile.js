@@ -17,7 +17,7 @@ function Profile() {
     id: ""
   });
 
-  // Load all information and store it
+  // Load all books and store them with setBooks
   useEffect(() => {
     loadUserData();
   }, []);
@@ -35,16 +35,6 @@ function Profile() {
       <div className="profileBackground">
       <Container>
               <UserCard name={user.firstName + " " + user.lastName} email={user.email}/>
-          {/* <div className="col s12 m6 offset-m4"> */}
-            {/* <h4 className="activity">Recent Activity</h4>
-            <Row size="row-cols-1 row-cols-md-2 pt-4 pb-4">
-              <div className="container valign-wrapper center-align">
-              <RecentActivityCard />
-              <RecentActivityCard />
-              <RecentActivityCard /> */}
-              {/* </div>
-            </Row>
-          </div> */}
       </Container>
       </div>
     </Container>

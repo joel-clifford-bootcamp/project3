@@ -59,7 +59,7 @@ const SignUp = () => {
                     </span></h6>
                 <div className="row">
                     <form onSubmit={handleSubmit}>
-                        <div className="row">
+                        <div className="row formSubmit">
                             <div className="input-field col s6">
                                 <input 
                                 id="first_name" 
@@ -83,7 +83,7 @@ const SignUp = () => {
                                 />
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row formSubmit">
                                 <div className="input-field col s12">
                                     <input 
                                     id="email" 
@@ -95,7 +95,7 @@ const SignUp = () => {
                                     />
                                 </div>
                         </div>
-                        <div className="row">
+                        <div className="row formSubmit">
                             <div className="input-field col s12">
                                 <input 
                                 id="password"

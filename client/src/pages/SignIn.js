@@ -53,7 +53,7 @@ const SignIn = () => {
                         </span> for free!</h6>
                         <div className="row">
                             <form onSubmit={handleSubmit}>
-                                <div className="row">
+                                <div className="row formSubmit">
                                     <div className="input-field col s12">
                                         <input
                                         id="email" 
@@ -65,7 +65,7 @@ const SignIn = () => {
                                         />
                                     </div>
                                 </div>
-                                <div className="row">
+                                <div className="row formSubmit">
                                     <div className="input-field col s12 password">
                                         <input 
                                         id="password"
