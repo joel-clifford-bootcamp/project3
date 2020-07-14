@@ -7,7 +7,7 @@ import ModalButton from "../Modal";
 
 
 function CommentBox(props) {
-
+// // Medium CommentBOX https://medium.com/@gsuppy/coding-an-interactive-comment-box-with-react-js-50d7d20587d8
 // class CommentBox extends Component {
 //   constructor(props) {
 //     super(props);
@@ -55,6 +55,7 @@ function CommentBox(props) {
     //   <CommentForm />
     // </div>
 
+    // link: https://www.qcode.in/learn-react-by-creating-a-comment-app/
     return (
 
         <div className="commentList">
