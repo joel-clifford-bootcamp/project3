@@ -30,11 +30,14 @@ module.exports = {
   signUp: function(req, res) {
     console.log(req.body)
     db.User.create({
-      username: req.body.username.toLowerCase().trim(),
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email.toLowerCase().trim(),
       password: req.body.password
     })
-    .then(_ => res.redirect(307, "/api/users/login"))
+    .then(user =>  
+      res.status(200).json(user))
+      //res.redirect(307, "/api/users/login"))
     .catch(err => {
       // Do not return error as it can contain hashed password
       console.log(err);
@@ -56,7 +59,6 @@ module.exports = {
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({ 
-          username: req.useusername,
           email: req.user.email,
           id: req.user.id
         });
