@@ -29,7 +29,7 @@ class ModalButton extends Component {
   render(props) {
 
   return (
-    <div class="div">
+    <div className="div">
       <a
         className="waves-effect waves-light btn modal-trigger"
         data-target="modal1"
@@ -250,7 +250,7 @@ class ModalComment extends Component {
                   <div className="ratingHeading">Comments:</div>
                   <textarea
                     id="comment"
-                    class="materialize-textarea"
+                    className="materialize-textarea"
                     data-length="350"
                     placeholder="What did you think of this location?"
                     onChange={this.handleFieldChange}
@@ -278,7 +278,7 @@ class ModalComment extends Component {
                 >Submit</span>
               </button>
             </form>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 className="modal-close buttonTag"
                 id="close-modal"
