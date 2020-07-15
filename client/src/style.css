@@ -375,5 +375,14 @@ li{
   .email{
     color: white;
   }
+
+  .a{
+    color: white;
+  }
+
+  .profile-image{
+    margin-right: 0px !important;
+  }
+
 }
 /* END OF PROFILE CARD STYLING */
