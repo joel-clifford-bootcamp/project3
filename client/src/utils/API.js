@@ -38,10 +38,6 @@ export default {
    * @param {Array} stationIds array of station ids to return real-time data for
    */
   getBixiStationAvailability: function(stationIds){
-    return axios.get("/api/bixi/real_time", {
-      params: {
-        stations: stationIds
-      }
-    });
+    return axios.post("/api/bixi/realtime", { stations: stationIds } );
   }
 };

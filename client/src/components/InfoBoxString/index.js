@@ -1,87 +1,59 @@
 import "./style.css";
-import React, { Component } from "react";
-// import { ModalButton } from "../ModalButton";
-// import ModalComment from "../ModalComment";
-// import { ModalComment } from "../Modal";
-import { ModalButton, ModalComment } from "../Modal";
+import React, { Component, useState, useEffect } from "react";
+import { ModalButton } from "../ModalButton";
+import ModalComment from "../ModalComment";
+
 import CommentBox from "../CommentBox";
 import M from "materialize-css";
+import { Container, Row, Column } from "../GridComponents";
+import api from "../../utils/API";
 
-class InfoBoxString extends Component {
-  constructor(props) {
-    super(props);
+function InfoBoxString(props) {
 
-    this.state = {
-      comments: [],
-      loading: false
-    };
+  const comments = [];
+  const [bikesAvailable, setBikesAvailable] = useState(null);
+  const [spotsAvailable, setSpotsAvailable] = useState(null);
 
-    this.addComment = this.addComment.bind(this);
+  useEffect(() => {
+    api.getComments(props.place.id)
+    .then(resp => comments = resp.data)
+    .catch(err => console.log(err));
+  });
 
-  }
-
-  componentDidMount() {
-    // loading
-    this.setState({ loading: true });
-
-    // get all the comments
-    fetch("api/bixi/comments/:station_id") 
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          comments: res,
-          loading: false
-        });
-      })
-      .catch(err => {
-        this.setState({ loading: false });
-      });
-  }
-
-  addComment(comment){
+  const addComment = (comment) => {
     this.setState({
       loading: false,
       comments: [comment, ...this.state.comments]
     });
   }
 
-  render() {
-    return (
-      <div>
-        {/* <div id="content"> */}
-        {/* <div id="siteNotice"></div> */}
-        {/* <h1 id="firstHeading" class="firstHeading">
-          Location
-        </h1> */}
-        <div id="bodyContent">
-          <div>
-            <h5 className="LocationName">{this.props.name}</h5>
-          </div>
-          <div>
-            <p className="addressLine1">42 Wallaby Way</p>
-            <p className="cityAndProvinceAndPostalCode">Sydney, NSW</p>
-            <p className="country">Australia</p>
-          </div>
-          <div>
-            <p className="ratingCount">No Ratings</p>
-          </div>
-          <div>
-            <p className="capacity">Capacity: 0</p>
-          </div>
-          <div>
-            <ModalButton addComment={this.addComment}/>
-          </div>
-          <div>
-            <CommentBox
-              loading={this.state.loading}
-              comments={this.state.comments}
-            />
-          </div>
-        </div>
-      </div>
-      // </div>
-    );
-  }
+  return (
+    <Container>
+        <Row>
+          <h5 className="LocationName">{props.name}</h5>
+        </Row>
+        <Row>
+          <Column width="9">Bike Available:</Column>
+          <Column width="3">{props.place.currentData.bikes}</Column>
+        </Row>
+        <Row>
+          <Column width="9">Empty Spaces:</Column>
+          <Column width="3">{props.place.currentData.free}</Column>
+        </Row>
+        <Row>
+          <p>updated at ${props.place.currentData.timestamp}</p>
+        </Row>
+        <Row>
+          <ModalButton addComment={addComment}/>
+        </Row>
+        {/* <Row>
+          <CommentBox
+            loading={this.state.loading}
+            comments={this.state.comments}/>
+          </Row> */}
+
+    </Container>
+  );
 }
 
 export default InfoBoxString;
