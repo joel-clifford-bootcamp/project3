@@ -1,8 +1,6 @@
 import "./style.css";
-import React, { Component } from "react";
-import M from "materialize-css";
+import React from "react";
 import Comment from "../Comment";
-import { ModalButton, ModalComment } from "../Modal";
 
 function CommentBox(props) {
 
@@ -21,13 +19,11 @@ function CommentBox(props) {
           ) : null}
     
           {props.comments.map((comment, index) => (
-            // <ModalComment key={index} comment={comment} />
             <Comment key={index} comment={comment} />
 
           ))}
         </div>
       );
     }
-// }
 
 export default CommentBox;

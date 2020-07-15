@@ -151,7 +151,7 @@ class FindRoute extends Component {
                 onUnmount={(directionsService) => {}}
               />
             )}
-          <Marker
+          {/* <Marker
             position={position}
             // onLoad={onLoad}
             onClick={() => this.setState({
@@ -171,7 +171,7 @@ class FindRoute extends Component {
             </div>
           </InfoWindow>
           )}
-          <ModalComment addComment={this.addComment}/>
+          <ModalComment addComment={this.addComment}/> */}
           {/* <ModalCommentContainer /> */}
           {this.state.response !== null && (
             <DirectionsRenderer

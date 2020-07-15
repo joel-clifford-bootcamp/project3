@@ -32,15 +32,14 @@ function Home() {
               <a className="linkNames" href="/station">Park Your Bike</a>
             </li>
             <li className="tab col s3">
-             <Link  to="/station" className="buttonLink">
+             <Link  to="/bikeshare" className="buttonLink">
                   <button className="button buttonHome">
                     <i className="medium material-icons center">location_on</i>
                   </button>
               </Link> 
-              <a className="active linkNames" href="/station">Find a Bixi Bike</a>
+              <a className="active linkNames" href="/bikeshare">Find a Bixi Bike</a>
             </li>
             <li className="tab col s3">
-              {/* <li className="tab col s3 disabled"> */}
               <Link  to="/station" className="buttonLink">
                   <button className="button buttonHome">
                       <i className="medium material-icons center">star</i>
@@ -81,7 +80,7 @@ function Home() {
               </Link>
             </li>
             <li>   
-              <a className="active linkNames" href="/station">Find a Bixi Bike</a>
+              <a className="linkNames" href="/station">Find a Bixi Bike</a>
             </li>
             <li className="col s12">
               {/* <li className="tab col s3 disabled"> */}

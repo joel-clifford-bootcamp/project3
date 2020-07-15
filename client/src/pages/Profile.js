@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { UserCard, RecentActivityCard } from "../components/ProfileCard";
-import ProfileContainer from "../components/ProfileContainer";
+import { Container } from "../components/Grid";
+import { UserCard } from "../components/ProfileCard";
 import Nav from "../components/Nav";
 import "../style.css";
 
