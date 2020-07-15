@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const userRoutes = require("./users");
-const bixiRoutes = require("./bixiStation")
+const bixiRoutes = require("./bixiStation");
 const stationCommentRoutes = require("./stationComment");
 
 // User routes
