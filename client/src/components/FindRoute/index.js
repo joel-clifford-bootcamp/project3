@@ -9,7 +9,8 @@ import {
   InfoBox,
   LoadScript,
 } from "@react-google-maps/api";
-import ModalComment from "../ModalComment";
+// import ModalComment from "../ModalComment";
+import {ModalComment} from "../Modal";
 // import { InfoBoxString2, ModalCommentContainer } from "../InfoBoxString2";
 import InfoBoxString from "../InfoBoxString";
 import M from "materialize-css";

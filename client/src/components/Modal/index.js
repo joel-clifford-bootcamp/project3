@@ -4,6 +4,48 @@ import M from "materialize-css";
 import Toast from "materialize-css";
 import api from "../../utils/API"
 
+class ModalButton extends Component {
+  
+  state = {
+    showModal: false
+  }
+
+  handleOpenModal() {
+
+    this.setState({
+      showModal: true,
+    })
+
+  }
+
+  handleCloseModal() {
+
+    this.setState({
+      showModal: false,
+    })
+
+  }
+
+  render(props) {
+
+  return (
+    <div class="div">
+      <a
+        className="waves-effect waves-light btn modal-trigger"
+        data-target="modal1"
+        id="modalLink"
+        // onClick={() => this.setState({
+        //   showModal: true,
+        // })}
+      >
+        Add Review
+      </a>
+    </div>
+  );
+}
+
+}
+
 class ModalComment extends Component {
   componentDidMount() {
     const options = {
@@ -28,15 +70,11 @@ class ModalComment extends Component {
     };
     M.Modal.init(this.Modal, options);
   }
+  
   state = {
     loading: false,
     error: "",
     comment: "",
-    showModal: false
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
   }
 
   ///constructor(props) {
@@ -75,10 +113,19 @@ class ModalComment extends Component {
   };
 
   onSubmit = (e) =>{
+  
     // prevent default form submission
     e.preventDefault();
-    handleCloseModal();
+
+    // this.setState({
+    //   showModal: false,
+    // })
+    // this.handleCloseModal();
+
+    
     M.toast({html: 'Comment posted!'})
+   
+
 
     if (!this.isFormValid()) {
       this.setState({ error: "All fields are required." });
@@ -117,6 +164,7 @@ class ModalComment extends Component {
           loading: false,
         });
       });
+      // this.handleCloseModal();
   }
 
   isFormValid() {
@@ -125,9 +173,13 @@ class ModalComment extends Component {
 
   renderError() {
     return this.state.error ? (
-      <Toast
-  options={this.state.error}
-      ></Toast>
+
+      // M.toast({html: 'error!'})
+      M.toast(this.state.error)
+
+  //     <Toast
+  // options={this.state.error}
+  //     ></Toast>
       // <div className="alert alert-danger"></div>
     ) : null;
   }
@@ -214,10 +266,16 @@ class ModalComment extends Component {
                 type="submit"
                 name="action"
                 id="submitReview"
+                aria-label="Close modal"
+                // data-target="close-modal"
+                data-close
                 onClick={this.onSubmit}
                 // options={{html: 'Commented submited!'}}
               >
-                Submit
+                <span aria-hidden="true" 
+                className="submitCommentBuffon" 
+                style={{ fontWeight: "lighter" }}
+                >Submit</span>
               </button>
             </form>
             <div class="modal-footer">
@@ -227,6 +285,9 @@ class ModalComment extends Component {
                 data-close
                 aria-label="Close modal"
                 type="button"
+                // onClick={() => this.setState({
+                //   showModal: false,
+                // })}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -237,8 +298,9 @@ class ModalComment extends Component {
     );
   }
 }
+export { ModalButton, ModalComment };
 
-export default ModalComment;
+// export default ModalComment;
 
 // For back-end? .send or .json?
 // .then(data => res.status(200).json(data))
