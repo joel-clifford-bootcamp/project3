@@ -1,8 +1,5 @@
 node_modules
 package-lock.json
-<<<<<<< HEAD
 config.json
-=======
->>>>>>> b51c9e3a6a8f93412fca87706f8d263272c5e8eb
 connection_config.json
 client/build
