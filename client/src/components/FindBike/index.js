@@ -9,7 +9,8 @@ const center = {
               lat: 43.651070,
               lng:  -79.347015
 }
-let stationNames = [];
+
+let distances=[]
 // bixiBike stations
   class FindBike extends Component {
     constructor(props) {
@@ -54,6 +55,7 @@ let stationNames = [];
     };
   
     findBike() {
+      distances = [];
       bixiAPI.getStations()
         .then(res => {
           console.log(res);
@@ -69,7 +71,7 @@ let stationNames = [];
                 })
             )
           }
-          console.log(this.state.origin, this.state.stations)
+           console.log(this.state.origin, this.state.stations)
         })
         .catch(err => console.log(err))
     };
@@ -93,10 +95,34 @@ let stationNames = [];
     }
 
     distancesCallback(results) {
-         console.log("results "+ JSON.stringify(results))
-      if (results !== null) {
-      
-      }
+      console.log("results " + JSON.stringify(results))
+  
+
+     
+      distances.push({
+        "value": results.rows[0].elements[0].distance.value,
+        "text": results.rows[0].elements[0].distance.text
+      })
+
+      if (distances.length === 14) {
+        let bikeStations = this.state.stations
+      distances.forEach(distance => {
+        let index = distances.indexOf(distance);
+        bikeStations[index].distanceValue =  distances[index].value;
+        bikeStations[index].distanceText = distances[index].text;
+        console.log(index, bikeStations[index])
+      })
+        
+        setTimeout(function () {
+          bikeStations = bikeStations.slice(0, 5)
+          console.log( bikeStations)
+           bikeStations.sort((a, b) => (a.distanceValue > b.distanceValue) ? 1 : -1);
+        console.log(bikeStations)},200)
+       
+
+          
+        }
+
     }
 
    
@@ -126,9 +152,10 @@ let stationNames = [];
           >
             { /* Child components, such as markers, info windows, etc. */}
              {
-             (this.state.stations.map(station =>
+             (this.state.stations.slice(0,15).map(station =>
                 <DistanceMatrixService
                   // required
+                 key={station.name}
                  // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
                     destinations: [station.name], 
