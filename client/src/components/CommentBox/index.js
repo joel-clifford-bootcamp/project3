@@ -2,8 +2,10 @@ import "./style.css";
 import React, { Component } from "react";
 import M from "materialize-css";
 import Comment from "../Comment";
-import ModalComment from "../ModalComment";
-import ModalButton from "../ModalButton";
+// import ModalComment from "../ModalComment";
+// import ModalButton from "../ModalButton";
+import { ModalButton, ModalComment } from "../ModalButton";
+
 
 
 function CommentBox(props) {
