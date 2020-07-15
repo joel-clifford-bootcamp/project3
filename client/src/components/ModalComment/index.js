@@ -77,7 +77,7 @@ class ModalComment extends Component {
   onSubmit = (e) =>{
     // prevent default form submission
     e.preventDefault();
-    handleCloseModal();
+    // handleCloseModal();
     M.toast({html: 'Comment posted!'})
 
     if (!this.isFormValid()) {
