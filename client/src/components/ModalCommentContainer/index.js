@@ -76,6 +76,10 @@ class ModalCommentContainer extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
+
+    comment['rating'] = 3;
+    console.log(comment);
+
     fetch("http://localhost:3001", {
       method: "post",
       body: JSON.stringify(comment)

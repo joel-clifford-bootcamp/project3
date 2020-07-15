@@ -20,13 +20,14 @@ module.exports = {
     // Create a new comment
     createComment: function(req, res) {
 
-        const userId = 1;
+        console.log(req.user.id);
+        console.log(req.body)
 
         db.StationComment.create({
-            UserId: userId,
+            UserId: req.user.id,
             BixiStationId: req.body.stationId,
             rating: req.body.rating,
-            commentText: req.body.commentText
+            commentText: req.body.message
         })
         .then(data => res.status(200).send(data))
         // .then(data => res.status(200).json(data))

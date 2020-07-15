@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import MapContainer from "./components/MapContainer";
+import BikeShareSearch from "./components/BikeShareSearch";
 
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
            <Route exact path={["/station"]} >
             <MapContainer/>
           </Route>
+
+          <Route exact path={["/bikeshare"]}>
+            <BikeShareSearch/>
+          </Route>
+
 
           <Route exact path={["/profile"]}>
             <Profile />
