@@ -20,8 +20,7 @@ let stationNames = [];
         results: null,
         position: null,
         travelMode: 'BICYCLING',
-        originArray: [], // unique origin
-        stationsNames:[],
+        stations:[],
         originLat: '', // origin latitude
         originLong: '',// origin longitude
         destination: '', // selected station
@@ -66,30 +65,16 @@ let stationNames = [];
               () => ({
                 //Grabbing the origin and destination from the user inputs
                 origin: this.origin.value,
+                stations: res.data
                 })
             )
-            this.optionsArray(this.origin.value, res.data)
           }
+          console.log(this.state.origin, this.state.stations)
         })
         .catch(err => console.log(err))
     };
 
-    optionsArray(origin, stations) {
-      let originDuplicate = [];
-      let stationLocations = stations.map(station => station.name);
-       stations.forEach(station => {
-         originDuplicate.push(origin);
-       });
-      this.setState(
-              () => ({
-                //Grabbing the origin and destination from the user inputs
-          originArray: originDuplicate,
-                stationNames: stationLocations
-                })
-            )
-      console.log(originDuplicate)
-      console.log(stationLocations)
-    }
+   
 
     directionsCallback(response) {
       console.log(response)
@@ -126,6 +111,8 @@ let stationNames = [];
     
   
     render() {
+      console.log(this.state.stationsNames)
+      console.log(this.state.origin)
       return (
      <div>
            <GoogleMap
@@ -139,15 +126,13 @@ let stationNames = [];
           >
             { /* Child components, such as markers, info windows, etc. */}
              {
-             ( 
-                this.state.origin!==""
-              ) && (
+             (this.state.stations.map(station =>
                 <DistanceMatrixService
                   // required
                  // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                    destinations: ["Queen St. E / Woodward Av", "Primrose Ave / Davenport Rd - SMART", "Queen St. E / Rhodes Ave."], 
-                    origins: ["CN Tower", "CN Tower", "CN Tower"],
+                    destinations: [station.name], 
+                    origins: [this.state.origin],
                     travelMode: this.state.travelMode
                   }}
                    // required
@@ -160,8 +145,7 @@ let stationNames = [];
                   onUnmount={distanceMatrixService => {
                     console.log('DirectionsRenderer onUnmount directionsRenderer: ', distanceMatrixService)
                   }}
-                />
-                
+                />)               
               )
             }
            {
