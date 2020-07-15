@@ -87,16 +87,28 @@ function GoogleMapPage() {
         setZoom(17);
 
         api.getBixiBikeLocations(destination.location.lat, destination.location.lng)
-        .then(resp => {
+        .then(stationsResp => {
           // parse floats that sequeslize query literal is returning as strings
-          resp.data.forEach(x => {
+          stationsResp.data.forEach(x => {
             x.lat = parseFloat(x.lat);
             x.lng = parseFloat(x.lng);
             x.coordDiff = parseFloat(x.coordDiff);
           });
-          console.log(resp.data);
-          setPlaces(resp.data);
-        });
+
+          // Retrieve realtime data for stations returned by initial search
+          api.getBixiStationAvailability(stationsResp.data.map(station => station.id))
+          .then(realTimeResp => {
+            // Attach realtime data to each result
+            stationsResp.data.forEach(station => {
+              let realTimeData = realTimeResp.data.filter(rt => rt.number == station.id);
+              station["currentData"] = realTimeData.length > 0 ? realTimeData[0] : {}; 
+            });
+          })
+          .catch(err => console.log(err));
+          
+          setPlaces(stationsResp.data.map(place => <CustomMapMarker key={place.id} selectPlace={selectPlace} place={place}/>));
+        })
+        .catch(err => console.log(err));
     }
   }, [destination])
 
@@ -126,7 +138,7 @@ function GoogleMapPage() {
                 bounds={searchBounds}
                 onPlaceChanged={onDestinationChanged}/>
 
-              {  places.map(place => <CustomMapMarker key={place.id} selectPlace={selectPlace} place={place}/>) }
+              {places}
               <DefaultMapMarker location={destination.location}/>
               <BicyclingLayer/>
           </GoogleMap>
