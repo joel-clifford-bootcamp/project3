@@ -1,6 +1,7 @@
 import "./style.css";
 import React, { Component } from "react";
 import M from "materialize-css";
+import api from "../../utils/API"
 
 class ModalComment extends Component {
   componentDidMount() {
@@ -80,14 +81,12 @@ class ModalComment extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
-    // console.log(comment);
+
+      comment['rating'] = 3;
+      comment['stationId'] = 7000;
+      console.log(comment); 
     
-    fetch("api/bixi/comments", {
-      method: "post",
-      //body: JSON.stringify(comment),
-      body: comment,
-    })
-      .then((res) => res.json())
+      api.postComment(comment)
       .then((res) => {
         if (res.error) {
           this.setState({ loading: false, error: res.error });
