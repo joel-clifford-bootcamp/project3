@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
 import { UserCard, RecentActivityCard } from "../components/ProfileCard";
 import ProfileContainer from "../components/ProfileContainer";
 import CommentBox from "../components/CommentBox";
@@ -13,7 +9,7 @@ import Nav from "../components/Nav";
 import "../style.css";
 
 function Profile() {
-
+  // Setting our component's initial state
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -26,7 +22,7 @@ function Profile() {
     loadUserData();
   }, []);
 
-  // Loads all books and sets them to books
+  // Loads all information and sets it
   function loadUserData() {
     API.getUserDetails()
       .then((res) => setUser(res.data))

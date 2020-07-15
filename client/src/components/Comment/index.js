@@ -1,78 +1,47 @@
+import React from "react";
+// import React, { Component } from "react";
+// import M from "materialize-css";
 import "./style.css";
-import React, { Component } from "react";
-// import Remarkable from "remarkable";
-// import RemarkableReactRenderer from 'remarkable-react';
-import M from "materialize-css";
 
-const data = [
-  { id: 1, author: "Pete Hunt", text: "This is one comment" },
-  { id: 2, author: "Jordan Walke", text: "This is *another* comment" },
-];
+export default function Comment(props) {
+  const { name, message, time } = props.comment;
 
-class Comments extends Component {
-  //   rawMarkup() {
-  //     let md = new Remarkable();
-  //     let rawMarkup = md.render(this.props.children.toString());
-  //     return { __html: rawMarkup };
-  //   }
+  return (
 
-  render(props) {
-    return (
-      <div className="comment">
-        <h2 className="commentAuthor">{this.props.author}</h2>
-        {this.props.children}
-        {/* <span dangerouslySetInnerHTML={this.rawMarkup()} /> */}
-      </div>
-    );
-  }
-}
-
-// class commentNode extends Component {
-//   render() {
-//     const commentNodes = this.props.data.map(function (comment) {
-//       return (
-//         <Comment author={comment.author} key={comment.id}>
-//           {comment.text}
-//         </Comment>
-//       );
-//     });
-//   }
-// }
-
-class CommentList extends Component {
-  render(props) {
-    const commentNodes = this.props.data.map(function (comment) {
-      return (
-        <Comments author={comment.author} key={comment.id}>
-          {comment.text}
-        </Comments>
-      );
-    });
-
-    return (
-      <div>
-        {commentNodes}
-
-        <div className="commentList">
-          <p>Yeahhhh I am a CommentList.</p>
+    <div>
+      <div className="col s12 comment-container1">
+        <div className="row ratingHeading comment-container2">
+        <div className="col s12 comment-container3">
+          Rating:
+          <label>
+            {/* <div className="ratingHeading">Rating:</div> */}
+            <span className="rating">
+              <i className="far fa-star edit-star fa-lg" data-rating="1"></i>
+              <i className="far fa-star edit-star fa-lg" data-rating="2"></i>
+              <i className="far fa-star edit-star fa-lg" data-rating="3"></i>
+              <i className="fas fa-star edit-star fa-lg" data-rating="4"></i>
+              <i className="fas fa-star edit-star fa-lg" data-rating="5"></i>
+            </span>
+          </label>
+          </div>
         </div>
-        <div className="comment">
-          <Comments author="Kevin Kim">Nice, Comment Box</Comments>
-          <Comments author="Kevin Kim">Sometimes I talk to myself</Comments>
-          <h2 className="commentAuthor">{this.props.author}</h2>
-          {this.props.children}
+        <div className="row comment-container4">
+          <div className="col s12 comment-container5">
+            {/* <p className="date-example">At ${moment(createdAt).format("h:mma on dddd, MMMM Do YYYY")}</p> */}
+            <p className="date-example">At <small className="float-right text-muted">{time}</small> on 12 July 2020</p>
+            <p className="thank-example">{message}</p>
+            <p className="author-name">
+              Written by <span class="name-example">{name}</span>
+            </p>
+            <a
+              className="waves-effect waves-light btn delete-thank"
+              data-id="1"
+            >
+              <i class="material-icons">delete</i>
+            </a>
+          </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-class CommentForm extends Component {
-  render() {
-    return (
-      <div className="commentForm">Party Parrot time. I am a CommentForm.</div>
-    );
-  }
-}
-
-export { CommentList, CommentForm };

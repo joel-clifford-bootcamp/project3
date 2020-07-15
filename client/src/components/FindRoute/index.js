@@ -10,6 +10,7 @@ import {
   LoadScript,
 } from "@react-google-maps/api";
 import ModalComment from "../ModalComment";
+// import { InfoBoxString2, ModalCommentContainer } from "../InfoBoxString2";
 import InfoBoxString from "../InfoBoxString";
 import M from "materialize-css";
 import "../../assets/css/style.css";
@@ -171,7 +172,8 @@ class FindRoute extends Component {
             </div>
           </InfoWindow>
           )}
-          <ModalComment />
+          <ModalComment addComment={this.addComment}/>
+          {/* <ModalCommentContainer /> */}
           {this.state.response !== null && (
             <DirectionsRenderer
               // required

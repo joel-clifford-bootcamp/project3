@@ -1,12 +1,52 @@
 import "./style.css";
 import React, { Component } from "react";
-import { ModalButton, ModalComment } from "../Modal";
+import { ModalButton } from "../ModalButton";
+import ModalComment from "../ModalComment";
+import CommentBox from "../CommentBox";
 import M from "materialize-css";
 
-function InfoBoxString() {
-  return (
-    <div>
-      {/* <div id="content"> */}
+class InfoBoxString extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      comments: [],
+      loading: false
+    };
+
+    this.addComment = this.addComment.bind(this);
+
+  }
+
+  componentDidMount() {
+    // loading
+    this.setState({ loading: true });
+
+    // get all the comments
+    fetch("api/bixi/comments/:station_id") 
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          comments: res,
+          loading: false
+        });
+      })
+      .catch(err => {
+        this.setState({ loading: false });
+      });
+  }
+
+  addComment(comment){
+    this.setState({
+      loading: false,
+      comments: [comment, ...this.state.comments]
+    });
+  }
+
+  render(props) {
+    return (
+      <div>
+        {/* <div id="content"> */}
         {/* <div id="siteNotice"></div> */}
         {/* <h1 id="firstHeading" class="firstHeading">
           Location
@@ -27,12 +67,19 @@ function InfoBoxString() {
             <p className="capacity">Capacity: 0</p>
           </div>
           <div>
-            <ModalButton />
+            <ModalButton addComment={this.addComment}/>
+          </div>
+          <div>
+            <CommentBox
+              loading={this.state.loading}
+              comments={this.state.comments}
+            />
           </div>
         </div>
       </div>
-    // </div>
-  );
+      // </div>
+    );
+  }
 }
 
 export default InfoBoxString;
