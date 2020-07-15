@@ -23,7 +23,7 @@ class InfoBoxString extends Component {
     this.setState({ loading: true });
 
     // get all the comments
-    fetch("http://localhost:3001")
+    fetch("api/bixi/comments/:station_id") 
       .then(res => res.json())
       .then(res => {
         this.setState({

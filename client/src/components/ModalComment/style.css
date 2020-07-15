@@ -23,5 +23,5 @@
 .rating > i:hover ~ i:before {
    content: "\f005";
    font-weight: 900;
-   position: absolute;
+   /* position: absolute; */
 }

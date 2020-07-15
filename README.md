@@ -113,20 +113,17 @@ THEN...I am presented with a list of cards.
 ```
 - - -
 
-
-
 ## Application Screenshot
 ![alt text](./client/public/img/project3-ssh.png "Project 3 Screen Shot Link-N-Park")
-
-
 
 ## Accessories Used
 ### Languages
 * HTML
 * CSS
 * [Materialize CSS framework](https://materializecss.com/)
+* [Google Fonts](https://fonts.google.com/)
+* [fontawesome.com](https://fontawesome.com/)
 * React JSX
-
 
 ### Programs and Applications
 * [Visual Studio Code](https://code.visualstudio.com/)
@@ -140,17 +137,19 @@ THEN...I am presented with a list of cards.
 
 ### Libraries
 * [chalk](https://www.npmjs.com/package/chalk)
+* [node](https://www.npmjs.com/package/node-cron)
 
 ### Websites
 * [GitHub](https://github.com/)
 * [Heroku](https://www.heroku.com/)
-* [Google](https://www.google.com) [fonts](https://fonts.google.com/), drive, google docs, sheets, and slides
+* [Google](https://www.google.com) drive, docs, sheets, and slides
 * [InVisionApp](https://www.invisionapp.com/) (Wireframes)
 * [moqups.com](https://moqups.com/) (Wireframes)
 * [W3Schools](https://www.w3schools.com/)
 * [Stack Overflow](https://stackoverflow.com/)
 
 ### Logos
+* [@slowcountrycomics](https://www.instagram.com/slowcountrycomics/?hl=en)
 
 ### Third-party APIs 
 * [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial)

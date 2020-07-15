@@ -62,8 +62,8 @@ class ModalComment extends Component {
     //     [name]: value,
     //   },
     // });
-    //console.log("this.state.comment.message", this.state.comment.message);
-    //console.log("event.target.value", event.target.value);
+    // console.log("this.state.comment.message", this.state.comment.message);
+    // console.log("event.target.value", event.target.value);
   };
 
   onSubmit = (e) =>{
@@ -80,8 +80,9 @@ class ModalComment extends Component {
 
     // persist the comments on server
     let { comment } = this.state;
+    // console.log(comment);
     
-    fetch("/bixi/comments", {
+    fetch("api/bixi/comments", {
       method: "post",
       //body: JSON.stringify(comment),
       body: comment,
@@ -161,11 +162,11 @@ class ModalComment extends Component {
                       data-rating="3"
                     ></i>
                     <i
-                      className="fas fa-star edit-star fa-lg"
+                      className="far fa-star edit-star fa-lg"
                       data-rating="4"
                     ></i>
                     <i
-                      className="fas fa-star edit-star fa-lg"
+                      className="far fa-star edit-star fa-lg"
                       data-rating="5"
                     ></i>
                   </span>
