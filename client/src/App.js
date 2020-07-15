@@ -38,7 +38,6 @@ function App() {
             <MapSearch/>
           </Route>
 
-
           <Route exact path={["/profile"]}>
             <Profile />
           </Route>

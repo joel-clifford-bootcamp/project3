@@ -4,6 +4,7 @@ import { ModalButton, ModalComment } from "../Modal";
 import CommentBox from "../CommentBox";
 import M from "materialize-css";
 import { Container, Row, Column } from "../GridComponents";
+import { PrimaryButton } from "../Buttons"
 import api from "../../utils/API";
 
 function InfoBoxString(props) {
@@ -42,7 +43,12 @@ function InfoBoxString(props) {
           <p>updated at ${props.place.currentData.timestamp}</p>
         </Row>
         <Row>
-          <ModalButton addComment={addComment}/>
+          <Column width="6">
+            <ModalButton addComment={addComment}/>
+          </Column>
+          <Column width="6">
+            <PrimaryButton>Select</PrimaryButton>
+          </Column>
         </Row>
         {/* <Row>
           <CommentBox
