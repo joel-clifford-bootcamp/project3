@@ -1,6 +1,7 @@
 import React, {Component } from 'react';
 import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
 import "../../assets/css/style.css";
+import bixiAPI from "../../utils/bixiAPI"
 
 
 //Toronto, ON
@@ -27,6 +28,7 @@ const center = {
         distance: '', // distance in km
         duration:'', // time in hours and minutes
       }
+      this.findBike = this.findBike.bind(this)
       this.directionsCallback = this.directionsCallback.bind(this)
       this.distancesCallback = this.distancesCallback.bind(this)
       this.getOrigin = this.getOrigin.bind(this)
@@ -51,7 +53,17 @@ const center = {
       }
     };
   
-    
+    findBike() {
+      bixiAPI.getStations()
+        .then(res => {
+          console.log(res);
+          if (res.data.status === "error") {
+            throw new Error(res.data.message);
+          }
+          console.log(res)
+        })
+        .catch(err => console.log(err))
+    };
 
     directionsCallback(response) {
       console.log(response)
@@ -202,7 +214,7 @@ const center = {
               </div>
             </div>
           </div>
-          <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
+          <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.findBike}>
               Find your bike
           </button>
       <table className='row z-depth-5'>
