@@ -1,4 +1,4 @@
-# Project 3: Link N Park
+# Project 3: Link–N–Park
 
 ## Authors
 * [Tobi Bailey](https://github.com/tobi-bailey)
@@ -8,8 +8,24 @@
 * [Massimo Guida](https://github.com/MG-cpu90)
 
 ## Description
+* This full-stack react application – "Link–N–Park" – essentially allows users to locate bixi bike stations near a particular location, as well as areas to park their bike, and map a route to these locations from their current location
+* The application will also allow users to rate these stations and parking areas, and add more detailed comments to expand upon their rating
+* This application allows municipalities to supplement their own information with more up-to-date crowd-sourced information.
+* This application will also entice users to actively contribute to the service the app offers a tangible benefit to cyclists by streamlining the process of locating parking spaces near their location and destination, and flagging issues with the underlying data; it also provides them with mapped routes.
+
 
 ## Features
+* Secure Log-in/Sign-up
+* User information is rendered in their profile page
+* Ability for users to upload a profile picture to a user Profile
+* Interactive buttons on the home page which bring users to separate pages which allow them to:
+    * Map a route
+    * Find a bixi bike station
+    * Find a bike parking spot
+* Ability for users to view comments on a particular Bixi bike station or bike parking spot
+* Ability for users to rate a bixi bike station or bike parking spot
+* Ability for users to add comments on a bixi bike station or bike parking spot
+* Mobile responsive
 
 
 ## User Story
@@ -97,20 +113,17 @@ THEN...I am presented with a list of cards.
 ```
 - - -
 
-
-
 ## Application Screenshot
 ![alt text](./client/public/img/project3-ssh.png "Project 3 Screen Shot Link-N-Park")
-
-
 
 ## Accessories Used
 ### Languages
 * HTML
 * CSS
 * [Materialize CSS framework](https://materializecss.com/)
+* [Google Fonts](https://fonts.google.com/)
+* [fontawesome.com](https://fontawesome.com/)
 * React JSX
-
 
 ### Programs and Applications
 * [Visual Studio Code](https://code.visualstudio.com/)
@@ -123,25 +136,28 @@ THEN...I am presented with a list of cards.
 * [Slack](https://slack.com/intl/en-ca/)
 
 ### Libraries
-
+* [chalk](https://www.npmjs.com/package/chalk)
+* [node](https://www.npmjs.com/package/node-cron)
 
 ### Websites
 * [GitHub](https://github.com/)
 * [Heroku](https://www.heroku.com/)
-* [Google](https://www.google.com) [fonts](https://fonts.google.com/), drive, google docs, sheets, and slides
+* [Google](https://www.google.com) drive, docs, sheets, and slides
 * [InVisionApp](https://www.invisionapp.com/) (Wireframes)
 * [moqups.com](https://moqups.com/) (Wireframes)
 * [W3Schools](https://www.w3schools.com/)
 * [Stack Overflow](https://stackoverflow.com/)
 
 ### Logos
+* [@slowcountrycomics](https://www.instagram.com/slowcountrycomics/?hl=en)
 
 ### Third-party APIs 
-
+* [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial)
 
 ## Usage
 * In order to run the application, after cloning the repository, open node in the project root directory and run 'npm install' in the terminal window
-* The run 'npm start'
+* Then run 'npm start'
+* If you are not automatically redirected, navigate to http://localhost:3000/ to view the application
 
 ## Links
 * Deployed URL: https://link-n-park.herokuapp.com/

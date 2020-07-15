@@ -2,16 +2,16 @@ import "./style.css";
 import React, { Component } from "react";
 import M from "materialize-css";
 
-export function ModalButton() {
+export function ModalView() {
 
     return (
-      <div>
+      <div class="div">
         <a
           className="waves-effect waves-light btn modal-trigger"
-          data-target="modal1"
-          id="modalLink"
+          data-target="modal2"
+          id="modalViewLink"
         >
-          Add Review
+          View Comments
         </a>
       </div>
     );

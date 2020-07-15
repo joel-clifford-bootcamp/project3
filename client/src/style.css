@@ -4,6 +4,8 @@
     /* background-image: url(""); */
     background: url(./assets/bike.jpg);
     height: 100vh;
+    overflow-x: visible;
+    overflow: visible;
 }
 
 .signinLogo {
@@ -91,11 +93,14 @@ form {
     height: 100vh;
     width: 100%;
     background-position: right top;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
   }
 
   .signIn{
     margin: 30px 0 0 0;
     width: 100%;
+    padding: 10px 0 0 0;
   }
 
   .signinLogo{
@@ -110,6 +115,10 @@ form {
 
   .brand-logo{
     left: 62.5% !important;
+  }
+
+  .formSubmit{
+    margin: 0px;
   }
 }  
 
@@ -139,11 +148,11 @@ form {
     float: left;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
 .navIcons{
   color: #e57373 !important;
 }
-}  
+}
 
 /* END NAV BAR STYLING */
 
@@ -307,6 +316,7 @@ li{
   border-radius: 25px !important;
   height: 300px;
   width: 300px;
+  margin: 40% 0 0 0;
 }
 
 .profileInstructions{
@@ -357,4 +367,13 @@ li{
   width:300px;
 }
 
+.email{
+  color: #db5b5c;
+}
+
+@media only screen and (max-width: 768px) {
+  .email{
+    color: white;
+  }
+}
 /* END OF PROFILE CARD STYLING */

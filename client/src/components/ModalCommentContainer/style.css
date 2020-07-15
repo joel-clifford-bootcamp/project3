@@ -4,7 +4,7 @@
   /* color: grey; */
 }
 
-.rating, .divAuthor, .divLocation {
+.rating, .divAuthor {
   padding: 10px;
 }
 
@@ -23,5 +23,5 @@
 .rating > i:hover ~ i:before {
    content: "\f005";
    font-weight: 900;
-   /* position: absolute; */
+   position: absolute;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "../components/Nav";
-import Modal from "../components/Modal";
+import Modal from "../components/ModalButton";
 import {Link} from "react-router-dom";
 import "../style.css";
 
