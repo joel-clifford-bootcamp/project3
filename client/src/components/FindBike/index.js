@@ -1,14 +1,16 @@
 import React, {Component } from 'react';
 import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
 import "../../assets/css/style.css";
+import bixiAPI from "../../utils/bixiAPI"
 
 
-//Toronto, ON
+//Map center in Toronto, ON
 const center = {
               lat: 43.651070,
               lng:  -79.347015
 }
-
+let stationNames = [];
+// bixiBike stations
   class FindBike extends Component {
     constructor(props) {
       super(props)
@@ -18,7 +20,8 @@ const center = {
         results: null,
         position: null,
         travelMode: 'BICYCLING',
-        origin: '', // origin input
+        originArray: [], // unique origin
+        stationsNames:[],
         originLat: '', // origin latitude
         originLong: '',// origin longitude
         destination: '', // selected station
@@ -27,11 +30,11 @@ const center = {
         distance: '', // distance in km
         duration:'', // time in hours and minutes
       }
+      this.findBike = this.findBike.bind(this)
       this.directionsCallback = this.directionsCallback.bind(this)
       this.distancesCallback = this.distancesCallback.bind(this)
       this.getOrigin = this.getOrigin.bind(this)
       this.getDestination = this.getDestination.bind(this)
-      this.onClick = this.onClick.bind(this)
     }
 
     componentDidMount() {
@@ -51,7 +54,42 @@ const center = {
       }
     };
   
-    
+    findBike() {
+      bixiAPI.getStations()
+        .then(res => {
+          console.log(res);
+          if (res.data.status === "error") {
+            throw new Error(res.data.message);
+          }
+          if (this.origin.value !== '') {
+            this.setState(
+              () => ({
+                //Grabbing the origin and destination from the user inputs
+                origin: this.origin.value,
+                })
+            )
+            this.optionsArray(this.origin.value, res.data)
+          }
+        })
+        .catch(err => console.log(err))
+    };
+
+    optionsArray(origin, stations) {
+      let originDuplicate = [];
+      let stationLocations = stations.map(station => station.name);
+       stations.forEach(station => {
+         originDuplicate.push(origin);
+       });
+      this.setState(
+              () => ({
+                //Grabbing the origin and destination from the user inputs
+          originArray: originDuplicate,
+                stationNames: stationLocations
+                })
+            )
+      console.log(originDuplicate)
+      console.log(stationLocations)
+    }
 
     directionsCallback(response) {
       console.log(response)
@@ -70,16 +108,9 @@ const center = {
     }
 
     distancesCallback(results) {
-      if (results !== null && results.rows[0].elements[0].distance !== null && results.rows[0].elements[0].duration !== null) {
-        console.log('results '+ JSON.stringify(results))
-         this.setState(
-          () => ({
-             originAddress: results.originAddresses[0],
-            destinationAddress: results.destinationAddresses[0],
-             distance: results.rows[0].elements[0].distance.text,
-             duration: results.rows[0].elements[0].duration.text
-           })
-         )
+         console.log("results "+ JSON.stringify(results))
+      if (results !== null) {
+      
       }
     }
 
@@ -92,19 +123,7 @@ const center = {
       this.destination = ref
     }
 
-      onClick(e) {
-         e.preventDefault();
-      if (this.origin.value !== '' && this.destination.value !== '') {
-        this.setState(
-          () => ({
-            //Grabbing the origin and destination from the user inputs
-            origin: this.origin.value,
-            destination: this.destination.value
-            })
-
-        )
-      }
-      }
+    
   
     render() {
       return (
@@ -119,6 +138,32 @@ const center = {
 
           >
             { /* Child components, such as markers, info windows, etc. */}
+             {
+             ( 
+                this.state.origin!==""
+              ) && (
+                <DistanceMatrixService
+                  // required
+                 // required
+                  options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
+                    destinations: ["Queen St. E / Woodward Av", "Primrose Ave / Davenport Rd - SMART", "Queen St. E / Rhodes Ave."], 
+                    origins: ["CN Tower", "CN Tower", "CN Tower"],
+                    travelMode: this.state.travelMode
+                  }}
+                   // required
+                  callback={this.distancesCallback}
+                  // optional
+                  onLoad={distanceMatrixService=> {
+                    console.log('DirectionsRenderer onLoad directionsRenderer: ', distanceMatrixService)
+                  }}
+                  // optional
+                  onUnmount={distanceMatrixService => {
+                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', distanceMatrixService)
+                  }}
+                />
+                
+              )
+            }
            {
               ( 
                 this.state.duration ==='' && this.state.destination !== '' &&
@@ -143,7 +188,7 @@ const center = {
                 />
               )
             }
-
+            
             {
              (this.state.response !== null) && (
                 <DirectionsRenderer
@@ -163,33 +208,6 @@ const center = {
                 
               )
             }
-             {
-             ( 
-               this.state.destination !== '' &&
-                this.state.origin !== '' && this.state.distance === ''
-              ) && (
-                <DistanceMatrixService
-                  // required
-                 // required
-                  options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                    destinations: [this.state.destination],
-                    origins: [this.state.origin],
-                    travelMode: this.state.travelMode
-                  }}
-                   // required
-                  callback={this.distancesCallback}
-                  // optional
-                  onLoad={distanceMatrixService=> {
-                    console.log('DirectionsRenderer onLoad directionsRenderer: ', distanceMatrixService)
-                  }}
-                  // optional
-                  onUnmount={distanceMatrixService => {
-                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', distanceMatrixService)
-                  }}
-                />
-                
-              )
-            }
         
           </GoogleMap>
           <div id="right-panel" className='center-align'>
@@ -202,7 +220,7 @@ const center = {
               </div>
             </div>
           </div>
-          <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
+          <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.findBike}>
               Find your bike
           </button>
       <table className='row z-depth-5'>
