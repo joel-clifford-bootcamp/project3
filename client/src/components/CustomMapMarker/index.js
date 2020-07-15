@@ -1,7 +1,6 @@
 import React, {useState} from "react"
 import { Marker, InfoWindow} from "@react-google-maps/api"
 import bixiMarker from "./bike-share-toronto-logo.png"
-import infoBoxString from "../InfoBoxString"
 import InfoBoxString from "../InfoBoxString";
 
 const iconBase = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/';

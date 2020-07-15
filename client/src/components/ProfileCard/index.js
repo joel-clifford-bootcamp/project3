@@ -1,4 +1,3 @@
-// import React from "react";
 import React, { useState } from "react";
 import "./style.css";
 
@@ -67,7 +66,7 @@ export function UserCard(props) {
   </div>
   );
 }
-
+// // Recent Activity Component for Future Development
 // export function RecentActivityCard(props) {
 //   return (
 //     <div>

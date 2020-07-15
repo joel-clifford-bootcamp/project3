@@ -123,7 +123,7 @@ THEN...I am presented with a list of cards.
 * [Materialize CSS framework](https://materializecss.com/)
 * [Google Fonts](https://fonts.google.com/)
 * [fontawesome.com](https://fontawesome.com/)
-* React JSX
+* [React JSX](https://reactjs.org/)
 
 ### Programs and Applications
 * [Visual Studio Code](https://code.visualstudio.com/)
@@ -145,6 +145,7 @@ THEN...I am presented with a list of cards.
 * [Google](https://www.google.com) drive, docs, sheets, and slides
 * [InVisionApp](https://www.invisionapp.com/) (Wireframes)
 * [moqups.com](https://moqups.com/) (Wireframes)
+* [huesnap.com](https://www.huesnap.com/mypalette/-MAHkX3lVdy2TLIg7jFD)
 * [W3Schools](https://www.w3schools.com/)
 * [Stack Overflow](https://stackoverflow.com/)
 
@@ -156,8 +157,10 @@ THEN...I am presented with a list of cards.
 
 ## Usage
 * In order to run the application, after cloning the repository, open node in the project root directory and run 'npm install' in the terminal window
+* Ensure that MySQL is running and connected, and then copy the schema into it and run the file
 * Then run 'npm start'
 * If you are not automatically redirected, navigate to http://localhost:3000/ to view the application
+* In order to run the seed files, navigate to http://localhost:3001/api/bixi/seed
 
 ## Links
 * Deployed URL: https://link-n-park.herokuapp.com/

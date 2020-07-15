@@ -1,7 +1,6 @@
 import "./style.css";
 import React, { Component } from "react";
 import M from "materialize-css";
-import Toast from "materialize-css";
 import api from "../../utils/API"
 
 class ModalButton extends Component {
@@ -177,10 +176,6 @@ class ModalComment extends Component {
       // M.toast({html: 'error!'})
       M.toast(this.state.error)
 
-  //     <Toast
-  // options={this.state.error}
-  //     ></Toast>
-      // <div className="alert alert-danger"></div>
     ) : null;
   }
 

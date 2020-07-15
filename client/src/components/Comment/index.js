@@ -1,6 +1,4 @@
 import React from "react";
-// import React, { Component } from "react";
-// import M from "materialize-css";
 import "./style.css";
 
 export default function Comment(props) {

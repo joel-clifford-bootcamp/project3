@@ -2,7 +2,6 @@ import "./style.css";
 import React, { Component, useState, useEffect } from "react";
 import { ModalButton, ModalComment } from "../Modal";
 import CommentBox from "../CommentBox";
-import M from "materialize-css";
 import { Container, Row, Column } from "../GridComponents";
 import { PrimaryButton } from "../Buttons"
 import api from "../../utils/API";
