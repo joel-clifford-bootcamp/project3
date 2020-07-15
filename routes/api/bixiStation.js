@@ -10,7 +10,7 @@ router.route('/')
 
 // Return real time station data for stations identified by idx
 router.route('/realtime')
-    .get(bixiStationsController.getRealTime);
+    .post(bixiStationsController.getRealTime);
 
 router.route('/seed')
     .get(bixiStationsController.seed);
