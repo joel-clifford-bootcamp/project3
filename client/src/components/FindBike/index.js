@@ -9,7 +9,8 @@ const center = {
               lat: 43.651070,
               lng:  -79.347015
 }
-let stationNames = [];
+
+let distances=[]
 // bixiBike stations
   class FindBike extends Component {
     constructor(props) {
@@ -20,8 +21,7 @@ let stationNames = [];
         results: null,
         position: null,
         travelMode: 'BICYCLING',
-        originArray: [], // unique origin
-        stationsNames:[],
+        stations:[],
         originLat: '', // origin latitude
         originLong: '',// origin longitude
         destination: '', // selected station
@@ -55,6 +55,7 @@ let stationNames = [];
     };
   
     findBike() {
+      distances = [];
       bixiAPI.getStations()
         .then(res => {
           console.log(res);
@@ -66,30 +67,16 @@ let stationNames = [];
               () => ({
                 //Grabbing the origin and destination from the user inputs
                 origin: this.origin.value,
+                stations: res.data
                 })
             )
-            this.optionsArray(this.origin.value, res.data)
           }
+           console.log(this.state.origin, this.state.stations)
         })
         .catch(err => console.log(err))
     };
 
-    optionsArray(origin, stations) {
-      let originDuplicate = [];
-      let stationLocations = stations.map(station => station.name);
-       stations.forEach(station => {
-         originDuplicate.push(origin);
-       });
-      this.setState(
-              () => ({
-                //Grabbing the origin and destination from the user inputs
-          originArray: originDuplicate,
-                stationNames: stationLocations
-                })
-            )
-      console.log(originDuplicate)
-      console.log(stationLocations)
-    }
+   
 
     directionsCallback(response) {
       console.log(response)
@@ -108,10 +95,34 @@ let stationNames = [];
     }
 
     distancesCallback(results) {
-         console.log("results "+ JSON.stringify(results))
-      if (results !== null) {
-      
-      }
+      console.log("results " + JSON.stringify(results))
+  
+
+     
+      distances.push({
+        "value": results.rows[0].elements[0].distance.value,
+        "text": results.rows[0].elements[0].distance.text
+      })
+
+      if (distances.length === 14) {
+        let bikeStations = this.state.stations
+      distances.forEach(distance => {
+        let index = distances.indexOf(distance);
+        bikeStations[index].distanceValue =  distances[index].value;
+        bikeStations[index].distanceText = distances[index].text;
+        console.log(index, bikeStations[index])
+      })
+        
+        setTimeout(function () {
+          bikeStations = bikeStations.slice(0, 5)
+          console.log( bikeStations)
+           bikeStations.sort((a, b) => (a.distanceValue > b.distanceValue) ? 1 : -1);
+        console.log(bikeStations)},200)
+       
+
+          
+        }
+
     }
 
    
@@ -126,6 +137,8 @@ let stationNames = [];
     
   
     render() {
+      console.log(this.state.stationsNames)
+      console.log(this.state.origin)
       return (
      <div>
            <GoogleMap
@@ -139,15 +152,14 @@ let stationNames = [];
           >
             { /* Child components, such as markers, info windows, etc. */}
              {
-             ( 
-                this.state.origin!==""
-              ) && (
+             (this.state.stations.slice(0,15).map(station =>
                 <DistanceMatrixService
                   // required
+                 key={station.name}
                  // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                    destinations: ["Queen St. E / Woodward Av", "Primrose Ave / Davenport Rd - SMART", "Queen St. E / Rhodes Ave."], 
-                    origins: ["CN Tower", "CN Tower", "CN Tower"],
+                    destinations: [station.name], 
+                    origins: [this.state.origin],
                     travelMode: this.state.travelMode
                   }}
                    // required
@@ -160,8 +172,7 @@ let stationNames = [];
                   onUnmount={distanceMatrixService => {
                     console.log('DirectionsRenderer onUnmount directionsRenderer: ', distanceMatrixService)
                   }}
-                />
-                
+                />)               
               )
             }
            {
