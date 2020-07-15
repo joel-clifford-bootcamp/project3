@@ -7,7 +7,22 @@
   padding: 10px;
 }
 
+.locationName {
+  font-size: 1.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 #bodyContent {
   align-items: center;
   text-align: center;
+}
+
+.container{
+  padding: 5px;
+  margin-left: 0;
+}
+
+.row{
+  padding: 5px;
 }
