@@ -43,7 +43,7 @@ class InfoBoxString extends Component {
     });
   }
 
-  render(props) {
+  render() {
     return (
       <div>
         {/* <div id="content"> */}
@@ -53,7 +53,7 @@ class InfoBoxString extends Component {
         </h1> */}
         <div id="bodyContent">
           <div>
-            <h5 className="LocationName">Location Name</h5>
+            <h5 className="LocationName">{this.props.name}</h5>
           </div>
           <div>
             <p className="addressLine1">42 Wallaby Way</p>
