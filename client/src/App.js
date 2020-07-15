@@ -5,7 +5,7 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import MapContainer from "./components/MapContainer";
-import BikeShareSearch from "./components/BikeShareSearch";
+import MapSearch from "./pages/MapSearch";
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
           </Route>
 
           <Route exact path={["/bikeshare"]}>
-            <BikeShareSearch/>
+            <MapSearch/>
           </Route>
 
 
