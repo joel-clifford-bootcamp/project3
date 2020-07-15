@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { UserCard, RecentActivityCard } from "../components/ProfileCard";
 import ProfileContainer from "../components/ProfileContainer";
-import CommentBox from "../components/CommentBox";
 import Nav from "../components/Nav";
 import "../style.css";
 
