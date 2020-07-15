@@ -5,6 +5,7 @@ import PlacesSearchBox from "../components/PlacesSearchBox"
 import DefaultMapMarker from "../components/DefaultMapMarker"
 import CustomMapMarker from "../components/CustomMapMarker"
 import MapInfoWindow from "../components/MapInfoWindow"
+import { ModalComment } from "../components/Modal";
 import api from "../utils/API"
 
 import {
@@ -140,6 +141,7 @@ function GoogleMapPage() {
 
               {places}
               <DefaultMapMarker location={destination.location}/>
+              <ModalComment />
               <BicyclingLayer/>
           </GoogleMap>
       </LoadScript>
