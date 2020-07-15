@@ -2,11 +2,13 @@ const db = require("../models");
 const seed = require("../utils/seed");
 const getRealTimeData = require("../utils/api/StationsData");
 const { red } = require("chalk");
+const refreshBixiStations = require("../utils/import/bixiStations");
 
 module.exports = {
 
     seed: function(req, res) {
         seed(db);
+        refreshBixiStations();
         res.json({"message": "seeding users and comments"});
     },
 
