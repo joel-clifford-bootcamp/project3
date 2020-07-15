@@ -14,7 +14,7 @@ function Nav() {
   return (
     <nav className="transparent z-depth-0">
       <div className="nav-wrapper hide-on-med-and-down">
-        <div class="brand-logo">
+        <div className="brand-logo">
           <span className="hide-on-med-and-down">
             <img className="primaryLogo" src={fullLogo} alt="Full White Logo"></img>
           </span>
@@ -76,7 +76,7 @@ function Nav() {
                 }
                 id="homeLink"
               ><span>
-                  <i class="material-icons navIcons">home</i>
+                  <i className="material-icons navIcons">home</i>
                 </span>
               </Link>
             </li>
@@ -88,7 +88,7 @@ function Nav() {
                 }
                 id="profileLink"
               ><span>
-              <i class="material-icons navIcons">person</i>
+              <i className="material-icons navIcons">person</i>
             </span>
               </Link>
             </li>
@@ -102,7 +102,7 @@ function Nav() {
                 }
                 id="signoutLink"
               ><span>
-              <i class="material-icons navIcons">exit_to_app</i>
+              <i className="material-icons navIcons">exit_to_app</i>
             </span>
               </Link>
             </li>
