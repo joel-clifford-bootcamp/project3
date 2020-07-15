@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./style.css";
-import ReactDOM from 'react-dom';
 import StarRatings from './react-star-ratings';
  
 class Foo extends Component {

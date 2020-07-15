@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import {Autocomplete} from '@react-google-maps/api'
-//import { Component } from 'materialize-css'
-
 
 class PlacesSearchBox extends Component  {
   constructor (props) {

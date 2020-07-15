@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../style.css";
 import fullLogo from "../../assets/NarrowLogo.png";
-// import M from "materialize-css";
-// import M from  'materialize-css/dist/js/materialize.min.js';
 
 function Nav() {
 
