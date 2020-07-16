@@ -26,7 +26,6 @@ function CustomMapMarker( props ) {
                     <InfoBoxString place={props.place} name={props.place.name}/>
                 </InfoWindow> }
             </Marker>
-
     )
 }
 
