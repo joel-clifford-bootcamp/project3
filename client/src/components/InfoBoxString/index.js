@@ -65,7 +65,8 @@ function InfoBoxString(props) {
       </Row>
       <Row>
         <Column width="6">
-          {/* <ModalButton addComment={addComment} /> */}
+          {/* Comment functionality still to be completed */}
+          <ModalButton addComment={addComment} />
         </Column>
         <Column width="6">
           <PrimaryButton onClick={() => props.selectPlace(props.place)}>Select</PrimaryButton>
