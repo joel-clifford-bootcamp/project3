@@ -25,7 +25,7 @@ class PlacesSearchBox extends Component  {
       >
         <input
           type="text"
-          placeholder="Customized your placeholder"
+          placeholder={this.props.placeholder}
           style={{
             boxSizing: `border-box`,
             background: 'white',
@@ -38,7 +38,7 @@ class PlacesSearchBox extends Component  {
             outline: `none`,
             textOverflow: `ellipses`,
             position: "absolute",
-            marginTop: "15px",
+            marginTop: "9px",
             left: "25%",
           }}
         />

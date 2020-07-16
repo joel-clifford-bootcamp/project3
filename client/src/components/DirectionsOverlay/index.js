@@ -1,11 +1,6 @@
 import React from "react"
 import { DirectionsService, DirectionsRenderer} from "@react-google-maps/api"
 
-// {
-//     (
-//       this.state.destination !== '' &&
-//       this.state.origin !== ''
-//     ) && (
 
 function DirectionsOverlay(props) {
 
@@ -19,31 +14,33 @@ function DirectionsOverlay(props) {
           travelMode: 'BICYCLING'
         }}
         // required
-        callback={this.directionsCallback}
-        // optional
-        onLoad={directionsService => {
-          console.log('DirectionsService onLoad directionsService: ', directionsService)
-        }}
-        // optional
-        onUnmount={directionsService => {
-          console.log('DirectionsService onUnmount directionsService: ', directionsService)
-        }}
+        callback={props.directionsCallback}
+        // // optional
+        // onLoad={directionsService => {
+        //   console.log('DirectionsService onLoad directionsService: ', directionsService)
+        // }}
+        // // optional
+        // onUnmount={directionsService => {
+        //   console.log('DirectionsService onUnmount directionsService: ', directionsService)
+        // }}
       />
 
       <DirectionsRenderer
         // required
         options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-          directions: props.response
+          directions: props.navResponse
         }}
-        // optional
-        onLoad={directionsRenderer => {
-          console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)
-        }}
-        // optional
-        onUnmount={directionsRenderer => {
-          console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
-        }}
+        // // optional
+        // onLoad={directionsRenderer => {
+        //   console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)
+        // }}
+        // // optional
+        // onUnmount={directionsRenderer => {
+        //   console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
+        // }}
       />
     </div>
     )
 }
+
+export default DirectionsOverlay
