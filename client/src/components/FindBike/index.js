@@ -34,6 +34,7 @@ class FindBike extends Component {
     this.findBike = this.findBike.bind(this)
     this.directionsCallback = this.directionsCallback.bind(this)
     this.distancesCallback = this.distancesCallback.bind(this)
+     this.onClick = this.onClick.bind(this)
     this.getOrigin = this.getOrigin.bind(this)
     this.getDestination = this.getDestination.bind(this)
   }
@@ -100,8 +101,6 @@ class FindBike extends Component {
   
     if (results !== null) {
       if (results.rows.length) {
-
-        console.log("SEE MEE")
         
         let arrayLength = this.state.stations.length
 
@@ -134,6 +133,7 @@ class FindBike extends Component {
           this.setState(
             () => ({
               closestSations: bikeStations,
+              results
             })
           )
           console.log(bikeStations)
@@ -145,7 +145,16 @@ class FindBike extends Component {
   }
 
 
- 
+ onClick(e) {
+   e.preventDefault();
+   let value = e.target.id;
+   console.log (value)
+    if (value !== "") {
+      this.setState(() => ({
+        destination: value
+      }));
+    }
+  }
     
 
   
@@ -177,7 +186,7 @@ class FindBike extends Component {
           >
             { /* Child components, such as markers, info windows, etc. */}
              {
-             (this.state.stations.slice(0,15).map(station =>
+            (this.state.closestSations!==[]) &&(this.state.stations.map(station =>
                 <DistanceMatrixService
                   // required
                  key={station.name}
@@ -202,7 +211,7 @@ class FindBike extends Component {
             }
            {
               ( 
-                this.state.duration ==='' && this.state.destination !== '' &&
+               this.state.destination !== '' &&
                 this.state.origin !== ''
               ) && (
                 <DirectionsService
@@ -226,11 +235,11 @@ class FindBike extends Component {
             }
             
             {
-             (this.state.response !== null) && (
+             (this.state.response!==null)&& (
                 <DirectionsRenderer
                   // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                    directions: this.state.response
+                    directions: this.state.response,
                   }}
                   // optional
                   onLoad={directionsRenderer => {
@@ -269,17 +278,21 @@ class FindBike extends Component {
         </thead>
 
         <tbody  className="white">
-                {(this.state.closestSations.map(station => <tr
-                key={station.name}>
-            <td>{station.name}</td>
-            <td>{station.distanceText}</td>
-            <td>{station.bikes}</td>
+                {(this.state.closestSations.map(station =>
+                  <tr
+                    key={station.name}
+                    value = {station.name}
+                  >
+                    <td>
+                      <a id={station.name} className='btn waves-effect waves-light z-depth-5' type='button' onClick={this.onClick}>
+                       {station.name}  
+                    </a> 
+                    </td>
+                    <td>{station.distanceText}</td>
+                    <td>{station.bikes}</td>
           </tr>))}
         </tbody>
       </table>
-      <button className='btn waves-effect waves-light z-depth-5 mapButton' type='button' onClick={this.onClick}>
-              Walk Way 
-      </button>
       </div>
           
     </div>
