@@ -10,12 +10,6 @@ import {
   LoadScript,
   Autocomplete,
 } from "@react-google-maps/api";
-import {
-  geocodeByAddress,
-  geocodeByPlaceId,
-  getLatLng,
-} from "react-places-autocomplete";
-import PlacesAutocomplete from "react-places-autocomplete";
 import { ModalComment } from "../components/Modal";
 import InfoBoxString from "../components/InfoBoxString";
 // import PlacesSearchBox from "../components/PlacesSearchBox"

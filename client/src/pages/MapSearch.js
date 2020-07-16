@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../assets/css/style.css";
 import Nav from '../components/Nav';
-import PlacesSearchBox from "../components/PlacesSearchBox"
+import LoactionSearch from "../components/LocationSearch"
 import DefaultMapMarker from "../components/DefaultMapMarker"
 import CustomMapMarker from "../components/CustomMapMarker"
 import DirectionsOverlay from "../components/DirectionsOverlay"
@@ -10,6 +10,8 @@ import { ModalComment } from "../components/Modal";
 import api from "../utils/API"
 
 import { BicyclingLayer, GoogleMap, LoadScript} from "@react-google-maps/api";
+import { PrimaryButton } from '../components/Buttons';
+import LocationSearch from '../components/LocationSearch';
 
 const containerFull = {
   width: '100vw',
@@ -56,7 +58,7 @@ class GoogleMapPage extends Component {
       response: null,
       center: { lat: 43.651070, lng:  -79.347015 },
       zoom: 15,
-      searchBoxMessage: '',
+      searchBoxMessage: 'Find your Destination Station',
       searchResult: null,
       places: [],
       origin: null,
@@ -92,9 +94,31 @@ class GoogleMapPage extends Component {
 
   selectPlace = place => {
     if(this.state.destination === null)
-      this.setState({ destination: place});
+      this.setState({ 
+        destination: place,    
+        searchResult: null,             
+        places: [...this.state.places].filter(p => p === place)});
     else
-      this.setState({origin: place});
+      this.setState({
+        origin: place, 
+        searchResult: null,             
+        places: this.state.places.filter(p => p === place )});
+  }
+
+  selectCurrentLocation = _ => {
+    console.log("current location click")
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position.coords);
+      this.setState({
+        searchResult: {
+          name: "Current Location",
+          location: { 
+            lat: position.coords.latitude, 
+            lng: position.coords.longitude  
+          }
+        }
+      })
+    });
   }
 
   /**
@@ -118,6 +142,7 @@ class GoogleMapPage extends Component {
           x.lat = parseFloat(x.lat);
           x.lng = parseFloat(x.lng);
           x.coordDiff = parseFloat(x.coordDiff);
+          x.obj_type = "bixi";
         });
 
         // Retrieve realtime data for stations returned by initial search
@@ -168,37 +193,48 @@ class GoogleMapPage extends Component {
               mapContainerStyle={containerStyle}
               center={this.state.center} 
               zoom={this.state.zoom}
-                //onLoad={onLoad}
-                // onUnmount={onUnmount}
               >
-
-                {(this.state.origin === null || this.state.destination === null) &&
-                <PlacesSearchBox 
-                  placeholder={this.state.searchBoxMessage}
-                  bounds={searchBounds}
-                  onPlaceChanged={this.onSearchResultChanged}/>}
-
+                <LocationSearch 
+                origin={this.state.origin} 
+                destination={this.state.destination}
+                searchBoxMessage={this.state.searchBoxMessage} 
+                searchBounds={searchBounds} 
+                useCurrentLocation={this.selectCurrentLocation}
+                onSearchResultChanged={this.onSearchResultChanged}/>
                 {this.state.places}
 
                 {this.state.searchResult !== null &&
                   <DefaultMapMarker location={this.state.searchResult.location}/>}
                 <ModalComment />
                 <BicyclingLayer/>
-                  
+
+                { /** If a destination, but not origin, has been selected, convert its map marker into a non-clickable one*/
+                  (this.state.destination !== null &&  this.state.origin === null) &&
+                    <DefaultMapMarker location={this.state.destination}/>
+                }                  
+
+                { /** If an origin has been selected, convert its map marker into a non-clickable one*/
+                  (this.state.origin !== null && this.state.destination === null ) &&
+                    <DefaultMapMarker location={this.state.origin}/>
+                }                  
+
+
                 <PlaceCardContainer>
-                  {this.state.destination !== null &&
+                  { /** If a destination has been selected, show its location card */
+                  this.state.destination !== null &&
                       <PlaceCard 
                         type="Destination" 
                         place={this.state.destination} discardPlace={() => this.setState({destination:null})}/>
                   }
 
-                  {
+                  { /** If an origin has been selected, show its location card */
                     this.state.origin !== null &&
                     <PlaceCard type="Origin" place={this.state.origin} discardPlace={() => this.setState({origin: null})}/>
                   }
                 </PlaceCardContainer>
 
-                {
+
+                {/** If an origin and destination have been seelcted, show route */
                   (this.state.origin !== null && this.state.destination !== null) && (
                 <DirectionsOverlay 
                   origin={this.state.origin}
