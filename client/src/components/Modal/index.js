@@ -186,6 +186,7 @@ class ModalComment extends Component {
           id="modal1"
           className="modal"
         >
+        {/* Comment functionality still to be completed */}
           <div className="modal-content" id="commentsModal" data-reveal>
             <form>
               <span className="display-inline-block">
