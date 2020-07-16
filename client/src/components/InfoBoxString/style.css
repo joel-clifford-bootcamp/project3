@@ -7,10 +7,12 @@
   padding: 10px;
 }
 
-.locationName {
+h5 {
   font-size: 1.5rem;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
 
 #bodyContent {
@@ -20,9 +22,18 @@
 
 .container{
   padding: 5px;
-  margin-left: 0;
 }
 
-.row{
+/* .row{
   padding: 5px;
+} */
+
+.column {
+  padding-left: 10px;
+}
+
+.commentTable {
+  padding-left: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: '14px';
 }

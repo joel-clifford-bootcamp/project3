@@ -1,15 +1,28 @@
-#modalLink, .buttonTag {
+.buttonTag {
   background-color: #78bcc5ff;
   color: white;
-  /* color: grey; */
 }
 
-#modalLink:hover, #modalLink:active {
+#modalLink {
+  background-color: #78bcc5ff;
+  width: 100%;
+  border-radius: 25px;
+  color: white;
+  padding: 1px 0 1px 0;
+}
+
+#modalLink:hover {
   background-color: #00bfa5;
 }
 
-.div {
-  padding: 20px;
+#modalLink:active {
+  background-color: #00bfa5;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+#modalLink:focus {
+  background-color: #00bfa5;
 }
 
 .rating, .divAuthor, .divLocation {
