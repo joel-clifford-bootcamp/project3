@@ -65,10 +65,10 @@ function InfoBoxString(props) {
       </Row>
       <Row>
         <Column width="6">
-          <ModalButton addComment={addComment} />
+          {/* <ModalButton addComment={addComment} /> */}
         </Column>
         <Column width="6">
-          <PrimaryButton>Select</PrimaryButton>
+          <PrimaryButton onClick={() => props.selectPlace(props.place)}>Select</PrimaryButton>
         </Column>
       </Row>
       {/* <Row>

@@ -23,10 +23,9 @@ function CustomMapMarker( props ) {
             position={{lat:props.place.lat, lng:props.place.lng}}>
                 { hideInfoWindow ? '' :
                 <InfoWindow onCloseClick={handleClick}>
-                    <InfoBoxString place={props.place} name={props.place.name}/>
+                    <InfoBoxString place={props.place} name={props.place.name} selectPlace={props.selectPlace}/>
                 </InfoWindow> }
             </Marker>
-
     )
 }
 

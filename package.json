@@ -37,6 +37,8 @@
     "node-cron": "^2.0.3",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "react-dom": "^16.13.1",
+    "react-materialize": "^3.9.2",
     "react-moment": "^0.9.7",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^5.2.0",

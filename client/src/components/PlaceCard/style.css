@@ -1,0 +1,29 @@
+.place-card{
+    background-color: #78bcc5ff;
+    margin-left: 10px;
+    width: 300px;
+}
+
+.location-card-content{
+    padding: 10px
+}
+
+.small{
+    height: 20px;
+    width: 20px;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.dicard-btn{
+    position: relative;
+right: 10px;
+}
+
+p{
+    margin: 0
+}
+
+.place-card-container{
+    margin-top: 65px;
+}
