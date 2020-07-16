@@ -123,19 +123,6 @@ class FindRoute extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  handleChange = (address) => {
-    // handleChange = (originAddress, destinationAddress) => {
-    this.setState({ address });
-    // this.setState({ originAddress, destinationAddress });
-  };
-
-  handleSelect = (address) => {
-    geocodeByAddress(address)
-      .then((results) => getLatLng(results[0]))
-      .then((latLng) => console.log("Success", latLng))
-      .catch((error) => console.error("Error", error));
-  };
-
   onLoad(autocomplete) {
     console.log("autocomplete: ", autocomplete);
 
@@ -373,13 +360,13 @@ class FindRoute extends Component {
                   </div>
                 </div>
               </div>
-              <button
-                className="btn signInBtn z-depth-5 mapButton"
-                type="button"
-                onClick={this.onClick}
-              >
-                Build Route
-              </button>
+                <button
+                  className="btn waves-effect waves-light z-depth-5 mapButton"
+                  type="button"
+                  onClick={this.onClick}
+                >
+                  Build Route
+                </button>
               <table className="row z-depth-5">
                 <thead className="thead">
                   <tr>
@@ -419,6 +406,7 @@ class FindRoute extends Component {
               </table>
               <button
                 className="btn waves-effect waves-light z-depth-5 mapButton"
+            // className="btn z-depth-5 mapButton"
                 type="button"
                 onClick={this.onClick}
               >
