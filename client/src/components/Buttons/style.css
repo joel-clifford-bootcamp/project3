@@ -1,0 +1,21 @@
+#selectButton {
+  background-color: #78bcc5ff;
+  width: 100%;
+  border-radius: 25px;
+  color: white;
+  padding: 1px 0 1px 0;
+}
+
+#selectButton:hover {
+  background-color: #00bfa5;
+}
+
+#selectButton:active {
+  background-color: #00bfa5;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+#selectButton:focus {
+  background-color: #78bcc5ff;
+}

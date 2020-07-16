@@ -1,7 +1,12 @@
 import React from "react"
+import "./style.css";
+
 
 export const PrimaryButton = props => (
     <div className="div">
-        <a class={"waves-effect waves-light btn"} onClick={props.onClick}>{props.children}</a>
+        <a className={"btn"} 
+            id="selectButton" onClick={props.onClick} 
+            >{props.children}</a>
     </div>
 )
+
