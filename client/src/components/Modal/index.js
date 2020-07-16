@@ -22,7 +22,6 @@ class ModalButton extends Component {
     this.setState({
       showModal: false,
     })
-
   }
 
   render(props) {
