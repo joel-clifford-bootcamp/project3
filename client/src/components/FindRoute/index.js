@@ -11,6 +11,7 @@ import {
 } from "@react-google-maps/api";
 import { ModalComment } from "../Modal";
 import InfoBoxString from "../InfoBoxString";
+import PlacesSearchBox from "../PlacesSearchBox";
 import M from "materialize-css";
 import "../../assets/css/style.css";
 
@@ -41,6 +42,30 @@ const divStyle = {
 //   console.log('infoWindow: ', infoWindow)
 // }
 
+// api libraries for LoadScript
+const libraries = ["places"];
+
+// Bounds for autocomplete search results
+const searchBounds = [
+  { lat: 43.6292253, lng: -79.4687767 },
+  { lat: 43.6816042, lng: -79.3252018 },
+];
+
+// Convert object returned form places API to a custom one
+const getPlaceObject = (googlePlace) => {
+  return {
+    location: {
+      lat: googlePlace.geometry.location.lat(),
+      lng: googlePlace.geometry.location.lng(),
+    },
+    icon: googlePlace.icon,
+    viewport: googlePlace.geometry.viewport,
+    addressElement: googlePlace.adr_address,
+    name: googlePlace.name,
+    address: googlePlace.formatted_address,
+  };
+};
+
 class FindRoute extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +81,25 @@ class FindRoute extends Component {
       duration: "", // time in hours and minutes
       showInfoWindow: false,
       infoWindowPosition: {},
+      places: [],
+    };
+
+    const onOriginChanged = (autocomplete) => {
+      if (autocomplete !== null) {
+        // setDestination(autocomplete.getPlace())
+        this.setState({ ...this.state, origin: autocomplete.getPlace() });
+      } else {
+        console.log("Autocomplete is not loaded yet!");
+      }
+    };
+
+    const onDestinationChanged = (autocomplete) => {
+      if (autocomplete !== null) {
+        // setDestination(autocomplete.getPlace())
+        this.setState({ ...this.state, destination: autocomplete.getPlace() });
+      } else {
+        console.log("Autocomplete is not loaded yet!");
+      }
     };
 
     this.directionsCallback = this.directionsCallback.bind(this);
@@ -117,41 +161,46 @@ class FindRoute extends Component {
   render() {
     return (
       <div>
-        <GoogleMap
-          // Map container
-          id="map-canvas"
-          // Initial zoom
-          zoom={10}
-          // Map initial center in Toronto
-          center={center}
-          // onClick={() => console.log("Map clicked!")}
-        >
-          {/* Child components, such as markers, info windows, etc. */}
-          {this.state.duration === "" &&
-            this.state.destination !== "" &&
-            this.state.origin !== "" && (
-              <DirectionsService
-                // required
-                options={{
-                  // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                  destination: this.state.destination,
-                  origin: this.state.origin,
-                  travelMode: this.state.travelMode,
-                }}
-                // required
-                callback={this.directionsCallback}
-                // optional
-                onLoad={(directionsService) => {
-                  console.log(
-                    "DirectionsService onLoad directionsService: ",
-                    directionsService
-                  );
-                }}
-                // optional
-                onUnmount={(directionsService) => {}}
-              />
-            )}
-          {/* <Marker
+        {/* <LoadScript
+          googleMapsApiKey="AIzaSyDCjcIFpFhSIYjZCOl4WnzOGLhqNqWxH9k"
+          libraries={libraries}
+        > */}
+          <GoogleMap
+            // Map container
+            id="map-canvas"
+            // Initial zoom
+            zoom={10}
+            // Map initial center in Toronto
+            center={center}
+            // onClick={() => console.log("Map clicked!")}
+          >
+            {/* {this.setState.places} */}
+            {/* Child components, such as markers, info windows, etc. */}
+            {this.state.duration === "" &&
+              this.state.destination !== "" &&
+              this.state.origin !== "" && (
+                <DirectionsService
+                  // required
+                  options={{
+                    // eslint-disable-line react-perf/jsx-no-new-object-as-prop
+                    destination: this.state.destination,
+                    origin: this.state.origin,
+                    travelMode: this.state.travelMode,
+                  }}
+                  // required
+                  callback={this.directionsCallback}
+                  // optional
+                  onLoad={(directionsService) => {
+                    console.log(
+                      "DirectionsService onLoad directionsService: ",
+                      directionsService
+                    );
+                  }}
+                  // optional
+                  onUnmount={(directionsService) => {}}
+                />
+              )}
+            {/* <Marker
             position={position}
             // onLoad={onLoad}
             onClick={() => this.setState({
@@ -172,65 +221,74 @@ class FindRoute extends Component {
           </InfoWindow>
           )}
           <ModalComment addComment={this.addComment}/> */}
-          {/* <ModalCommentContainer /> */}
-          {this.state.response !== null && (
-            <DirectionsRenderer
-              // required
-              options={{
-                // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                directions: this.state.response,
-              }}
-              // optional
-              onLoad={(directionsRenderer) => {
-                console.log(
-                  "DirectionsRenderer onLoad directionsRenderer: ",
-                  directionsRenderer
-                );
-              }}
-              // optional
-              onUnmount={(directionsRenderer) => {
-                console.log(
-                  "DirectionsRenderer onUnmount directionsRenderer: ",
-                  directionsRenderer
-                );
-              }}
-            />
-          )}
-          {this.state.destination !== "" &&
-            this.state.origin !== "" &&
-            this.state.distance === "" && (
-              <DistanceMatrixService
-                // required
+            {/* <ModalCommentContainer /> */}
+            {this.state.response !== null && (
+              <DirectionsRenderer
                 // required
                 options={{
                   // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                  destinations: [this.state.destination],
-                  origins: [this.state.origin],
-                  travelMode: this.state.travelMode,
+                  directions: this.state.response,
                 }}
-                // required
-                callback={this.distancesCallback}
                 // optional
-                onLoad={(distanceMatrixService) => {
+                onLoad={(directionsRenderer) => {
                   console.log(
                     "DirectionsRenderer onLoad directionsRenderer: ",
-                    distanceMatrixService
+                    directionsRenderer
                   );
                 }}
                 // optional
-                onUnmount={(distanceMatrixService) => {
+                onUnmount={(directionsRenderer) => {
                   console.log(
                     "DirectionsRenderer onUnmount directionsRenderer: ",
-                    distanceMatrixService
+                    directionsRenderer
                   );
                 }}
               />
             )}
-        </GoogleMap>
+            {this.state.destination !== "" &&
+              this.state.origin !== "" &&
+              this.state.distance === "" && (
+                <DistanceMatrixService
+                  // required
+                  // required
+                  options={{
+                    // eslint-disable-line react-perf/jsx-no-new-object-as-prop
+                    destinations: [this.state.destination],
+                    origins: [this.state.origin],
+                    travelMode: this.state.travelMode,
+                  }}
+                  // required
+                  callback={this.distancesCallback}
+                  // optional
+                  onLoad={(distanceMatrixService) => {
+                    console.log(
+                      "DirectionsRenderer onLoad directionsRenderer: ",
+                      distanceMatrixService
+                    );
+                  }}
+                  // optional
+                  onUnmount={(distanceMatrixService) => {
+                    console.log(
+                      "DirectionsRenderer onUnmount directionsRenderer: ",
+                      distanceMatrixService
+                    );
+                  }}
+                />
+              )}
+          </GoogleMap>
+
         <div id="right-panel" className="center-align">
           <div className="row z-depth-5">
             <div className="col s12">
               <div className="form-group">
+              {/* <PlacesSearchBox
+                bounds={searchBounds}
+                onPlaceChanged={this.onOriginChanged}
+              />
+             <PlacesSearchBox
+                bounds={searchBounds}
+                onPlaceChanged={this.onDestinationChanged}
+              /> */}
                 <label className="white-text" htmlFor="ORIGIN">
                   Origin
                 </label>
@@ -313,6 +371,7 @@ class FindRoute extends Component {
             Find parking
           </button>
         </div>
+        {/* </LoadScript> */}
       </div>
     );
   }

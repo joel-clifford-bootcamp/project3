@@ -27,10 +27,11 @@ class ModalButton extends Component {
 
   render(props) {
 
+
   return (
     <div className="div">
       <a
-        className="waves-effect waves-light btn modal-trigger"
+        className="btn modal-trigger"
         data-target="modal1"
         id="modalLink"
         // onClick={() => this.setState({
