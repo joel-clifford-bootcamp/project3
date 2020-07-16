@@ -16,6 +16,7 @@ import InfoBoxString from "../components/InfoBoxString";
 import Nav from "../components/Nav";
 import M from "materialize-css";
 import "../style.css";
+import googleKeys from "../utils/google_keys.json"
 
 // const mapContainerStyle = {
 //   height: "400px",
@@ -191,8 +192,7 @@ class FindRoute extends Component {
       <div>
         <Nav />
         <LoadScript
-          // googleMapsApiKey="AIzaSyDCjcIFpFhSIYjZCOl4WnzOGLhqNqWxH9k"
-          googleMapsApiKey="AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE"
+          googleMapsApiKey={googleKeys.key2}
           libraries={libraries}
         >
           <div className="container">
