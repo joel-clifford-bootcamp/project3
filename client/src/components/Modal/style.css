@@ -46,3 +46,26 @@
    font-weight: 900;
    /* position: absolute; */
 }
+
+#submitReview {
+  background-color: #78bcc5ff;
+  max-width: 100%;
+  min-width: 12%;
+  border-radius: 25px;
+  color: white;
+  padding: 1px 5px 1px 5px;
+}
+
+#submitReview:hover {
+  background-color: #00bfa5;
+}
+
+#submitReview:active {
+  background-color: #00bfa5;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+#submitReview:focus {
+  background-color: #00bfa5;
+}
