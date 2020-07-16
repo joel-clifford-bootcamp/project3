@@ -6,7 +6,7 @@ import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import MapContainer from "./components/MapContainer";
 import MapSearch from "./pages/MapSearch";
-
+import MapRoute from "./pages/MapRoute";
 
 function App() {
   
@@ -23,6 +23,11 @@ function App() {
           </Route>
 
           <Route exact path={["/route"]} >
+            {/* <MapContainer /> */}
+            <MapRoute />
+          </Route>
+
+          <Route exact path={["/route1"]} >
             <MapContainer />
           </Route>
 

@@ -157,10 +157,12 @@ THEN...I am presented with a list of cards.
 
 ## Usage
 * In order to run the application, after cloning the repository, open node in the project root directory and run 'npm install' in the terminal window
-* Ensure that MySQL is running and connected, and then copy the schema into it and run the file
-* Then run 'npm start'
+* Ensure that MySQL is running and connected, and then copy the schema file 'link_n_park.sql' into it and run the file
+* First run the server through 'node server.js' inside the project root directory
+* Refresh and redrop the database in MySQL
+* Close the server connection, then instead run 'npm start' inside the terminal window
 * If you are not automatically redirected, navigate to http://localhost:3000/ to view the application
-* In order to run the seed files, navigate to http://localhost:3001/api/bixi/seed
+* In order to run the seed files and populate the databases, navigate to http://localhost:3001/api/bixi/seed
 
 ## Links
 * Deployed URL: https://link-n-park.herokuapp.com/
