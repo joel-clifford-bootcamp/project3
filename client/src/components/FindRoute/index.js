@@ -298,7 +298,7 @@ class FindRoute extends Component {
                   className="white"
                   type="text"
                   ref={this.getOrigin}
-                  defaultValue="CN Tower"
+                  // defaultValue="CN Tower"
                 />
               </div>
             </div>
@@ -314,7 +314,7 @@ class FindRoute extends Component {
                   className="white"
                   type="text"
                   ref={this.getDestination}
-                  defaultValue="University of Toronto"
+                  // defaultValue="University of Toronto"
                 />
               </div>
             </div>
