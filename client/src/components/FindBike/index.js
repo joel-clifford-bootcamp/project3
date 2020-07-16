@@ -186,7 +186,7 @@ class FindBike extends Component {
           >
             { /* Child components, such as markers, info windows, etc. */}
              {
-            (this.state.closestSations!==[]) &&(this.state.stations.slice(0,15).map(station =>
+            (this.state.closestSations!==[]) &&(this.state.stations.map(station =>
                 <DistanceMatrixService
                   // required
                  key={station.name}
