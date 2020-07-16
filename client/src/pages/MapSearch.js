@@ -1,27 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import "../assets/css/style.css";
 import Nav from '../components/Nav';
+import {SideNav} from "../components/SideNav";
 import PlacesSearchBox from "../components/PlacesSearchBox"
 import DefaultMapMarker from "../components/DefaultMapMarker"
 import CustomMapMarker from "../components/CustomMapMarker"
-import MapInfoWindow from "../components/MapInfoWindow"
 import { ModalComment } from "../components/Modal";
 import api from "../utils/API"
 
-import {
-  Autocomplete,
-  BicyclingLayer,
-  GoogleMap,
-  StandaloneSearchBox,
-  DirectionsRenderer,
-  DirectionsService,
-  DistanceMatrixService,
-  InfoWindow,
-  Marker,
-  InfoBox,
-  LoadScript,
-} from "@react-google-maps/api";
-import InfoBoxString from '../components/InfoBoxString';
+import { BicyclingLayer, GoogleMap, LoadScript} from "@react-google-maps/api";
 
 
 const containerFull = {
@@ -62,10 +49,10 @@ function GoogleMapPage() {
   const [map, setMap] = useState(null);
   const [center, setCenter ] = useState({ lat: 43.651070, lng:  -79.347015 })
   const [zoom, setZoom ] = useState(15)
-  const [destination, setDestination ] = useState({ location: null });
   const [places, setPlaces ] = useState([]);
-  const [selectedPlace, setSelectedPlace ] = useState(null); 
   const [startLocation, setStart ] = useState({location:null});
+  const [destination, setDestination ] = useState({ location: null });
+
 
   const onDestinationChanged = autocomplete => {
     if (autocomplete !== null) {
@@ -73,10 +60,6 @@ function GoogleMapPage() {
     } else {
       console.log('Autocomplete is not loaded yet!')
     }
-  }
-
-  const selectPlace = (place) => {
-    setSelectedPlace(place);
   }
 
   /**
@@ -101,33 +84,38 @@ function GoogleMapPage() {
           .then(realTimeResp => {
             // Attach realtime data to each result
             stationsResp.data.forEach(station => {
-              let realTimeData = realTimeResp.data.filter(rt => rt.number == station.id);
+              let realTimeData = realTimeResp.data.filter(rt => rt.number === station.id);
               station["currentData"] = realTimeData.length > 0 ? realTimeData[0] : {}; 
             });
           })
           .catch(err => console.log(err));
           
-          setPlaces(stationsResp.data.map(place => <CustomMapMarker key={place.id} selectPlace={selectPlace} place={place}/>));
+          setPlaces(stationsResp.data.map(place => <CustomMapMarker key={place.id} place={place}/>));
         })
         .catch(err => console.log(err));
     }
   }, [destination])
 
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
+  // const onLoad = React.useCallback(function callback(map) {
+  //   const bounds = new window.google.maps.LatLngBounds();
+  //   map.fitBounds(bounds);
+  //   setMap(map)
+  // }, [])
  
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+  // const onUnmount = React.useCallback(function callback(map) {
+  //   setMap(null)
+  // }, [])
  
   return (
     <div style={containerFull}>
         <LoadScript googleMapsApiKey="AIzaSyDCjcIFpFhSIYjZCOl4WnzOGLhqNqWxH9k" libraries={libraries}>
         <Nav />
+            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large" style={{backgroundColor:"green", color:"red"}}><i class="material-icons">MENU</i></a>
+          <div style={{height:"100%"}}>
+          <SideNav id="slide-out" style={{height: "100%", width:"200px", background: "red"}}>
+            <li>Test</li>
+          </SideNav>
           <GoogleMap 
             mapContainerStyle={containerStyle}
             center={center} 
@@ -142,8 +130,10 @@ function GoogleMapPage() {
               {places}
               <DefaultMapMarker location={destination.location}/>
               <ModalComment />
+
               <BicyclingLayer/>
           </GoogleMap>
+          </div>
       </LoadScript>
     </div>
   )
