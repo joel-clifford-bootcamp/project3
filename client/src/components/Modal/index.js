@@ -22,11 +22,9 @@ class ModalButton extends Component {
     this.setState({
       showModal: false,
     })
-
   }
 
   render(props) {
-
 
   return (
     <div className="div">
@@ -125,8 +123,6 @@ class ModalComment extends Component {
     
     M.toast({html: 'Comment posted!'})
    
-
-
     if (!this.isFormValid()) {
       this.setState({ error: "All fields are required." });
       return;
