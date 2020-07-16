@@ -24,14 +24,6 @@ function Home() {
               <a className="linkNames" href="/route">Map A Safe Route</a>
             </li>
             <li className="tab col s3">
-              <Link  to="/parking" className="buttonLink">
-                <button className="button buttonHome">
-                  <i className="medium material-icons center">local_parking</i>
-                </button>
-              </Link>
-              <a className="linkNames" href="/station">Park Your Bike</a>
-            </li>
-            <li className="tab col s3">
              <Link  to="/bikeshare" className="buttonLink">
                   <button className="button buttonHome">
                     <i className="medium material-icons center">location_on</i>
@@ -39,8 +31,20 @@ function Home() {
               </Link> 
               <a className="active linkNames" href="/bikeshare">Find a Bixi Bike</a>
             </li>
+            {/* "Park Your Bike" Still to be completed */}
             <li className="tab col s3">
-              <Link  to="/station" className="buttonLink">
+              {/* <Link  to="/parking" className="buttonLink"> */}
+              <Link  to="#" className="buttonLink">
+                <button className="button buttonHome">
+                  <i className="medium material-icons center">local_parking</i>
+                </button>
+              </Link>
+              <a className="linkNames" href="/station">Park Your Bike</a>
+            </li>
+            {/* "Rate a Parking Spot" Still to be completed */}
+            <li className="tab col s3">
+              {/* <Link  to="/station" className="buttonLink"> */}
+              <Link  to="#" className="buttonLink">
                   <button className="button buttonHome">
                       <i className="medium material-icons center">star</i>
                   </button>

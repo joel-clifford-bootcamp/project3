@@ -13,20 +13,22 @@
 * This application allows municipalities to supplement their own information with more up-to-date crowd-sourced information.
 * This application will also entice users to actively contribute to the service the app offers a tangible benefit to cyclists by streamlining the process of locating parking spaces near their location and destination, and flagging issues with the underlying data; it also provides them with mapped routes.
 
-
-## Features
-* Secure Log-in/Sign-up
+## Current Features
+* Log-in/Sign-up
 * User information is rendered in their profile page
 * Ability for users to upload a profile picture to a user Profile
 * Interactive buttons on the home page which bring users to separate pages which allow them to:
     * Map a route
     * Find a bixi bike station
+* Mobile responsive
+
+## Future Features
+* Authentication
+* Interactive buttons on the home page which bring users to separate pages which allow them to:
     * Find a bike parking spot
 * Ability for users to view comments on a particular Bixi bike station or bike parking spot
 * Ability for users to rate a bixi bike station or bike parking spot
 * Ability for users to add comments on a bixi bike station or bike parking spot
-* Mobile responsive
-
 
 ## User Story
 ```
@@ -156,14 +158,15 @@ THEN...I am presented with a list of cards.
 * [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial)
 
 ## Usage
-* In order to run the application, after cloning the repository, open node in the project root directory and run 'npm install' in the terminal window
+* In order to run the application, firs clone the GitHub repository onto your local device
+* Open node in the project root directory and run 'npm install' in the terminal window
 * Ensure that MySQL is running and connected, and then copy the schema file 'link_n_park.sql' into it and run the file
-* First run the server through 'node server.js' inside the project root directory
+* You may need to first run the server through 'node server.js' inside the project root directory
 * Refresh and redrop the database in MySQL
 * Close the server connection, then instead run 'npm start' inside the terminal window
 * If you are not automatically redirected, navigate to http://localhost:3000/ to view the application
 * In order to run the seed files and populate the databases, navigate to http://localhost:3001/api/bixi/seed
 
 ## Links
-* Deployed URL: https://link-n-park.herokuapp.com/
+* Deployed URL: https://link-n-park.herokuapp.com/ (not yet functional due to issues with build)
 * GitHub repository: https://github.com/joel-clifford-bootcamp/project3
