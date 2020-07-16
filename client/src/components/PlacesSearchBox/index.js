@@ -8,6 +8,8 @@ class PlacesSearchBox extends Component  {
     this.onPlaceChanged = props.onPlaceChanged;
     this.autocomplete = null
 
+    this.inputBox = null;
+
     this.onLoad = this.onLoad.bind(this)
     this.onPlaceChanged = this.onPlaceChanged.bind(this)
   }
@@ -21,7 +23,9 @@ class PlacesSearchBox extends Component  {
     <Autocomplete
       bounds={this.props.bounds}
       onLoad={this.onLoad}
-      onPlaceChanged={() => this.onPlaceChanged(this.autocomplete)}
+      onPlaceChanged={() => { 
+          this.onPlaceChanged(this.autocomplete);
+        }}
       >
         <input
           type="text"
@@ -39,7 +43,7 @@ class PlacesSearchBox extends Component  {
             textOverflow: `ellipses`,
             position: "absolute",
             marginTop: "9px",
-            left: "25%",
+            left: "220px",
           }}
         />
       </Autocomplete> 
