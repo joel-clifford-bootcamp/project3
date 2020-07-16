@@ -2,8 +2,10 @@ import React from "react";
 import Nav from "../components/Nav";
 import {Link} from "react-router-dom";
 import "../style.css";
+import api from "../utils/API"
 
 function Home() {
+  
   return (
     <div className="homepageBackground">
       <Nav/>
@@ -34,7 +36,7 @@ function Home() {
             {/* "Park Your Bike" Still to be completed */}
             <li className="tab col s3">
               {/* <Link  to="/parking" className="buttonLink"> */}
-              <Link  to="#" className="buttonLink">
+              <Link  to="#" className="buttonLink disabled">
                 <button className="button buttonHome">
                   <i className="medium material-icons center">local_parking</i>
                 </button>
@@ -44,12 +46,12 @@ function Home() {
             {/* "Rate a Parking Spot" Still to be completed */}
             <li className="tab col s3">
               {/* <Link  to="/station" className="buttonLink"> */}
-              <Link  to="#" className="buttonLink">
+              <Link  to="#" className="buttonLink disabled">
                   <button className="button buttonHome">
                       <i className="medium material-icons center">star</i>
                   </button>
               </Link>
-              <a href="/parking" className="linkNames">Rate a Parking Spot</a>
+              <a href="/" className="linkNames">Rate a Parking Spot</a>
             </li>
           </ul>
         </div> 
@@ -95,7 +97,7 @@ function Home() {
               </Link>
             </li>
             <li>  
-              <a href="/parking" className="linkNames">Rate a Parking Spot</a>
+              <a href="/" className="linkNames">Rate a Parking Spot</a>
             </li>
           </ul>
         </div>    

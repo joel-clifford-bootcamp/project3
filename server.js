@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, './client/build')));
 
   // Regularly update data from external APIs 
-  // dataRefreshCron();
+  dataRefreshCron();
 }
 else{
   app.use(express.static("client/public"));
@@ -43,14 +43,14 @@ else{
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({ force: false }).then(function() {
   
-  // if (process.env.NODE_ENV !== "production") {
-  //   db.BixiStation.findAll({}).then(data => {
-  //     if(data.length === 0){
-  //       refreshBixiStations();
-  //       updateAllPackages();
-  //     }
-  //   });
-  // }
+  if (process.env.NODE_ENV !== "production") {
+    db.BixiStation.findAll({}).then(data => {
+      if(data.length === 0){
+        refreshBixiStations();
+        updateAllPackages();
+      }
+    });
+  }
   
   // Start the API server
   app.listen(PORT, function() {
