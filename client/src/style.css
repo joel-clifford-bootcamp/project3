@@ -85,6 +85,27 @@ form {
     background-color: #78bcc5ff;
 }
 
+.mapButton {
+  background-color: #78bcc5ff;
+  max-width: 90%;
+  min-width: 20%;
+  border-radius: 25px;
+}
+
+.mapButton:hover {
+  background-color: #00bfa5;
+}
+
+.mapButton:active {
+  background-color: #00bfa5;
+  box-shadow: 0 2px #666;
+  transform: translateY(4px);
+}
+
+.mapButton:focus {
+  background-color: #78bcc5ff;
+}
+
 
 @media only screen and (max-width: 768px) {
   .signUpBackground {

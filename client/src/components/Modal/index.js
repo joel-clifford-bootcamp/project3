@@ -254,7 +254,8 @@ class ModalComment extends Component {
 
               <button
                 type="button"
-                className="btn waves-effect waves-dark buttonTag"
+                // className="btn waves-effect waves-dark buttonTag"
+                className="btn buttonTag"
                 type="submit"
                 name="action"
                 id="submitReview"
