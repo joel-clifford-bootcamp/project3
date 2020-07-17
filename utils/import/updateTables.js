@@ -97,13 +97,12 @@ const updateSingleObject = (map, modelType, existingObjects, updatedObject) => n
                 } 
 
                 // if any properties needed updating, save updated existing object
-                if(propertyUpdateCount > 0) {
-                    existingObject
-                    .save()
-                    .then(result => resolve(result))
-                    .catch(err => reject(err));
-                    setTimeout(function2, 100);
-                }
+                if(propertyUpdateCount > 0) 
+                    setTimeout(() => {
+                        existingObject
+                        .save()
+                        .then(result => resolve(result))
+                        .catch(err => reject(err))}, 100);
                 else
                     resolve();
             });
@@ -144,11 +143,10 @@ const addNewObject = (map, modelType, updatedObject) => new Promise((resolve, re
         const fields = {};
         data.forEach(([key, value]) => { fields[key] = value; });
        
-        setTimeout(function2, 100);
-
-        modelType.create(fields)
-            .then(result => resolve(result))
-            .catch(err => reject(err))
+        setTimeout( () => {
+            modelType.create(fields)
+                .then(result => resolve(result))
+                .catch(err => reject(err))}, 100);
     })
     .catch(err => reject(err));
 });
@@ -171,6 +169,9 @@ const printRecordCount = (message, count) => {
  */
 module.exports = (map, modelType, updatedData) => new Promise((resolve, reject) => {
     
+    // Several delays added to lessen load on jaws DB
+    setTimeout( () => {
+
     modelType.findAll()
     .then(existingData => {
 
@@ -207,6 +208,6 @@ module.exports = (map, modelType, updatedData) => new Promise((resolve, reject) 
         .catch(err => reject(err));
 
     })
-    .catch(err => reject(err));
+    .catch(err => reject(err))}, 10000);
 
 });
