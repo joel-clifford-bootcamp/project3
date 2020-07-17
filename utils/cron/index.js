@@ -7,5 +7,5 @@ const refreshDataPackages = require('../import/TorontoDataPackages');
  */
 module.exports = function() {
     cron.schedule('59 23 * * *', importBixiStations());
-    cron.schedule('30 2 * * *', refreshDataPackages());
+    // cron.schedule('30 2 * * *', refreshDataPackages());
 };
