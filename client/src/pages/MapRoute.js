@@ -23,8 +23,11 @@ if(process.env.google_key_2){
   googleKey = process.env.google_key_2
 }
 else{
+  try{
   const googleKeys = require("../utils/google_keys.json");
   googleKey = googleKeys.key2;
+  } catch {}
+  
 }
 
 // const mapContainerStyle = {
