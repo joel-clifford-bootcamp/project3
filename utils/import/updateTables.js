@@ -97,11 +97,13 @@ const updateSingleObject = (map, modelType, existingObjects, updatedObject) => n
                 } 
 
                 // if any properties needed updating, save updated existing object
-                if(propertyUpdateCount > 0)
+                if(propertyUpdateCount > 0) {
                     existingObject
                     .save()
                     .then(result => resolve(result))
                     .catch(err => reject(err));
+                    setTimeout(function2, 100);
+                }
                 else
                     resolve();
             });
@@ -141,7 +143,9 @@ const addNewObject = (map, modelType, updatedObject) => new Promise((resolve, re
 
         const fields = {};
         data.forEach(([key, value]) => { fields[key] = value; });
-           
+       
+        setTimeout(function2, 100);
+
         modelType.create(fields)
             .then(result => resolve(result))
             .catch(err => reject(err))
