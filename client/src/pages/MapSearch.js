@@ -8,11 +8,20 @@ import DirectionsOverlay from "../components/DirectionsOverlay"
 import { PlaceCard, PlaceCardContainer } from "../components/PlaceCard"
 import { ModalComment } from "../components/Modal";
 import api from "../utils/API"
-import googleKeys from "../utils/google_keys.json"
 
 import { BicyclingLayer, GoogleMap, LoadScript} from "@react-google-maps/api";
 import { PrimaryButton } from '../components/Buttons';
 import LocationSearch from '../components/LocationSearch';
+
+let googleKey;
+
+if(process.env.google_key_1) {
+  googleKey = process.env.google_key_1
+}
+else{
+  const googleKeys = require("../utils/google_keys.json");
+  googleKey = googleKeys.key1;
+}
 
 const containerFull = {
   width: '100vw',
@@ -188,7 +197,7 @@ class GoogleMapPage extends Component {
     <div style={containerFull}>
         <Nav />
           <div style={{height:"100%"}}>
-          <LoadScript googleMapsApiKey={googleKeys.key1} libraries={libraries}>
+          <LoadScript googleMapsApiKey={googleKey} libraries={libraries}>
             <GoogleMap 
               id="map-canvas"
               mapContainerStyle={containerStyle}
