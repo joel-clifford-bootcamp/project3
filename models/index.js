@@ -11,8 +11,12 @@ var db        = {};
 if(process.env.JAWSDB_URL){
   var sequelize = new Sequelize(process.env.JAWSDB_URL)
 } else {
-  var config    = require(__dirname + '/../config/connection_config.json')[env];
-  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  try{
+    var config    = require(__dirname + '/../config/connection_config.json')[env];
+    var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  } catch {
+    
+  }
 }
 
 fs
