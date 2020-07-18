@@ -10,8 +10,8 @@ var db        = {};
 
 
 
-if(process.env.JAWDB.URL){
-  var sequelize = new Sequelize(process.env.JAWDB_URL);
+if(process.env.JAWSDB_URL){
+  var sequelize = new Sequelize(process.env.JAWSDB_URL);
 }
 else if(process.env.GCSDB_IP){
   var sequelize = new Sequelize("link_n_park", "heroku_app", process.env.GCSDB_PWD,{
