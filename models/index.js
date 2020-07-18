@@ -8,8 +8,14 @@ var env       = process.env.NODE_ENV || 'development';
 var db        = {};
 
 
-if(process.env.JAWSDB_URL){
-  var sequelize = new Sequelize(process.env.JAWSDB_URL)
+
+
+
+if(process.env.GCSDB_URL){
+  var sequelize = new Sequelize("link_n_park", "heroku_app", process.env.GCSDB_PWD,{
+    dialect: "mysql",
+    host: process.env.GCSDB_IP
+  });
 } else {
   try{
     var config    = require(__dirname + '/../config/connection_config.json')[env];
