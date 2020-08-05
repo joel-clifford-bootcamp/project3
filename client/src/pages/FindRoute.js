@@ -17,18 +17,23 @@ import Nav from "../components/Nav";
 import M from "materialize-css";
 import "../style.css";
 
-let googleKey;
 
-if(process.env.google_key_2){
-  googleKey = process.env.google_key_2
-}
-else{
-  try{
-  const googleKeys = require("../utils/google_keys.json");
-  googleKey = googleKeys.key2;
-  } catch {}
+/******************************************************************************/
+/* IMPORTANT: LoadsCript component and API shared using MapContainer component*/
+/******************************************************************************/
+
+// let googleKey;
+
+// if(process.env.google_key_2){
+//   googleKey = process.env.google_key_2
+// }
+// else{
+//   try{
+//   const googleKeys = require("../utils/google_keys.json");
+//   googleKey = googleKeys.key2;
+//   } catch {}
   
-}
+// }
 
 // const mapContainerStyle = {
 //   height: "400px",
@@ -202,11 +207,11 @@ class FindRoute extends Component {
   render() {
     return (
       <div>
-        <Nav />
-        <LoadScript
+        {/* <Nav /> */}
+        {/* <LoadScript
           googleMapsApiKey={googleKey}
           libraries={libraries}
-        >
+        > */}
           <div className="container">
             <GoogleMap
               // Map container
@@ -420,7 +425,7 @@ class FindRoute extends Component {
               </button>
             </div>
           </div>
-        </LoadScript>
+        {/* </LoadScript> */}
       </div>
     );
   }
