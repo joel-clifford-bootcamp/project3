@@ -8,7 +8,7 @@ const passport = require("./config/passport");
 
 const dataRefreshCron = require("./utils/cron/index");
 
-const refreshBixiStations = require('./utils/import/bixiStations'); 
+const refreshBixiStations = require('./utils/import/bixiStations');
 
 const updateAllPackages = require('./utils/import/TorontoDataPackages');
 
@@ -31,29 +31,33 @@ app.use(routes);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, './client/build')));
+    app.use(express.static(path.join(__dirname, './client/build')));
 
-  // Regularly update data from external APIs 
-  dataRefreshCron();
+    // Regularly update data from external APIs 
+    dataRefreshCron();
+} else {
+    app.use(express.static("client/public"));
 }
-else{
-  app.use(express.static("client/public"));
-}
+
+const routes = require("./routes");
+app.use(routes);
+
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({ force: false }).then(function() {
-  
-  if (process.env.NODE_ENV !== "production") {
-    db.BixiStation.findAll({}).then(data => {
-      if(data.length === 0){
-        refreshBixiStations();
-        updateAllPackages();
-      }
+
+    if (process.env.NODE_ENV !== "production") {
+        db.BixiStation.findAll({}).then(data => {
+            if (data.length === 0) {
+                refreshBixiStations();
+                updateAllPackages();
+            }
+        });
+    }
+
+
+    // Start the API server
+    app.listen(PORT, function() {
+        console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
     });
-  }
-  
-  // Start the API server
-  app.listen(PORT, function() {
-    console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-  });
 });

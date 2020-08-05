@@ -11,10 +11,14 @@ import {
   Autocomplete,
 } from "@react-google-maps/api";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import FindRoute from "../FindRoute";
+import FindRoute from "../../pages/FindRoute";
 import FindBike from "../FindBike";
 import FindParking from "../FindParking";
 import Nav from "../Nav";
+import MapSearch from "../../pages/MapSearch"
+
+// api libraries for LoadScript
+const libraries = ['places']
 
 class MapContainer extends Component {
   // function MapContainer() {
@@ -46,11 +50,11 @@ class MapContainer extends Component {
     return (
       <div>
         <Nav />
-        <LoadScript googleMapsApiKey="AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE">
+        <LoadScript googleMapsApiKey="AIzaSyDE2yBUEZx3Cup_pwq22o_WferVgBpgSdE" libraries={libraries}>
           <Router>
             <div>
               <Switch>
-                <Route exact path={["/route1"]}>
+                <Route exact path={["/route"]}>
                     <FindRoute />
                 </Route>
                 <Route exact path={["/station"]}>
@@ -58,6 +62,9 @@ class MapContainer extends Component {
                 </Route>
                 <Route exact path={["/parking"]}>
                   <FindParking />
+                </Route>
+                 <Route exact path={["/bikeshare"]}>
+                  <MapSearch />
                 </Route>
               </Switch>
             </div>

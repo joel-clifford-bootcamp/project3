@@ -13,17 +13,21 @@ import { BicyclingLayer, GoogleMap, LoadScript} from "@react-google-maps/api";
 import { PrimaryButton } from '../components/Buttons';
 import LocationSearch from '../components/LocationSearch';
 
-let googleKey;
+/**********************************************************************/
+/* IMPORTANT: LoadsCript and API shared used in MapContainer component*/
+/**********************************************************************/
 
-if(process.env.google_key_1) {
-  googleKey = process.env.google_key_1
-}
-else{
-  try{
-  const googleKeys = require("../utils/google_keys.json");
-  googleKey = googleKeys.key1;
-  } catch{}
-}
+// let googleKey;
+
+// if(process.env.google_key_1) {
+//   googleKey = process.env.google_key_1
+// }
+// else{
+//   try{
+//   const googleKeys = require("../utils/google_keys.json");
+//   googleKey = googleKeys.key1;
+//   } catch{}
+// }
 
 const containerFull = {
   width: '100vw',
@@ -35,8 +39,8 @@ const containerStyle = {
   height: '100%'
 };
 
-// api libraries for LoadScript
-const libraries = ['places']
+// // api libraries for LoadScript
+// const libraries = ['places']
 
 // Bounds for autocomplete search results
 const searchBounds = {
@@ -199,7 +203,7 @@ class GoogleMapPage extends Component {
     <div style={containerFull}>
         <Nav />
           <div style={{height:"100%"}}>
-          <LoadScript googleMapsApiKey={googleKey} libraries={libraries}>
+          {/* <LoadScript googleMapsApiKey={googleKey} libraries={libraries}> */}
             <GoogleMap 
               id="map-canvas"
               mapContainerStyle={containerStyle}
@@ -257,7 +261,7 @@ class GoogleMapPage extends Component {
                 
             </GoogleMap>
           
-          </LoadScript> 
+          {/* </LoadScript>  */}
         </div>
 
     </div>
