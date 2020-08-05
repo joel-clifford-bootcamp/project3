@@ -207,7 +207,7 @@ class FindRoute extends Component {
   render() {
     return (
       <div>
-        <Nav />
+        {/* <Nav /> */}
         {/* <LoadScript
           googleMapsApiKey={googleKey}
           libraries={libraries}

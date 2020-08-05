@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../assets/css/style.css";
-import Nav from '../components/Nav';
+// import Nav from '../components/Nav';
 import LoactionSearch from "../components/LocationSearch"
 import DefaultMapMarker from "../components/DefaultMapMarker"
 import CustomMapMarker from "../components/CustomMapMarker"
@@ -201,7 +201,7 @@ class GoogleMapPage extends Component {
   render() { 
     return(
     <div style={containerFull}>
-        <Nav />
+        {/* <Nav /> */}
           <div style={{height:"100%"}}>
           {/* <LoadScript googleMapsApiKey={googleKey} libraries={libraries}> */}
             <GoogleMap 
