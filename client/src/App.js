@@ -40,7 +40,7 @@ function App() {
           </Route>
 
           <Route exact path={["/bikeshare"]}>
-            <MapSearch/>
+            <MapContainer/>
           </Route>
 
           <Route exact path={["/profile"]}>
