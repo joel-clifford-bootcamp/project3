@@ -8,6 +8,7 @@ import {
   Marker,
   InfoBox,
   Autocomplete,
+  BicyclingLayer
 } from "@react-google-maps/api";
 import { ModalComment } from "../components/Modal";
 import InfoBoxString from "../components/InfoBoxString";
@@ -172,7 +173,8 @@ class FindRoute extends Component {
                     // optional
                     onUnmount={(directionsService) => {}}
                   />
-                )}
+              )}
+             <BicyclingLayer/>
               {this.state.response !== null && (
                 <DirectionsRenderer
                   // required
