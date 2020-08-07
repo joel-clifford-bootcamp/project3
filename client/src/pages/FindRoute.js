@@ -7,69 +7,21 @@ import {
   InfoWindow,
   Marker,
   InfoBox,
-  LoadScript,
   Autocomplete,
 } from "@react-google-maps/api";
 import { ModalComment } from "../components/Modal";
 import InfoBoxString from "../components/InfoBoxString";
 // import PlacesSearchBox from "../components/PlacesSearchBox"
 import Nav from "../components/Nav";
-import M from "materialize-css";
 import "../style.css";
 
 
-/******************************************************************************/
-/* IMPORTANT: LoadsCript component and API shared using MapContainer component*/
-/******************************************************************************/
-
-// let googleKey;
-
-// if(process.env.google_key_2){
-//   googleKey = process.env.google_key_2
-// }
-// else{
-//   try{
-//   const googleKeys = require("../utils/google_keys.json");
-//   googleKey = googleKeys.key2;
-//   } catch {}
-  
-// }
-
-// const mapContainerStyle = {
-//   height: "400px",
-//   width: "800px"
-// }
-
-//Toronto, ON
 const center = {
   lat: 43.65107,
   lng: -79.347015,
 };
 
-const position = {
-  lat: 43.6426,
-  lng: -79.3871,
-};
 
-const divStyle = {
-  background: `white`,
-  border: `1px solid white`,
-  padding: 15,
-};
-
-// const onLoad = marker => {
-// = infoWindow => {
-//   console.log('infoWindow: ', infoWindow)
-// }
-
-// api libraries for LoadScript
-const libraries = ["places"];
-
-// Bounds for autocomplete search results
-const searchBounds = [
-  { lat: 43.6292253, lng: -79.4687767 },
-  { lat: 43.6816042, lng: -79.3252018 },
-];
 
 // Convert object returned form places API to a custom one
 const getPlaceObject = (googlePlace) => {
@@ -89,12 +41,7 @@ const getPlaceObject = (googlePlace) => {
 class FindRoute extends Component {
   constructor(props) {
     super(props);
-
     this.autocomplete = null;
-
-    this.onLoad = this.onLoad.bind(this);
-    this.onPlaceChanged = this.onPlaceChanged.bind(this);
-
     this.state = {
       response: null,
       travelMode: "BICYCLING",
@@ -110,24 +57,9 @@ class FindRoute extends Component {
       address: "",
     };
 
-    const onOriginChanged = (autocomplete) => {
-      if (autocomplete !== null) {
-        // setDestination(autocomplete.getPlace())
-        this.setState({ ...this.state, origin: autocomplete.getPlace() });
-      } else {
-        console.log("Autocomplete is not loaded yet!");
-      }
-    };
-
-    const onDestinationChanged = (autocomplete) => {
-      if (autocomplete !== null) {
-        // setDestination(autocomplete.getPlace())
-        this.setState({ ...this.state, destination: autocomplete.getPlace() });
-      } else {
-        console.log("Autocomplete is not loaded yet!");
-      }
-    };
-
+  
+    this.onLoad = this.onLoad.bind(this);
+    this.onPlaceChanged = this.onPlaceChanged.bind(this);
     this.directionsCallback = this.directionsCallback.bind(this);
     this.distancesCallback = this.distancesCallback.bind(this);
     this.getOrigin = this.getOrigin.bind(this);
@@ -137,7 +69,6 @@ class FindRoute extends Component {
 
   onLoad(autocomplete) {
     console.log("autocomplete: ", autocomplete);
-
     this.autocomplete = autocomplete;
   }
 
@@ -169,7 +100,6 @@ class FindRoute extends Component {
       results.rows[0].elements[0].distance !== null &&
       results.rows[0].elements[0].duration !== null
     ) {
-      console.log("results " + JSON.stringify(results));
       this.setState(() => ({
         originAddress: results.originAddresses[0],
         destinationAddress: results.destinationAddresses[0],
@@ -193,13 +123,13 @@ class FindRoute extends Component {
 
   onClick(e) {
     e.preventDefault();
-    console.log("origin", this.origin.value);
-    console.log("destination", this.destination.value);
     if (this.origin.value !== "" && this.destination.value !== "") {
       this.setState(() => ({
         //Grabbing the origin and destination from the user inputs
         origin: this.origin.value,
         destination: this.destination.value,
+        duration: "",
+        distance:""
       }));
     }
   }
@@ -207,11 +137,6 @@ class FindRoute extends Component {
   render() {
     return (
       <div>
-        {/* <Nav /> */}
-        {/* <LoadScript
-          googleMapsApiKey={googleKey}
-          libraries={libraries}
-        > */}
           <div className="container">
             <GoogleMap
               // Map container
@@ -248,28 +173,6 @@ class FindRoute extends Component {
                     onUnmount={(directionsService) => {}}
                   />
                 )}
-              {/* <Marker
-            position={position}
-            // onLoad={onLoad}
-            onClick={() => this.setState({
-              showInfoWindow: true,
-              infoWindowPosition: position,
-            })}
-          />
-          {this.state.showInfoWindow === true && (
-          <InfoWindow 
-          // onLoad={onLoad} 
-          onCloseClick={() => this.setState({
-            showInfoWindow: false,
-          })}
-          position={position}>
-            <div style={divStyle}>
-              <InfoBoxString />
-            </div>
-          </InfoWindow>
-          )}
-          <ModalComment addComment={this.addComment}/> */}
-              {/* <ModalCommentContainer /> */}
               {this.state.response !== null && (
                 <DirectionsRenderer
                   // required
