@@ -274,14 +274,23 @@ class FindRoute extends Component {
                       />
                     </Autocomplete>
                   </div>
-                </div>
+              </div>
+              <div className="select-field right">
+                {/* <a class="waves-effect waves-light btn">button</a> */}
+                 <label className="slct-label left waves-light btn">Find A...</label>
+                  <select className="browser-default">
+                    <option value="findStation">BIXI STATION</option>
+                    <option value="findParking">BIKE PARKING</option>
+                    <option value="findRoute">BICYCLING ROUTE</option>
+                  </select>
+              </div>
               </div>
                 <button
                   className="btn waves-effect waves-light z-depth-5 mapButton"
                   type="button"
                   onClick={this.onClick}
                 >
-                  Build Route
+                  Find Route
                 </button>
               <table className="row z-depth-5">
                 <thead className="thead">

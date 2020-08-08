@@ -1,68 +1,88 @@
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#map-canvas {
-    position: absolute;
-    top: 64px;
-    left: 0px;
-    bottom: 0px;
-    width: 63%;
-}
-
-#right-panel {
-    position: absolute;
-    top: 64px;
-    left: 63%;
-    bottom: 0px;
-    width: 37%;
-    padding: 8px;
-}
-
-label {
-    font-size: 14px!important;
-}
-
-table {
-    margin-top: 20px;
-}
-
-td,
-th {
-    /* border: 2px solid teal; */
-    /* border: 2px solid #78bcc5ff; */
-    border: 2px solid black;
-}
-
-button, thead {
-    background-color: #78bcc5ff;
-}
-
-button {
-    margin: 10px;
-    background-color: #78bcc5ff;
-}
-
-.mapButton {
-    background-color: #78bcc5ff;
-    max-width: 90%;
-    min-width: 20%;
-    border-radius: 25px;
-  }
-  
-  .mapButton:hover {
-    background-color: #00bfa5;
-  }
-  
-  .mapButton:active {
-    background-color: #00bfa5;
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
-  }
-  
-  .mapButton:focus {
-    background-color: #78bcc5ff;
-  }
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #map-canvas {
+        position: absolute;
+        top: 64px;
+        left: 0px;
+        bottom: 0px;
+        width: 63%;
+    }
+    
+    #right-panel {
+        position: absolute;
+        top: 64px;
+        left: 63%;
+        bottom: 0px;
+        width: 37%;
+        padding: 8px;
+    }
+    
+    label {
+        font-size: 14px!important;
+        height: 100%;
+        padding: 0px;
+    }
+    
+    .select-field {
+        margin: 5px;
+        width: 70%;
+        height: 36px;
+    }
+    
+    .slct-label {
+        width: 30%;
+        padding: 0px;
+        height: 100%!important;
+    }
+    
+    .browser-default {
+        width: 60%;
+        height: 36px;
+    }
+    
+    table {
+        margin-top: 20px;
+    }
+    
+    td,
+    th {
+        border: 1px solid black;
+        padding: 0 5px;
+        height: 23px;
+    }
+    
+    button,
+    thead {
+        background-color: #78bcc5ff;
+    }
+    
+    button {
+        margin: 10px;
+        background-color: #78bcc5ff;
+    }
+    
+    .mapButton {
+        background-color: #78bcc5ff;
+        max-width: 90%;
+        min-width: 20%;
+        border-radius: 25px;
+    }
+    
+    .mapButton:hover {
+        background-color: #00bfa5;
+    }
+    
+    .mapButton:active {
+        background-color: #00bfa5;
+        box-shadow: 0 2px #666;
+        transform: translateY(4px);
+    }
+    
+    .mapButton:focus {
+        background-color: #78bcc5ff;
+    }
