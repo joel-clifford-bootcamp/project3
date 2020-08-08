@@ -31,18 +31,25 @@
     .select-field {
         margin: 5px;
         width: 70%;
-        height: 36px;
+        height: 30px;
+        margin-left: 18%;
     }
     
     .slct-label {
         width: 30%;
         padding: 0px;
-        height: 100%!important;
+        background-color: #26a69a;
+        color: black;
+        line-height: 30px;
+        border-radius: 8px 0 0 8px;
     }
     
     .browser-default {
         width: 60%;
-        height: 36px;
+        height: 30px;
+        border-width: 1.5px;
+        border-left-width: 0;
+        border-radius: 0 8px 8px 0;
     }
     
     table {
