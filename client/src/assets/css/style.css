@@ -13,6 +13,10 @@
         width: 63%;
     }
     
+    #searchPanel {
+        border-radius: 15px;
+    }
+    
     #right-panel {
         position: absolute;
         top: 64px;
@@ -20,6 +24,7 @@
         bottom: 0px;
         width: 37%;
         padding: 8px;
+        border-radius: 15px;
     }
     
     label {
@@ -38,8 +43,8 @@
     .slct-label {
         width: 40%;
         padding: 0px;
-        background-color: #26a69a;
-        color: black;
+        background-color: #78bcc5ff;
+        color: white;
         line-height: 30px;
         border-radius: 8px 0 0 8px;
     }
@@ -72,25 +77,68 @@
         cursor: pointer;
         clear: right;
     }
-    
-    .findButtonTitle {
-        color: #db5b5c;
+
+    .findButton:hover {
+        background-color: #c62828;
     }
     
+    .findButton:active {
+        background-color: #c62828;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+    
+    .findButton:focus {
+        background-color: #db5b5c;
+    }
+        
+    .findButtonTitle {
+        text-transform: uppercase;
+        font-size: 15px;
+        color: #e57373;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        text-align: center;
+        margin-bottom: 0px !important;
+        padding: 5px;
+      }
+      
+
     table {
         margin-top: 20px;
+        border-radius: 15px;
     }
     
     td,
     th {
-        border: 1px solid black;
+        border: 1px none white;
         padding: 0 5px;
         height: 23px;
+        /* border-style: none;
+        border-color: white;
+        border-width: 5px; */
     }
+    
+    table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+    
+    table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
+    
+    thead {
+        border-radius: 10px;
+    }
+    /* thead tr:first-child td:last-child {
+        border-top-right-radius: 10px;
+    } */
     
     button,
     thead {
         background-color: #78bcc5ff;
+        /* border-top-right-radius: 10px;
+        border-top-left-radius: 10px; */
     }
     
     button {
