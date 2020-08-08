@@ -35,7 +35,7 @@ class FindRoute extends Component {
     super(props);
     this.autocomplete = null;
     this.state = {
-      findWhat: "",
+      findWhat: "findStation",
       response: null,
       travelMode: "BICYCLING",
       origin: "", // input origin
@@ -287,7 +287,7 @@ class FindRoute extends Component {
               </div>
               </div>)}
                 <div className="select-field left">
-                  <label className="slct-label left">FIND A...</label>
+                  <label className="slct-label left">LOOKING FOR?</label>
                   <select className="browser-default"
                       onChange={this.handleSelection}>
                       <option value="findStation">BIXI STATION</option>
@@ -296,13 +296,19 @@ class FindRoute extends Component {
                     </select>
                 </div>
               </div>
-              {this.state.findWhat==="findRoute" && (<button
-                  className="btn waves-effect waves-light z-depth-5 mapButton"
+            {this.state.findWhat === "findRoute" && (
+             <div>
+                <button
+                    className="findButton"
                   type="button"
-                  onClick={this.onClick}
-                >
-                  Find Route
-              </button>)}
+                  id="findRoute"
+                    onClick={this.onClick}
+                  >
+                    <i className="material-icons center">map</i>
+                </button><br/>
+                <p className="findButtonTitle">Map A Bike Route</p>
+              </div>
+              )}
               {this.state.distance!=="" && (<table className="row z-depth-5">
                 <thead className="thead">
                   <tr>
@@ -339,17 +345,34 @@ class FindRoute extends Component {
                     <td>{this.state.duration}</td>
                   </tr>
                 </tbody>
-              </table>)}
-            {(this.state.findWhat === "findParking" || this.state.distance!=="") && <button
-                className="btn waves-effect waves-light z-depth-5 mapButton"
-                type="button"
-                onClick={this.onClick}
-              >
-                Find parking
-              </button>}
+            </table>)}
+            {(this.state.findWhat === "findStation" || this.state.distance !== "") &&
+             <div>
+                <button
+                    className="findButton"
+                  type="button"
+                  id="findStation"
+                    onClick={this.onClick}
+                  >
+                    <i className="material-icons center">location_on</i>
+                </button><br/>
+                <p className="findButtonTitle">Close Bixi Stations</p>
+              </div>}
+            {(this.state.findWhat === "findParking" || this.state.distance !== "") &&
+              <div>
+                <button
+                    className="findButton"
+                  type="button"
+                  id="findStation"
+                    onClick={this.onClick}
+                  >
+                    <i className="material-icons center">local_parking</i>
+                </button><br/>
+                <p className="findButtonTitle">Close Bike Parkings</p>
+              </div>}
+              
             </div>
           </div>
-        {/* </LoadScript> */}
       </div>
     );
   }
