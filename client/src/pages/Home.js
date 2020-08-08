@@ -35,8 +35,8 @@ function Home() {
             </li>
             {/* "Park Your Bike" Still to be completed */}
             <li className="tab col s3">
-              {/* <Link  to="/parking" className="buttonLink"> */}
-              <Link  to="#" className="buttonLink disabled">
+              <Link  to="/parking" className="buttonLink">
+              {/* <Link  to="#" className="buttonLink disabled"> */}
                 <button className="button buttonHome">
                   <i className="medium material-icons center">local_parking</i>
                 </button>
@@ -45,8 +45,8 @@ function Home() {
             </li>
             {/* "Rate a Parking Spot" Still to be completed */}
             <li className="tab col s3">
-              {/* <Link  to="/station" className="buttonLink"> */}
-              <Link  to="#" className="buttonLink disabled">
+              <Link  to="/station" className="buttonLink">
+              {/* <Link  to="#" className="buttonLink disabled"> */}
                   <button className="button buttonHome">
                       <i className="medium material-icons center">star</i>
                   </button>

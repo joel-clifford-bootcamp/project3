@@ -399,3 +399,36 @@ li{
 }
 /* END OF PROFILE CARD STYLING */
 
+/* START FIND ROUTE PAGE STYLING */
+
+.findButtonDiv {
+  padding: 10px;
+}
+
+.slct-label {
+  background-color: #78bcc5ff;
+}
+
+
+.columnTitle {
+  color: white;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 350;
+  text-align: left;
+  margin-bottom: 0px !important;
+}
+
+/* table {
+  border-radius: 15px;
+      border-bottom-left-radius: 10px;
+
+} */
+
+/* #right-panel {
+  border-radius: 10px;
+} */
+
+/* END OF FIND ROUTE PAGE STYLING */
+
