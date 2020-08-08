@@ -4,25 +4,16 @@ import {
   DirectionsRenderer,
   DirectionsService,
   DistanceMatrixService,
-  InfoWindow,
-  Marker,
-  InfoBox,
   Autocomplete,
   BicyclingLayer
 } from "@react-google-maps/api";
-import { ModalComment } from "../components/Modal";
-import InfoBoxString from "../components/InfoBoxString";
-// import PlacesSearchBox from "../components/PlacesSearchBox"
-import Nav from "../components/Nav";
 import "../style.css";
-
+import { duration } from "moment";
 
 const center = {
   lat: 43.65107,
   lng: -79.347015,
 };
-
-
 
 // Convert object returned form places API to a custom one
 const getPlaceObject = (googlePlace) => {
@@ -44,6 +35,7 @@ class FindRoute extends Component {
     super(props);
     this.autocomplete = null;
     this.state = {
+      findWhat: "findStation",
       response: null,
       travelMode: "BICYCLING",
       origin: "", // input origin
@@ -58,7 +50,7 @@ class FindRoute extends Component {
       address: "",
     };
 
-  
+    this.handleSelection = this.handleSelection.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
     this.directionsCallback = this.directionsCallback.bind(this);
@@ -68,12 +60,31 @@ class FindRoute extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  handleSelection = event => {
+    let value = event.target.value;
+        // Updating the selection input value
+        this.setState({
+          findWhat: value,
+          response: null,
+          results: null,
+          origin: "",
+          destination:"",
+          duration: "",
+          distance: "",
+
+        });
+    this.origin.value = "";
+   this.destination = ""
+    
+    console.log(this.state.findWhat, this.state.duration, this.state.duration )
+  }
+
   onLoad(autocomplete) {
     console.log("autocomplete: ", autocomplete);
     this.autocomplete = autocomplete;
   }
 
-  onPlaceChanged() {
+  onPlaceChanged = () => {
     if (this.autocomplete !== null) {
       console.log(this.autocomplete.getPlace());
     } else {
@@ -81,7 +92,7 @@ class FindRoute extends Component {
     }
   }
 
-  directionsCallback(response) {
+  directionsCallback = response => {
     console.log(response);
 
     if (response !== null) {
@@ -95,7 +106,7 @@ class FindRoute extends Component {
     }
   }
 
-  distancesCallback(results) {
+  distancesCallback= results => {
     if (
       results !== null &&
       results.rows[0].elements[0].distance !== null &&
@@ -110,20 +121,20 @@ class FindRoute extends Component {
     }
   }
 
-  getOrigin(ref) {
+  getOrigin= ref => {
     this.origin = ref;
     console.log("ref origin:", ref);
     console.log("this.origin:", this.origin);
   }
 
-  getDestination(ref) {
+  getDestination = ref => {
     this.destination = ref;
     console.log("ref destination:", ref);
     console.log("this.destination:", this.destination);
   }
 
-  onClick(e) {
-    e.preventDefault();
+  onClick = e => {
+      e.preventDefault();
     if (this.origin.value !== "" && this.destination.value !== "") {
       this.setState(() => ({
         //Grabbing the origin and destination from the user inputs
@@ -254,36 +265,51 @@ class FindRoute extends Component {
                   </div>
                 </div>
 
-                <div className="col s12">
-                  <div className="form-group">
-                    <label className="white-text" htmlFor="DESTINATION">
-                      Destination
-                    </label>
-                    <br />
-                    <Autocomplete
-                      onLoad={this.onLoad}
-                      onPlaceChanged={this.onPlaceChanged}
-                    >
-                      <input
-                        id="DESTINATION"
-                        className="white"
-                        type="text"
-                        ref={this.getDestination}
-                        // defaultValue="University of Toronto"
-                        placeholder='Destination (e.g. "University of Toronto")'
-                      />
-                    </Autocomplete>
-                  </div>
+              {this.state.findWhat==="findRoute" && (<div className="col s12">
+              <div className="form-group">
+                <label className="white-text" htmlFor="DESTINATION">
+                  Destination
+                </label>
+                <br />
+                <Autocomplete
+                  onLoad={this.onLoad}
+                  onPlaceChanged={this.onPlaceChanged}
+                >
+                  <input
+                    id="DESTINATION"
+                    className="white"
+                    type="text"
+                    ref={this.getDestination}
+                    // defaultValue="University of Toronto"
+                    placeholder='Destination (e.g. "University of Toronto")'
+                  />
+                </Autocomplete>
+              </div>
+              </div>)}
+                <div className="select-field left">
+                  <label className="slct-label left">LOOKING FOR?</label>
+                  <select className="browser-default"
+                      onChange={this.handleSelection}>
+                      <option value="findStation">BIXI STATION</option>
+                      <option value="findParking">BIKE PARKING</option>
+                      <option value="findRoute">BICYCLING ROUTE</option>
+                    </select>
                 </div>
               </div>
+            {this.state.findWhat === "findRoute" && (
+             <div>
                 <button
-                  className="btn waves-effect waves-light z-depth-5 mapButton"
+                    className="findButton"
                   type="button"
-                  onClick={this.onClick}
-                >
-                  Build Route
-                </button>
-              <table className="row z-depth-5">
+                  id="findRoute"
+                    onClick={this.onClick}
+                  >
+                    <i className="material-icons center">map</i>
+                </button><br/>
+                <p className="findButtonTitle">Map A Bike Route</p>
+              </div>
+              )}
+              {this.state.distance!=="" && (<table className="row z-depth-5">
                 <thead className="thead">
                   <tr>
                     <th colSpan="2">Origin</th>
@@ -319,18 +345,34 @@ class FindRoute extends Component {
                     <td>{this.state.duration}</td>
                   </tr>
                 </tbody>
-              </table>
-              <button
-                className="btn waves-effect waves-light z-depth-5 mapButton"
-            // className="btn z-depth-5 mapButton"
-                type="button"
-                onClick={this.onClick}
-              >
-                Find parking
-              </button>
+            </table>)}
+            {(this.state.findWhat === "findStation" || this.state.distance !== "") &&
+             <div>
+                <button
+                    className="findButton"
+                  type="button"
+                  id="findStation"
+                    onClick={this.onClick}
+                  >
+                    <i className="material-icons center">location_on</i>
+                </button><br/>
+                <p className="findButtonTitle">Close Bixi Stations</p>
+              </div>}
+            {(this.state.findWhat === "findParking" || this.state.distance !== "") &&
+              <div>
+                <button
+                    className="findButton"
+                  type="button"
+                  id="findStation"
+                    onClick={this.onClick}
+                  >
+                    <i className="material-icons center">local_parking</i>
+                </button><br/>
+                <p className="findButtonTitle">Close Bike Parkings</p>
+              </div>}
+              
             </div>
           </div>
-        {/* </LoadScript> */}
       </div>
     );
   }
