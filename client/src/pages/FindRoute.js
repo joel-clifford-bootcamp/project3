@@ -242,7 +242,7 @@ class FindRoute extends Component {
             </GoogleMap>
 
             <div id="right-panel" className="center-align">
-              <div className="row z-depth-5">
+              <div className="row z-depth-5 inputs">
                 <div className="col s12">
                   <div className="form-group">
                     <label className="white-text" htmlFor="ORIGIN">

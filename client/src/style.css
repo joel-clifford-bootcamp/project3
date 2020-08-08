@@ -1,434 +1,161 @@
-/* BEGING SIGN IN AND SIGN UP STYLING */
-
-.signUpBackground {
-    /* background-image: url(""); */
-    background: url(./assets/bike.jpg);
-    height: 100vh;
-    overflow-x: visible;
-    overflow: visible;
-}
-
-.signinLogo {
-  /* padding: 20px;
-  margin-left: 20px; */
-  width: 30%;
-  height: 30%;
-  padding: 5% 0 0 5%;
-}
-
-.primary{
-  margin: 0px;
-}
-
-h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 46px;
-    font-weight: 200;
-    text-align: center;
-    margin-bottom: 0px !important;
-}
-
-h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    font-weight: 100;
-    text-align: center;
-    margin-top: 1px;
-}
-
-.signUpLink {
-    font-weight: 600;
-    color: #d12e27ff;
-}
-
-.signInPageLink {
-    font-weight: 600;
-    color: #d12e27ff;
-}
-
-.signUpPageLink {
-    font-weight: 600;
-    color: #d12e27ff;
-}
-
-.signIn {
-    background-color: #ffffff;
-    border-radius: 25px;
-    padding: 30px;
-    margin-left: 200px;
-    margin-right: 200px;
-    margin-top: 100px;
-    width: 60%;
-}
-
-form {
-    margin: 30px;
-}
-
-.signInBtn {
-    background-color: #78bcc5ff;
-    width: 100%;
-    border-radius: 25px;
-}
-
-.signInBtn:hover {
-    background-color: #78bcc5ff;
-}
-
-.signInBtn:active {
-    background-color: #78bcc5ff;
-    box-shadow: 0 2px #666;
-    transform: translateY(4px);
-}
-
-.signInBtn:focus {
-    background-color: #78bcc5ff;
-}
-
-.mapButton {
-  background-color: #78bcc5ff;
-  max-width: 90%;
-  min-width: 20%;
-  border-radius: 25px;
-}
-
-.mapButton:hover {
-  background-color: #00bfa5;
-}
-
-.mapButton:active {
-  background-color: #00bfa5;
-  box-shadow: 0 2px #666;
-  transform: translateY(4px);
-}
-
-.mapButton:focus {
-  background-color: #78bcc5ff;
-}
-
-
-@media only screen and (max-width: 768px) {
-  .signUpBackground {
-    /* background-image: url(""); */
-    background: url(./assets/bike.jpg);
-    height: 100vh;
-    width: 100%;
-    background-position: right top;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-  }
-
-  .signIn{
-    margin: 30px 0 0 0;
-    width: 100%;
-    padding: 10px 0 0 0;
-  }
-
-  .signinLogo{
-    width: 40%;
-    height: 40%;
-    padding: 10% 0 10% 0;
-  }
-
-  .cardSize{
-    padding: 0px;
-  }
-
-  .brand-logo{
-    left: 62.5% !important;
-  }
-
-  .formSubmit{
-    margin: 0px;
-  }
-}  
-
-
-/* END SIGN IN AND SIGN UP STYLING */
-
-
-/* BEGING NAV BAR STYLING */
-
-
-#homeLink,
-#profileLink,
-#signoutLink {
-    color: #e57373;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 0px !important;
-}
-
-.primaryLogo {
-    /* padding: 20px;
-    margin-left: 20px; */
-    width: 8%;
-    height: 8%;
-    float: left;
-}
-
-@media only screen and (max-width: 1024px) {
-.navIcons{
-  color: #e57373 !important;
-}
-}
-
-/* END NAV BAR STYLING */
-
-
-/* START HOMEPAGE STYLING */
-
-.homepageBackground {
-    background-image: url("./assets/homepage.png");
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
-    background-position: 50% 100%;
-}
-
-h1 {
-    color: white;
-    padding: 65px;
-    text-align: center;
-}
-
-span {
-    font-weight: bold;
-}
-
-.tabs {
-    background-color: transparent;
-}
-
-.buttonHome {
-    background-color: #db5b5c;
-    border: none;
-    color: white;
-    /* padding: 20px; */
-    height: 10rem;
-    width: 10rem;
-    text-align: center;
-    text-decoration: none;
-    /* display: inline-block; */
-    font-size: 16px;
-    margin: 0px;
-    border-radius: 50%;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-    cursor: pointer;
-    /* position: relative; */
-}
-
-.buttonHome:hover {
-    background-color: #c62828;
-}
-
-.buttonHome:active {
-    background-color: #c62828;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
-.buttonHome:focus {
-    background-color: #db5b5c;
-}
-
-.icon {
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 50%;
-    width: 10px;
-    height: 10px;
-    transform: translate(-50%, -50%);
-    display: block;
-}
-
-a:visited {
-    color: #db5b5c;
-}
-
-.tabs {
-    height: 15rem;
-    padding: 25px;
-    width: 100%;
-}
-
-.linkName {
-    font-size: 50px;
-    color: #e57373;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 200;
-    text-align: center;
-    margin-bottom: 0px !important;
-}
-
-.material-icons {
-    color: white;
-    align-items: center;
-}
-
-.buttonLink {
-  border: none;
-  padding: 0px!important;
-  height: fit-content!important;
-  width: fit-content!important;
-  display: inline-block;
-  margin: 0 auto;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  cursor: pointer;
-  position: relative;
-} 	
-
-@media only screen and (max-width: 768px) {
-h1{
-  padding: 0px;
-  font-size: 30px;
-}
-
-.buttonHome{
-  height: 5rem;
-  width: 5rem;
-  padding: 0px;
-  float: center;
-}
-
-.buttonHome{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  padding: 5px;
-}
-
-li{
-  padding-top: 7px;
-  }
-}
-
-
-/* END HOMEPAGE STYLING */
-
-
-/* START PROFILE STYLING */
-
-.activity {
-    font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    padding: 10px;
-}
-
-.profileBackground {
-    background-image: url("./assets/profile.png");
-    background-repeat: no-repeat;
-    background-position: 0% 0%;
-    width: 100%;
-    height: 100vh;
-}
-
-/* END PROFILE PAGE STYLING */
-
-
-/* START PROFILE CARD STYLING */
-
-.profile-image{
-  border-radius: 25px !important;
-  height: 300px;
-  width: 300px;
-  margin: 40% 0 0 0;
-}
-
-.profileInstructions{
-  padding: 20px;
-  text-align: center;
-  padding-top: 125px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  font-weight: 100;
-}
-
-.profilePic{
-  border-radius: 25px !important;
-  padding: 15px;
-}
-
-.clickHere{
-  font-weight: 600;
-  color: #d12e27ff;
-}
-
-
-.clickHere:hover{
-    cursor: pointer;
-    color: #c62828;
-}
-
-.clickHere:active{
-    cursor: pointer;
-    color: #b71c1c;
-}
-
-.clickHere:visited{
-    color: #d12e27ff;
-}
-
-
-.userName{
-  text-align: center;
-  width: 300px;
-  font-family: 'Montserrat', sans-serif;
-  color: #db5b5c;
-  font-weight: 50px;
-  /* margin-right: 10px; */
-}
-
-.userEmail{
-  width:300px;
-}
-
-.email{
-  color: #db5b5c;
-}
-
-@media only screen and (max-width: 768px) {
-  .email{
-    color: white;
-  }
-}
-/* END OF PROFILE CARD STYLING */
-
-/* START FIND ROUTE PAGE STYLING */
-
-.findButtonDiv {
-  padding: 10px;
-}
-
-.slct-label {
-  background-color: #78bcc5ff;
-}
-
-
-.columnTitle {
-  color: white;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 350;
-  text-align: left;
-  margin-bottom: 0px !important;
-}
-
-/* table {
-  border-radius: 15px;
-      border-bottom-left-radius: 10px;
-
-} */
-
-/* #right-panel {
-  border-radius: 10px;
-} */
-
-/* END OF FIND ROUTE PAGE STYLING */
-
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #map-canvas {
+        position: absolute;
+        top: 64px;
+        left: 0px;
+        bottom: 0px;
+        width: 63%;
+    }
+    
+    #searchPanel {
+        border-radius: 15px;
+    }
+    
+    #right-panel {
+        position: absolute;
+        top: 64px;
+        left: 63%;
+        bottom: 0px;
+        width: 37%;
+        padding: 8px;
+        border-radius: 15px;
+    }
+    
+    .inputs {
+        border-radius: 5px;
+    }
+    
+    label {
+        font-size: 14px!important;
+        height: 100%;
+        padding: 0px;
+    }
+    
+    .select-field {
+        margin: 5px;
+        width: 70%;
+        height: 30px;
+        margin-left: 18%;
+    }
+    
+    .slct-label {
+        width: 40%;
+        padding: 0px;
+        background-color: #78bcc5ff;
+        color: white;
+        line-height: 30px;
+        border-radius: 8px 0 0 8px;
+    }
+    
+    .browser-default {
+        width: 60%;
+        height: 30px;
+        border-width: 1.5px;
+        border-left-width: 0;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .findButtonContainer {
+        width: 100%;
+    }
+    
+    .findButton {
+        margin: 0 auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        cursor: pointer;
+        background-color: #db5b5c;
+        border: none;
+        color: white;
+        height: 3.5rem;
+        width: 3.5rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 50%;
+        cursor: pointer;
+        clear: right;
+    }
+    
+    .findButton:hover {
+        background-color: #c62828;
+    }
+    
+    .findButton:active {
+        background-color: #c62828;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
+    
+    .findButton:focus {
+        background-color: #db5b5c;
+    }
+    
+    .findButtonTitle {
+        text-transform: uppercase;
+        font-size: 15px;
+        color: #e57373;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 200;
+        text-align: center;
+        margin-bottom: 0px !important;
+        padding: 5px;
+    }
+    
+    table,
+    tr {
+        margin-top: 20px;
+        border-style: none;
+        border-radius: 5px;
+    }
+    
+    tr,
+    td,
+    th {
+        padding: 0 5px;
+        height: 23px;
+        border-radius: 0px;
+    }
+    
+    tbody:last-child tr:last-child td {
+        border-radius: 0 0 5px 5px;
+    }
+    
+    thead:first-child tr:first-child th:first-child {
+        border-radius: 5px 5px 0 0;
+    }
+    
+    thead {
+        background-color: #78bcc5ff;
+    }
+    
+    button {
+        margin: 10px;
+        background-color: #78bcc5ff;
+    }
+    
+    .mapButton {
+        background-color: #78bcc5ff;
+        max-width: 90%;
+        min-width: 20%;
+        border-radius: 25px;
+    }
+    
+    .mapButton:hover {
+        background-color: #00bfa5;
+    }
+    
+    .mapButton:active {
+        background-color: #00bfa5;
+        box-shadow: 0 2px #666;
+        transform: translateY(4px);
+    }
+    
+    .mapButton:focus {
+        background-color: #78bcc5ff;
+    }
