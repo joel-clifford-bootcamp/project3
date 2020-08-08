@@ -8,7 +8,6 @@ import {
   BicyclingLayer
 } from "@react-google-maps/api";
 import "../style.css";
-import { duration } from "moment";
 
 const center = {
   lat: 43.65107,
@@ -35,6 +34,7 @@ class FindRoute extends Component {
     super(props);
     this.autocomplete = null;
     this.state = {
+      searchBoxMessage: 'Enter your position',
       findWhat: "findStation",
       response: null,
       travelMode: "BICYCLING",
@@ -71,12 +71,12 @@ class FindRoute extends Component {
           destination:"",
           duration: "",
           distance: "",
-
         });
-    this.origin.value = "";
-   this.destination = ""
-    
-    console.log(this.state.findWhat, this.state.duration, this.state.duration )
+      if (value === 'findRoute') {
+      this.setState({
+          searchBoxMessage: 'Origin (e.g. "CN Tower")',
+        });
+    }
   }
 
   onLoad(autocomplete) {
@@ -245,21 +245,17 @@ class FindRoute extends Component {
               <div className="row z-depth-5 inputs">
                 <div className="col s12">
                   <div className="form-group">
-                    <label className="white-text" htmlFor="ORIGIN">
-                      Origin
-                    </label>
-                    <br />
                     <Autocomplete
                       onLoad={this.onLoad}
                       onPlaceChanged={this.onPlaceChanged}
                     >
                       <input
-                        id="ORIGIN"
+                        id="origin"
                         className="white"
                         type="text"
                         ref={this.getOrigin}
                         // defaultValue="CN Tower"
-                        placeholder='Origin (e.g. "CN Tower")'
+                        placeholder={this.state.searchBoxMessage}
                       />
                     </Autocomplete>
                   </div>
@@ -267,10 +263,6 @@ class FindRoute extends Component {
 
               {this.state.findWhat==="findRoute" && (<div className="col s12">
               <div className="form-group">
-                <label className="white-text" htmlFor="DESTINATION">
-                  Destination
-                </label>
-                <br />
                 <Autocomplete
                   onLoad={this.onLoad}
                   onPlaceChanged={this.onPlaceChanged}
