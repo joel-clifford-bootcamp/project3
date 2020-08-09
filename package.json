@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^1.9.7",
+    "@types/react-sidebar": "^3.0.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "chalk": "^4.1.0",
@@ -41,9 +42,13 @@
     "react-materialize": "^3.9.2",
     "react-moment": "^0.9.7",
     "react-places-autocomplete": "^7.3.0",
+    "react-pro-sidebar": "^0.4.3",
     "react-router-dom": "^5.2.0",
+    "react-sidebar": "^3.0.2",
     "react-star-ratings": "^2.3.0",
     "remarkable-react": "^1.4.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^1.1.1",
     "sequelize": "^5.21.13"
   }
 }

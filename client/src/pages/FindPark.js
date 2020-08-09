@@ -12,6 +12,14 @@ import "../style.css";
 import api from "../utils/API";
 import CustomMapMarker from "../components/CustomMapMarker";
 import DefaultMapMarker from "../components/DefaultMapMarker";
+import {
+  SideBarReact,
+  SideBarButtonReact,
+} from "../components/SideBarComponent";
+import Sidebar from "react-sidebar";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import { SideNav, SideNavItem, Icon, Button } from "react-materialize";
+import "react-pro-sidebar/dist/css/styles.css";
 
 //Toronto, ON
 const center = {
@@ -56,6 +64,7 @@ class FindPark extends Component {
       infoWindowPosition: {},
       places: [],
       bikeAround: false, // true when button clicked to find closer stations or parkings
+      sidebarOpen: true,
     };
 
     this.handleSelection = this.handleSelection.bind(this);
@@ -66,6 +75,11 @@ class FindPark extends Component {
     this.getOrigin = this.getOrigin.bind(this);
     this.getDestination = this.getDestination.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
+  }
+
+  onSetSidebarOpen(open) {
+    this.setState({ sidebarOpen: open });
   }
 
   handleSelection = (event) => {
@@ -126,7 +140,7 @@ class FindPark extends Component {
       results.rows[0].elements[0].distance !== null &&
       results.rows[0].elements[0].duration !== null
     ) {
-      console.log('results '+ JSON.stringify(results))
+      console.log("results " + JSON.stringify(results));
       this.setState(() => ({
         originAddress: results.originAddresses[0],
         destinationAddress: results.destinationAddresses[0],
@@ -351,6 +365,7 @@ class FindPark extends Component {
           <div id="right-panel" className="center-align">
             <div className="row z-depth-5 inputs">
               <div className="col s12">
+
                 <div className="form-group">
                   <Autocomplete
                     onLoad={this.onLoad}
@@ -426,6 +441,30 @@ class FindPark extends Component {
               >
                 Walk Way
               </button>
+            </div>
+            <div className="container">
+            <button
+                  className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                  type="button"
+                  onClick={() => this.onSetSidebarOpen(true)}
+                >
+                  <Icon>chevron_right</Icon>
+                </button>
+              <Sidebar
+                sidebar={<div>
+                  <b style={{padding: 20}}>Sidebar content</b>
+                  <button
+                  className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                  type="button"
+                  onClick={() => this.onSetSidebarOpen(false)}
+                >
+                  <Icon>chevron_left</Icon>
+                </button></div>}
+                open={this.state.sidebarOpen}
+                onSetOpen={this.onSetSidebarOpen}
+                styles={{ sidebar: { background: "white", zIndex: 2, position: "fixed", top: 65 }, root: {position: "relative"} }}
+              >
+              </Sidebar>
             </div>
           </div>
         </div>

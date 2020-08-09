@@ -48,8 +48,13 @@ function App() {
             <Profile />
           </Route>
 
-          <Route exact path={["/*"]}>
+          <Route exact path={["/home"]}>
             <Home />
+          </Route>
+
+          <Route exact path={["/*"]}>
+            {/* <Home /> */}
+            <SignIn />
           </Route>
         </Switch>
       </div>

@@ -159,3 +159,28 @@ button {
 .mapButton:focus {
     background-color: #78bcc5ff;
 }
+
+/* START FIND BIKE PAGE STYLING */
+
+
+.sideBarButton {
+    background-color: #78bcc5ff;
+    width: 5%;
+    border-radius: 25px;
+}
+
+.sideBarButton:hover {
+    background-color: #00bfa5;
+}
+
+.sideBarButton:active {
+    background-color: #00bfa5;
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+
+.sideBarButton:focus {
+    background-color: #78bcc5ff;
+}
+
+/* END OF FIND BIKE PAGE STYLING */
