@@ -8,7 +8,8 @@ import {
   BicyclingLayer
 } from "@react-google-maps/api";
 import "../style.css";
-import { duration } from "moment";
+import api from "../utils/API"
+import CustomMapMarker from "../components/CustomMapMarker"
 
 const center = {
   lat: 43.65107,
@@ -35,13 +36,14 @@ class FindRoute extends Component {
     super(props);
     this.autocomplete = null;
     this.state = {
+      searchBoxMessage: 'Enter your position',
       findWhat: "findStation",
       response: null,
       travelMode: "BICYCLING",
       origin: "", // input origin
       destination: "", // input destination
-      originAddress: "Submit request...", // full origin address from google
-      destinationAddress: "Submit request...", // full destination address from google
+      originAddress: "", // full origin address from google
+      destinationAddress: "", // full destination address from google
       distance: "", // distance in km
       duration: "", // time in hours and minutes
       showInfoWindow: false,
@@ -66,17 +68,16 @@ class FindRoute extends Component {
         this.setState({
           findWhat: value,
           response: null,
-          results: null,
           origin: "",
           destination:"",
           duration: "",
           distance: "",
-
         });
-    this.origin.value = "";
-   this.destination = ""
-    
-    console.log(this.state.findWhat, this.state.duration, this.state.duration )
+      if (value === 'findRoute') {
+      this.setState({
+          searchBoxMessage: 'Origin (e.g. "CN Tower")',
+        });
+    }
   }
 
   onLoad(autocomplete) {
@@ -145,6 +146,89 @@ class FindRoute extends Component {
       }));
     }
   }
+/*********************************************************************************************/
+/* The code below (written by Joel) retrieve the the closests bixi stations from user position 
+/*********************************************************************************************/
+  
+   onSearchResultChanged = autocomplete => {
+    if (autocomplete !== null) {
+      this.setState({searchResult: getPlaceObject(autocomplete.getPlace())});
+    } else {
+      console.log('Autocomplete is not loaded yet!')
+    }
+  }
+
+  selectPlace = place => {
+    if(this.state.destination === null)
+      this.setState({ 
+        destination: place,    
+        searchResult: null,             
+        places: [...this.state.places].filter(p => p === place)});
+    else
+      this.setState({
+        origin: place, 
+        searchResult: null,             
+        places: this.state.places.filter(p => p === place )});
+  }
+
+  selectCurrentLocation = _ => {
+    console.log("current location click")
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position.coords);
+      this.setState({
+        searchResult: {
+          name: "Current Location",
+          location: { 
+            lat: position.coords.latitude, 
+            lng: position.coords.longitude  
+          }
+        }
+      })
+    });
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+      if(prevState.searchResult !== this.state.searchResult)
+        this.drawNewResults();
+
+      // if(prevState.destination !== this.state.destination || prevState.origin !== this.state.origin)
+      //   this.updateSearchBoxMessage();
+  }
+  
+   drawNewResults = () => {
+    if (this.state.searchResult !== null){
+
+      api.getBixiBikeLocations(this.state.searchResult.location.lat, this.state.searchResult.location.lng)
+      .then(stationsResp => {
+        // parse floats that sequeslize query literal is returning as strings
+        stationsResp.data.forEach(x => {
+          x.lat = parseFloat(x.lat);
+          x.lng = parseFloat(x.lng);
+          x.coordDiff = parseFloat(x.coordDiff);
+          x.obj_type = "bixi";
+        });
+
+        // Retrieve realtime data for stations returned by initial search
+        api.getBixiStationAvailability(stationsResp.data.map(station => station.id))
+        .then(realTimeResp => {
+          // Attach realtime data to each result
+          stationsResp.data.forEach(station => {
+            let realTimeData = realTimeResp.data.filter(rt => rt.number === station.id);
+            station["currentData"] = realTimeData.length > 0 ? realTimeData[0] : {}; 
+          });
+        })
+        .catch(err => console.log(err));
+        
+        this.setState({ 
+          center: this.state.searchResult.location,
+          zoom: 17,
+          places: stationsResp.data.map(place => <CustomMapMarker key={place.id} place={place} selectPlace={this.selectPlace}/>)});
+      })
+      .catch(err => console.log(err));
+    }
+  }
+ 
+/*******************************************************************************/
 
   render() {
     return (
@@ -172,17 +256,7 @@ class FindRoute extends Component {
                       origin: this.state.origin,
                       travelMode: this.state.travelMode,
                     }}
-                    // required
                     callback={this.directionsCallback}
-                    // optional
-                    onLoad={(directionsService) => {
-                      console.log(
-                        "DirectionsService onLoad directionsService: ",
-                        directionsService
-                      );
-                    }}
-                    // optional
-                    onUnmount={(directionsService) => {}}
                   />
               )}
              <BicyclingLayer/>
@@ -192,20 +266,6 @@ class FindRoute extends Component {
                   options={{
                     // eslint-disable-line react-perf/jsx-no-new-object-as-prop
                     directions: this.state.response,
-                  }}
-                  // optional
-                  onLoad={(directionsRenderer) => {
-                    console.log(
-                      "DirectionsRenderer onLoad directionsRenderer: ",
-                      directionsRenderer
-                    );
-                  }}
-                  // optional
-                  onUnmount={(directionsRenderer) => {
-                    console.log(
-                      "DirectionsRenderer onUnmount directionsRenderer: ",
-                      directionsRenderer
-                    );
                   }}
                 />
               )}
@@ -222,44 +282,26 @@ class FindRoute extends Component {
                     }}
                     // required
                     callback={this.distancesCallback}
-                    // optional
-                    onLoad={(distanceMatrixService) => {
-                      console.log(
-                        "DirectionsRenderer onLoad directionsRenderer: ",
-                        distanceMatrixService
-                      );
-                    }}
-                    // optional
-                    onUnmount={(distanceMatrixService) => {
-                      console.log(
-                        "DirectionsRenderer onUnmount directionsRenderer: ",
-                        distanceMatrixService
-                      );
-                    }}
                     onPlaceChanged={this.onPlaceChanged}
                   />
                 )}
             </GoogleMap>
 
             <div id="right-panel" className="center-align">
-              <div className="row z-depth-5">
+              <div className="row z-depth-5 inputs">
                 <div className="col s12">
                   <div className="form-group">
-                    <label className="white-text" htmlFor="ORIGIN">
-                      Origin
-                    </label>
-                    <br />
                     <Autocomplete
                       onLoad={this.onLoad}
                       onPlaceChanged={this.onPlaceChanged}
                     >
                       <input
-                        id="ORIGIN"
+                        id="origin"
                         className="white"
                         type="text"
                         ref={this.getOrigin}
                         // defaultValue="CN Tower"
-                        placeholder='Origin (e.g. "CN Tower")'
+                        placeholder={this.state.searchBoxMessage}
                       />
                     </Autocomplete>
                   </div>
@@ -267,10 +309,6 @@ class FindRoute extends Component {
 
               {this.state.findWhat==="findRoute" && (<div className="col s12">
               <div className="form-group">
-                <label className="white-text" htmlFor="DESTINATION">
-                  Destination
-                </label>
-                <br />
                 <Autocomplete
                   onLoad={this.onLoad}
                   onPlaceChanged={this.onPlaceChanged}
