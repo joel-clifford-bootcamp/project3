@@ -1,190 +1,161 @@
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
-    #map-canvas {
-        position: absolute;
-        top: 64px;
-        left: 0px;
-        bottom: 0px;
-        width: 63%;
-    }
-    
-    #searchPanel {
-        border-radius: 25px;
-    }
-    
-    #right-panel {
-        position: absolute;
-        top: 64px;
-        left: 63%;
-        bottom: 0px;
-        width: 37%;
-        padding: 8px;
-        border-radius: 15px;
-    }
-    
-    label {
-        font-size: 14px!important;
-        height: 100%;
-        padding: 0px;
-    }
-    
-    .select-field {
-        margin: 5px;
-        width: 70%;
-        height: 30px;
-        margin-left: 18%;
-    }
-    
-    .slct-label {
-        width: 40%;
-        padding: 0px;
-        background-color: #78bcc5ff;
-        color: white;
-        line-height: 30px;
-        border-radius: 8px 0 0 8px;
-    }
-    
-    .browser-default {
-        width: 60%;
-        height: 30px;
-        border-width: 1.5px;
-        border-left-width: 0;
-        border-radius: 0 8px 8px 0;
-    }
-    
-    .findButtonContainer {
-        width: 100%;
-    }
-    
-    .findButton {
-        margin: 0 auto;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        cursor: pointer;
-        background-color: #db5b5c;
-        border: none;
-        color: white;
-        height: 3.5rem;
-        width: 3.5rem;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        border-radius: 50%;
-        cursor: pointer;
-        clear: right;
-    }
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-    .findButton:hover {
-        background-color: #c62828;
-    }
-    
-    .findButton:active {
-        background-color: #c62828;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
-    
-    .findButton:focus {
-        background-color: #db5b5c;
-    }
-        
-    .findButtonTitle {
-        text-transform: uppercase;
-        font-size: 15px;
-        color: #e57373;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 200;
-        text-align: center;
-        margin-bottom: 0px !important;
-        padding: 5px;
-      }
-      
+#map-canvas {
+    position: absolute;
+    top: 64px;
+    left: 0px;
+    bottom: 0px;
+    width: 63%;
+}
 
-    table {
-        margin-top: 20px;
-        /* border-radius: 15px, 15px, 15px, 15px; */
-        /* border-radius: 50px; */
-        /* border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px; */
-    }
-    
-    td,
-    th {
-        border: 1px none white;
-        padding: 0 5px;
-        height: 23px;
-        /* border-style: none;
-        border-color: white;
-        border-width: 5px; */
-    }
-    
-   /* tbody:last-child {
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-    } */
+#searchPanel {
+    border-radius: 15px;
+}
 
-    #topRow {
-        border-top-left-radius: 50px;
-        border-top-right-radius: 50px;
-        /* border-radius: 15px; */
-    }
+#right-panel {
+    position: absolute;
+    top: 64px;
+    left: 63%;
+    bottom: 0px;
+    width: 37%;
+    padding: 8px;
+    border-radius: 15px;
+}
 
-    #bottomRow {
-        border-bottom-left-radius: 50px;
-        border-bottom-right-radius: 50px;
-        /* border-radius: 15px; */
-    }
+.inputs {
+    border-radius: 5px;
+}
 
-    /* table tr:last-child td:first-child {
-        border-bottom-left-radius: 10px;
-    } */
-    
-    /* table tr:last-child td:last-child {
-        border-bottom-right-radius: 10px;
-    } */
+label {
+    font-size: 14px!important;
+    height: 100%;
+    padding: 0px;
+}
 
+.select-field {
+    margin: 5px;
+    width: 70%;
+    height: 30px;
+    margin-left: 18%;
+}
 
-    
-    /* thead {
-        border-radius: 10px;
-    } */
-    /* thead tr:first-child td:last-child {
-        border-top-right-radius: 10px;
-    } */
-    
-    button,
-    thead {
-        background-color: #78bcc5ff;
-        /* border-top-right-radius: 10px;
-        border-top-left-radius: 10px; */
-    }
-    
-    button {
-        margin: 10px;
-        background-color: #78bcc5ff;
-    }
-    
-    .mapButton {
-        background-color: #78bcc5ff;
-        max-width: 90%;
-        min-width: 20%;
-        border-radius: 25px;
-    }
-    
-    .mapButton:hover {
-        background-color: #00bfa5;
-    }
-    
-    .mapButton:active {
-        background-color: #00bfa5;
-        box-shadow: 0 2px #666;
-        transform: translateY(4px);
-    }
-    
-    .mapButton:focus {
-        background-color: #78bcc5ff;
-    }
+.slct-label {
+    width: 40%;
+    padding: 0px;
+    background-color: #78bcc5ff;
+    color: white;
+    line-height: 30px;
+    border-radius: 8px 0 0 8px;
+}
+
+.browser-default {
+    width: 60%;
+    height: 30px;
+    border-width: 1.5px;
+    border-left-width: 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.findButtonContainer {
+    width: 100%;
+}
+
+.findButton {
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    background-color: #db5b5c;
+    border: none;
+    color: white;
+    height: 3.5rem;
+    width: 3.5rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    clear: right;
+}
+
+.findButton:hover {
+    background-color: #c62828;
+}
+
+.findButton:active {
+    background-color: #c62828;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.findButton:focus {
+    background-color: #db5b5c;
+}
+
+.findButtonTitle {
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #e57373;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 0px !important;
+    padding: 5px;
+}
+
+table,
+tr {
+    margin-top: 20px;
+    border-style: none;
+    border-radius: 5px;
+}
+
+tr,
+td,
+th {
+    padding: 0 5px;
+    height: 23px;
+    border-radius: 0px;
+}
+
+tbody:last-child tr:last-child td {
+    border-radius: 0 0 5px 5px;
+}
+
+thead:first-child tr:first-child th:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+thead {
+    background-color: #78bcc5ff;
+}
+
+button {
+    margin: 10px;
+    background-color: #78bcc5ff;
+}
+
+.mapButton {
+    background-color: #78bcc5ff;
+    max-width: 90%;
+    min-width: 20%;
+    border-radius: 25px;
+}
+
+.mapButton:hover {
+    background-color: #00bfa5;
+}
+
+.mapButton:active {
+    background-color: #00bfa5;
+    box-shadow: 0 2px #666;
+    transform: translateY(4px);
+}
+
+.mapButton:focus {
+    background-color: #78bcc5ff;
+}
