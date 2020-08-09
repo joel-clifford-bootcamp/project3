@@ -330,7 +330,7 @@ class FindRoute extends Component {
                       onChange={this.handleSelection}>
                       <option value="findStation">BIXI STATION</option>
                       <option value="findParking">BIKE PARKING</option>
-                      <option value="findRoute">BICYCLING ROUTE</option>
+                      <option value="findRoute">CYCLING ROUTE</option>
                     </select>
                 </div>
               </div>
@@ -394,7 +394,7 @@ class FindRoute extends Component {
                   >
                     <i className="material-icons center">location_on</i>
                 </button><br/>
-                <p className="findButtonTitle">Close Bixi Stations</p>
+                <p className="findButtonTitle">Nearby Bixi Stations</p>
               </div>}
             {(this.state.findWhat === "findParking" || this.state.distance !== "") &&
               <div>
@@ -406,7 +406,7 @@ class FindRoute extends Component {
                   >
                     <i className="material-icons center">local_parking</i>
                 </button><br/>
-                <p className="findButtonTitle">Close Bike Parkings</p>
+                <p className="findButtonTitle">Nearby Bike Parking</p>
               </div>}
               
             </div>

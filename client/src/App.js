@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import MapContainer from "./components/MapContainer";
 import MapSearch from "./pages/MapSearch";
+import FindPark from "./pages/FindPark";
 // import MapRoute from "./pages/MapRoute";
 
 function App() {

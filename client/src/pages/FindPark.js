@@ -1,7 +1,10 @@
 import React, {Component } from 'react';
-import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService, Autocomplete} from '@react-google-maps/api';
-import "../../assets/css/style.css";
-import "../../style.css";
+import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService, Autocomplete,   BicyclingLayer
+} from '@react-google-maps/api';
+import "../assets/css/style.css";
+import "../style.css";
+import api from "../utils/API"
+import CustomMapMarker from "../components/CustomMapMarker"
 
 //Toronto, ON
 const center = {
@@ -9,11 +12,28 @@ const center = {
               lng:  -79.347015
 }
 
-  class FindParking extends Component {
+// Convert object returned form places API to a custom one
+const getPlaceObject = (googlePlace) => {
+  return {
+    location: {
+      lat: googlePlace.geometry.location.lat(),
+      lng: googlePlace.geometry.location.lng(),
+    },
+    icon: googlePlace.icon,
+    viewport: googlePlace.geometry.viewport,
+    addressElement: googlePlace.adr_address,
+    name: googlePlace.name,
+    address: googlePlace.formatted_address,
+  };
+};
+
+  class FindPark extends Component {
     constructor(props) {
       super(props)
       this.autocomplete = null;
       this.state = {
+        searchBoxMessage: 'Enter your position',
+        findWhat: "findParl",
         response: null,
         travelMode: 'BICYCLING',
         origin: '', // input origin
@@ -22,6 +42,10 @@ const center = {
         destinationAddress: 'Submit request...', // full destination address from google
         distance: '', // distance in km
         duration:'', // time in hours and minutes
+        showInfoWindow: false,
+        infoWindowPosition: {},
+        places: [],
+        address: "",
       }
 
       this.handleSelection = this.handleSelection.bind(this);
@@ -119,13 +143,98 @@ const center = {
       }
       }
   
+/*********************************************************************************************/
+/* The code below (written by Joel) retrieve the the closests bixi stations from user position 
+/*********************************************************************************************/
+  
+onSearchResultChanged = autocomplete => {
+  if (autocomplete !== null) {
+    this.setState({searchResult: getPlaceObject(autocomplete.getPlace())});
+  } else {
+    console.log('Autocomplete is not loaded yet!')
+  }
+}
+
+selectPlace = place => {
+  if(this.state.destination === null)
+    this.setState({ 
+      destination: place,    
+      searchResult: null,             
+      places: [...this.state.places].filter(p => p === place)});
+  else
+    this.setState({
+      origin: place, 
+      searchResult: null,             
+      places: this.state.places.filter(p => p === place )});
+}
+
+selectCurrentLocation = _ => {
+  console.log("current location click")
+  navigator.geolocation.getCurrentPosition(position => {
+    console.log(position.coords);
+    this.setState({
+      searchResult: {
+        name: "Current Location",
+        location: { 
+          lat: position.coords.latitude, 
+          lng: position.coords.longitude  
+        }
+      }
+    })
+  });
+}
+
+componentDidUpdate(prevProps, prevState) {
+    if(prevState.searchResult !== this.state.searchResult)
+      this.drawNewResults();
+
+    // if(prevState.destination !== this.state.destination || prevState.origin !== this.state.origin)
+    //   this.updateSearchBoxMessage();
+}
+
+ drawNewResults = () => {
+  if (this.state.searchResult !== null){
+
+    api.getBixiBikeLocations(this.state.searchResult.location.lat, this.state.searchResult.location.lng)
+    .then(stationsResp => {
+      // parse floats that sequeslize query literal is returning as strings
+      stationsResp.data.forEach(x => {
+        x.lat = parseFloat(x.lat);
+        x.lng = parseFloat(x.lng);
+        x.coordDiff = parseFloat(x.coordDiff);
+        x.obj_type = "bixi";
+      });
+
+      // Retrieve realtime data for stations returned by initial search
+      api.getBixiStationAvailability(stationsResp.data.map(station => station.id))
+      .then(realTimeResp => {
+        // Attach realtime data to each result
+        stationsResp.data.forEach(station => {
+          let realTimeData = realTimeResp.data.filter(rt => rt.number === station.id);
+          station["currentData"] = realTimeData.length > 0 ? realTimeData[0] : {}; 
+        });
+      })
+      .catch(err => console.log(err));
+      
+      this.setState({ 
+        center: this.state.searchResult.location,
+        zoom: 17,
+        places: stationsResp.data.map(place => <CustomMapMarker key={place.id} place={place} selectPlace={this.selectPlace}/>)});
+    })
+    .catch(err => console.log(err));
+  }
+}
+
+/*******************************************************************************/
+
     render() {
       
       return (
      <div>
+       <div className="container">
            <GoogleMap
             // Map container
-            id='map-canvas'
+            id='map-canvas2'
             // Initial zoom
             zoom={10}
             // Map initial center in Toronto
@@ -155,11 +264,10 @@ const center = {
                   onUnmount={directionsService => {
                   }}
                 />
-              )
-            }
+              )}
+             <BicyclingLayer/>
 
-            {
-             (this.state.response !== null) && (
+            {(this.state.response !== null) && (
                 <DirectionsRenderer
                   // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
@@ -175,13 +283,11 @@ const center = {
                   }}
                 />
                 
-              )
-            }
-             {
-             ( 
+              )}
+             {( 
                this.state.destination !== '' &&
-                this.state.origin !== '' && this.state.distance === ''
-              ) && (
+                this.state.origin !== ''
+                 && this.state.distance === '') && (
                 <DistanceMatrixService
                   // required
                  // required
@@ -192,6 +298,7 @@ const center = {
                   }}
                    // required
                   callback={this.distancesCallback}
+                  onPlaceChanged={this.onPlaceChanged}
                   // optional
                   onLoad={distanceMatrixService=> {
                     console.log('DirectionsRenderer onLoad directionsRenderer: ', distanceMatrixService)
@@ -200,24 +307,21 @@ const center = {
                   onUnmount={distanceMatrixService => {
                     console.log('DirectionsRenderer onUnmount directionsRenderer: ', distanceMatrixService)
                   }}
-                />
-                
-              )
-            }
-        
+                />                
+              )}  
           </GoogleMap>
           <div id="rightPanelPark" className='center-align'>
-          <div className='row z-depth-5'>
+          <div className='row z-depth-5 inputs'>
             <div className='col s12'>
               <div className='form-group' id='searchPanelPark'>
-                <label htmlFor='ORIGIN'>Your Position</label>
-                {/* <Autocomplete
+                {/* <label htmlFor='ORIGIN'>Your Position</label> */}
+                <Autocomplete
                       onLoad={this.onLoad}
                       onPlaceChanged={this.onPlaceChanged}
-                    > */}
+                    >
                 <br />
-                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" placeholder="CN Tower"/>
-                {/* </Autocomplete> */}
+                <input id='originPark' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" placeholder="CN Tower"/>
+                </Autocomplete>
               </div>
             </div>
           </div>
@@ -254,11 +358,11 @@ const center = {
               Walk Way 
       </button>
       </div>
-          
+      </div>   
     </div>
-      )
+      );
     }
 
   }
 
-export default FindParking;
+export default FindPark;

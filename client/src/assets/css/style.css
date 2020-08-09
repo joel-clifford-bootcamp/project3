@@ -13,11 +13,11 @@ body {
     width: 63%;
 }
 
-#searchPanel {
+#searchPanel, #searchPanelPark {
     border-radius: 15px;
 }
 
-#right-panel {
+#right-panel, #rightPanelPark {
     position: absolute;
     top: 64px;
     left: 63%;

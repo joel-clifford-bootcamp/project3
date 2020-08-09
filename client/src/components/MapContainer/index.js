@@ -12,6 +12,7 @@ import {
 } from "@react-google-maps/api";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import FindRoute from "../../pages/FindRoute";
+import FindPark from "../../pages/FindPark";
 import FindBike from "../FindBike";
 import FindParking from "../FindParking";
 import Nav from "../Nav";
@@ -61,7 +62,8 @@ class MapContainer extends Component {
                   <FindBike />
                 </Route>
                 <Route exact path={["/parking"]}>
-                  <FindParking />
+                  {/* <FindParking /> */}
+                  <FindPark />
                 </Route>
                  <Route exact path={["/bikeshare"]}>
                   <MapSearch />
