@@ -38,7 +38,7 @@ class FindRoute extends Component {
       travelMode: "BICYCLING",
       center: {lat: 43.65107, lng: -79.347015},
       origin: "", // input origin
-     zoom: 11,
+      zoom: 11,
       destination: "", // input destination
       originAddress: "", // full origin address from google
       destinationAddress: "", // full destination address from google
@@ -48,7 +48,7 @@ class FindRoute extends Component {
       showInfoWindow: false,
       infoWindowPosition: {},
       places: [],
-      address: "",
+      bikeAround: false // true when button clicked to find closer stations or parkings
     };
 
     this.handleSelection = this.handleSelection.bind(this);
@@ -71,6 +71,7 @@ class FindRoute extends Component {
           destination:"",
           duration: "",
           distance: "",
+          bikeAround: false
         });
        
     this.origin.value = "";
@@ -158,7 +159,8 @@ class FindRoute extends Component {
         origin: this.origin.value,
         destination: this.origin.value,
         duration: "",
-        distance:""
+         distance: "",
+        bikeAround: true
        }));
     }
   }
@@ -278,9 +280,15 @@ class FindRoute extends Component {
                     callback={this.directionsCallback}
                   />
               )}
+            
+            {/* rendering bixi stations markers */}
+            {this.state.bikeAround === true && this.state.places}
+            
             {this.state.searchResult !== null &&
             <DefaultMapMarker location={this.state.searchResult.location}/>}
              <BicyclingLayer/>
+
+             
               {this.state.response !== null && (
                 <DirectionsRenderer
                   // required
