@@ -48,7 +48,8 @@ class FindRoute extends Component {
       showInfoWindow: false,
       infoWindowPosition: {},
       places: [],
-      bikeAround: false // true when button clicked to find closer stations or parkings
+      bikeAround: false, // true when button clicked to find closer stations or parkings
+      thead: "Your Position" // Table head(first) title
     };
 
     this.handleSelection = this.handleSelection.bind(this);
@@ -71,15 +72,17 @@ class FindRoute extends Component {
           destination:"",
           duration: "",
           distance: "",
-          bikeAround: false
+          bikeAround: false,
+          thead: "Your Position"
         });
        
-    this.origin.value = "";
+    this.origin.value = ""; // Input field reset
     
     
       if (value === 'findRoute') {
       this.setState({
-          searchBoxMessage: 'Origin (e.g. "CN Tower")',
+        searchBoxMessage: 'Origin (e.g. "CN Tower")',
+        thead: "Origin"
         });
     }
   }
@@ -157,7 +160,8 @@ class FindRoute extends Component {
        this.setState(() => ({
         //Grabbing the origin from the user inputs to find a bixi station or a bike parking
         origin: this.origin.value,
-        destination: this.origin.value,
+         destination: this.origin.value,
+          originAddress:this.state.searchResult.address,
         duration: "",
          distance: "",
         bikeAround: true
@@ -376,10 +380,11 @@ class FindRoute extends Component {
                 <p className="findButtonTitle">Map A Bike Route</p>
               </div>
               )}
-              {this.state.distance!=="" && (<table className="row z-depth-5">
+            {(this.state.distance !== "" || this.state.bikeAround === true) && (
+              <table className="row z-depth-5">
                 <thead className="thead" id="topRow">
                   <tr>
-                    <th colSpan="2" className="columnTitle">Origin</th>
+                    <th colSpan="2" className="columnTitle">{this.state.thead}</th>
                   </tr>
                 </thead>
 
@@ -388,30 +393,35 @@ class FindRoute extends Component {
                     <td colSpan="2">{this.state.originAddress}</td>
                   </tr>
                 </tbody>
+                { (this.state.distance !== "") && 
                 <thead className="thead">
                   <tr>
                     <th colSpan="2" className="columnTitle">Destination</th>
                   </tr>
-                </thead>
+                </thead>}
 
-                <tbody className="white">
+                { (this.state.distance !== "") && 
+                  <tbody className="white">
                   <tr>
                     <td colSpan="2">{this.state.destinationAddress}</td>
                   </tr>
-                </tbody>
-                <thead className="thead" id="bottomRow">
+                  </tbody>}
+                
+                { (this.state.distance !== "") && 
+                  <thead className="thead" id="bottomRow">
                   <tr>
                     <th className="columnTitle">Distance</th>
                     <th className="columnTitle">Time</th>
                   </tr>
-                </thead>
+                </thead>}
 
-                <tbody className="white">
+                { (this.state.distance !== "") && 
+                  <tbody className="white">
                   <tr>
                     <td>{this.state.distance}</td>
                     <td>{this.state.duration}</td>
                   </tr>
-                </tbody>
+                </tbody>}
             </table>)}
             {(this.state.findWhat === "findStation" || this.state.distance !== "") &&
              <div>
