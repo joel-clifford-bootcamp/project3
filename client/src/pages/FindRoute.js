@@ -244,7 +244,7 @@ class FindRoute extends Component {
             <div id="right-panel" className="center-align">
               <div className="row z-depth-5">
                 <div className="col s12">
-                  <div className="form-group">
+                  <div className="form-group" id="searchPanel">
                     <label className="white-text" htmlFor="ORIGIN">
                       Origin
                     </label>
@@ -310,7 +310,7 @@ class FindRoute extends Component {
               </div>
               )}
               {this.state.distance!=="" && (<table className="row z-depth-5">
-                <thead className="thead">
+                <thead className="thead" id="topRow">
                   <tr>
                     <th colSpan="2" className="columnTitle">Origin</th>
                   </tr>
@@ -332,7 +332,7 @@ class FindRoute extends Component {
                     <td colSpan="2">{this.state.destinationAddress}</td>
                   </tr>
                 </tbody>
-                <thead className="thead">
+                <thead className="thead" id="bottomRow">
                   <tr>
                     <th className="columnTitle">Distance</th>
                     <th className="columnTitle">Time</th>
