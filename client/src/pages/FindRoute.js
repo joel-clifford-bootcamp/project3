@@ -10,11 +10,7 @@ import {
 import "../style.css";
 import api from "../utils/API"
 import CustomMapMarker from "../components/CustomMapMarker"
-
-const center = {
-  lat: 43.65107,
-  lng: -79.347015,
-};
+import DefaultMapMarker from "../components/DefaultMapMarker"
 
 // Convert object returned form places API to a custom one
 const getPlaceObject = (googlePlace) => {
@@ -40,16 +36,19 @@ class FindRoute extends Component {
       findWhat: "findStation",
       response: null,
       travelMode: "BICYCLING",
+      center: {lat: 43.65107, lng: -79.347015},
       origin: "", // input origin
+      zoom: 11,
       destination: "", // input destination
       originAddress: "", // full origin address from google
       destinationAddress: "", // full destination address from google
       distance: "", // distance in km
       duration: "", // time in hours and minutes
+      searchResult: null,
       showInfoWindow: false,
       infoWindowPosition: {},
       places: [],
-      address: "",
+      bikeAround: false // true when button clicked to find closer stations or parkings
     };
 
     this.handleSelection = this.handleSelection.bind(this);
@@ -72,7 +71,12 @@ class FindRoute extends Component {
           destination:"",
           duration: "",
           distance: "",
+          bikeAround: false
         });
+       
+    this.origin.value = "";
+    
+    
       if (value === 'findRoute') {
       this.setState({
           searchBoxMessage: 'Origin (e.g. "CN Tower")',
@@ -86,16 +90,19 @@ class FindRoute extends Component {
   }
 
   onPlaceChanged = () => {
-    if (this.autocomplete !== null) {
-      console.log(this.autocomplete.getPlace());
+    if (this.autocomplete !== null && this.state.findWhat!=="findRoute") {
+      this.setState({
+        searchResult: getPlaceObject(this.autocomplete.getPlace()),
+        distance: "zero" // used to stop continuous querry
+      });
     } else {
       console.log("Autocomplete is not loaded yet!");
     }
+    console.log(this.state.searchResult)
   }
 
   directionsCallback = response => {
     console.log(response);
-
     if (response !== null) {
       if (response.status === "OK") {
         this.setState(() => ({
@@ -136,27 +143,38 @@ class FindRoute extends Component {
 
   onClick = e => {
       e.preventDefault();
-    if (this.origin.value !== "" && this.destination.value !== "") {
-      this.setState(() => ({
-        //Grabbing the origin and destination from the user inputs
+    if (this.state.findWhat === "findRoute") {
+      if (this.origin.value !== "" && this.destination.value !== "") {
+        this.setState(() => ({
+          //Grabbing the origin and destination from the user inputs to find a bike route
+          origin: this.origin.value,
+          destination: this.destination.value,
+          duration: "",
+          distance:""
+        }));
+      }
+    } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
+       this.setState(() => ({
+        //Grabbing the origin from the user inputs to find a bixi station or a bike parking
         origin: this.origin.value,
-        destination: this.destination.value,
+        destination: this.origin.value,
         duration: "",
-        distance:""
-      }));
+         distance: "",
+        bikeAround: true
+       }));
     }
   }
 /*********************************************************************************************/
 /* The code below (written by Joel) retrieve the the closests bixi stations from user position 
 /*********************************************************************************************/
   
-   onSearchResultChanged = autocomplete => {
-    if (autocomplete !== null) {
-      this.setState({searchResult: getPlaceObject(autocomplete.getPlace())});
-    } else {
-      console.log('Autocomplete is not loaded yet!')
-    }
-  }
+  //  onSearchResultChanged = autocomplete => {
+  //   if (autocomplete !== null) {
+  //     this.setState({searchResult: getPlaceObject(autocomplete.getPlace())});
+  //   } else {
+  //     console.log('Autocomplete is not loaded yet!')
+  //   }
+  // }
 
   selectPlace = place => {
     if(this.state.destination === null)
@@ -187,9 +205,13 @@ class FindRoute extends Component {
     });
   }
   
-  componentDidUpdate(prevProps, prevState) {
-      if(prevState.searchResult !== this.state.searchResult)
-        this.drawNewResults();
+  componentDidUpdate() {
+    if (this.state.searchResult !== null && this.state.distance==="zero") {
+      this.drawNewResults();
+       this.setState({
+        distance: ""
+      })
+  }
 
       // if(prevState.destination !== this.state.destination || prevState.origin !== this.state.origin)
       //   this.updateSearchBoxMessage();
@@ -197,9 +219,9 @@ class FindRoute extends Component {
   
    drawNewResults = () => {
     if (this.state.searchResult !== null){
-
       api.getBixiBikeLocations(this.state.searchResult.location.lat, this.state.searchResult.location.lng)
-      .then(stationsResp => {
+        .then(stationsResp => {
+        console.log(stationsResp.data)
         // parse floats that sequeslize query literal is returning as strings
         stationsResp.data.forEach(x => {
           x.lat = parseFloat(x.lat);
@@ -238,16 +260,15 @@ class FindRoute extends Component {
               // Map container
               id="map-canvas"
               // Initial zoom
-              zoom={10}
+              zoom={this.state.zoom}
               // Map initial center in Toronto
-              center={center}
+              center={this.state.center}
               // onClick={() => console.log("Map clicked!")}
             >
               {/* {this.setState.places} */}
               {/* Child components, such as markers, info windows, etc. */}
               {this.state.duration === "" &&
-                this.state.destination !== "" &&
-                this.state.origin !== "" && (
+                this.state.origin !== "" && this.state.destination !== "" && this.state.origin !== this.state.destination  && (
                   <DirectionsService
                     // required
                     options={{
@@ -259,7 +280,15 @@ class FindRoute extends Component {
                     callback={this.directionsCallback}
                   />
               )}
+            
+            {/* rendering bixi stations markers */}
+            {this.state.bikeAround === true && this.state.places}
+            
+            {this.state.searchResult !== null &&
+            <DefaultMapMarker location={this.state.searchResult.location}/>}
              <BicyclingLayer/>
+
+             
               {this.state.response !== null && (
                 <DirectionsRenderer
                   // required
@@ -271,7 +300,7 @@ class FindRoute extends Component {
               )}
               {this.state.destination !== "" &&
                 this.state.origin !== "" &&
-                this.state.distance === "" && (
+                this.state.distance === "" &&  this.state.findWhat === "findRoute" &&(
                   <DistanceMatrixService
                     // required
                     options={{
@@ -290,7 +319,7 @@ class FindRoute extends Component {
             <div id="right-panel" className="center-align">
               <div className="row z-depth-5 inputs">
                 <div className="col s12">
-                  <div className="form-group" id="searchPanel">
+                  <div className="form-group">
                     <Autocomplete
                       onLoad={this.onLoad}
                       onPlaceChanged={this.onPlaceChanged}
@@ -301,7 +330,7 @@ class FindRoute extends Component {
                         type="text"
                         ref={this.getOrigin}
                         // defaultValue="CN Tower"
-                        placeholder={this.state.searchBoxMessage}
+                      placeholder={this.state.searchBoxMessage}
                       />
                     </Autocomplete>
                   </div>
@@ -348,7 +377,7 @@ class FindRoute extends Component {
               </div>
               )}
               {this.state.distance!=="" && (<table className="row z-depth-5">
-                <thead className="thead" id="topRow">
+                <thead className="thead">
                   <tr>
                     <th colSpan="2" className="columnTitle">Origin</th>
                   </tr>
@@ -370,7 +399,7 @@ class FindRoute extends Component {
                     <td colSpan="2">{this.state.destinationAddress}</td>
                   </tr>
                 </tbody>
-                <thead className="thead" id="bottomRow">
+                <thead className="thead">
                   <tr>
                     <th className="columnTitle">Distance</th>
                     <th className="columnTitle">Time</th>

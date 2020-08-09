@@ -33,7 +33,7 @@ function CustomMapMarker( props ) {
     return ( 
         <Marker
             icon={icon}
-            style={{scale: "0.05"}}
+            style={{scale: "0.07"}}
             onClick={handleClick}
             position={{lat:props.place.lat, lng:props.place.lng}}>
                 { hideInfoWindow ? '' :
