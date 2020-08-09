@@ -1,7 +1,7 @@
 import React, {Component } from 'react';
-import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService} from '@react-google-maps/api';
+import { GoogleMap, DirectionsRenderer, DirectionsService, DistanceMatrixService, Autocomplete} from '@react-google-maps/api';
 import "../../assets/css/style.css";
-
+import "../../style.css";
 
 //Toronto, ON
 const center = {
@@ -9,11 +9,10 @@ const center = {
               lng:  -79.347015
 }
 
-
   class FindParking extends Component {
     constructor(props) {
       super(props)
-
+      this.autocomplete = null;
       this.state = {
         response: null,
         travelMode: 'BICYCLING',
@@ -25,12 +24,47 @@ const center = {
         duration:'', // time in hours and minutes
       }
 
+      this.handleSelection = this.handleSelection.bind(this);
+      this.onLoad = this.onLoad.bind(this);
+      this.onPlaceChanged = this.onPlaceChanged.bind(this);
       this.directionsCallback = this.directionsCallback.bind(this)
       this.distancesCallback = this.distancesCallback.bind(this)
       this.getOrigin = this.getOrigin.bind(this)
       this.getDestination = this.getDestination.bind(this)
       this.onClick = this.onClick.bind(this)
     }
+
+    handleSelection = event => {
+      let value = event.target.value;
+          // Updating the selection input value
+          this.setState({
+            findWhat: value,
+            response: null,
+            origin: "",
+            destination:"",
+            duration: "",
+            distance: "",
+          });
+        if (value === 'findRoute') {
+        this.setState({
+            searchBoxMessage: 'Origin (e.g. "CN Tower")',
+          });
+      }
+    }
+  
+    onLoad(autocomplete) {
+      console.log("autocomplete: ", autocomplete);
+      this.autocomplete = autocomplete;
+    }
+  
+    onPlaceChanged = () => {
+      if (this.autocomplete !== null) {
+        console.log(this.autocomplete.getPlace());
+      } else {
+        console.log("Autocomplete is not loaded yet!");
+      }
+    }
+  
 
     directionsCallback(response) {
       console.log(response)
@@ -172,13 +206,18 @@ const center = {
             }
         
           </GoogleMap>
-          <div id="right-panel" className='center-align'>
+          <div id="rightPanelPark" className='center-align'>
           <div className='row z-depth-5'>
             <div className='col s12'>
-              <div className='form-group'>
+              <div className='form-group' id='searchPanelPark'>
                 <label htmlFor='ORIGIN'>Your Position</label>
+                {/* <Autocomplete
+                      onLoad={this.onLoad}
+                      onPlaceChanged={this.onPlaceChanged}
+                    > */}
                 <br />
-                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" />
+                <input id='ORIGIN' className='white' type='text' ref={this.getOrigin} defaultValue="CN Tower" placeholder="CN Tower"/>
+                {/* </Autocomplete> */}
               </div>
             </div>
           </div>
@@ -188,7 +227,7 @@ const center = {
       <table className='row z-depth-5'>
         <thead className="thead">
           <tr>
-              <th colSpan="2">Your Parking</th>
+              <th colSpan="2" className="columnTitle">Your Parking</th>
           </tr>
         </thead>
 
@@ -199,8 +238,8 @@ const center = {
         </tbody>
         <thead className="thead">
           <tr>
-              <th>Distance</th>
-              <th>Time</th>
+              <th className="columnTitle">Distance</th>
+              <th className="columnTitle">Time</th>
           </tr>
         </thead>
 
