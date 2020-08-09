@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../assets/css/style.css";
 // import Nav from '../components/Nav';
-// import { SideBarReact, SideBarNav, SideBarButton } from "../components/SideBar";
 
 import LoactionSearch from "../components/LocationSearch";
 import DefaultMapMarker from "../components/DefaultMapMarker";
@@ -15,13 +14,10 @@ import { BicyclingLayer, GoogleMap, LoadScript } from "@react-google-maps/api";
 import { PrimaryButton } from "../components/Buttons";
 import LocationSearch from "../components/LocationSearch";
 import Sidebar from "react-sidebar";
-// import SideBarReactResponsive from "../components/SideBarComponent";
-// import SideBarReact from "../components/SideBarComponent";
 import {
   SideBarReact,
   SideBarButtonReact,
 } from "../components/SideBarComponent";
-// import { SideBarReact, SideBarReactResponsive, SideBarNav, SideBarButton } from "../components/SideBarComponent";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { SideNav, SideNavItem, Icon, Button } from "react-materialize";
 import "react-pro-sidebar/dist/css/styles.css";
@@ -238,21 +234,7 @@ class GoogleMapPage extends Component {
   render(props) {
     return (
       <div>
-        {/* <SideBarReactResponsive /> */}
-        {/* <ProSidebar>
-          <Menu iconShape="square">
-            <MenuItem 
-            // icon={<FaGem />}
-            >Dashboard</MenuItem>
-            <SubMenu title="Components" 
-            // icon={<FaHeart />}
-            >
-              <MenuItem>Component 1</MenuItem>
-              <MenuItem>Component 2</MenuItem>
-            </SubMenu>
-          </Menu>
-        </ProSidebar> */}
-        ;{/* <SideBarButton /> */}
+        
         <div className="col 6">
           {/* <div style={containerFull}> */}
           {/* <Nav /> */}
@@ -344,24 +326,30 @@ class GoogleMapPage extends Component {
               className="btn waves-effect waves-light z-depth-5 sideBarButton"
               type="button"
               onClick={() => this.onSetSidebarOpen(true)}
+              style={{top: 50}}
             >
               <Icon>chevron_right</Icon>
             </button>
             <Sidebar
-              sidebar={<b>Sidebar content</b>}
+              sidebar={<div>
+                <b style={{padding: 20}}>Sidebar content</b>
+                <button
+                className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                type="button"
+                onClick={() => this.onSetSidebarOpen(false)}
+              >
+                <Icon>chevron_left</Icon>
+              </button></div>}
               open={this.state.sidebarOpen}
               onSetOpen={this.onSetSidebarOpen}
-              styles={{ sidebar: { background: "white" } }}
-            ></Sidebar>
-            {/* <SideBarButtonReact />
-              <SideBarReact /> */}
+              styles={{ sidebar: { background: "white", zIndex: 2, position: "fixed", top: 65 }, root: {position: "relative"} }}
+              ></Sidebar>
+
           </div>
 
-          {/* <SideBarButtonReact /> */}
-          {/* <SideBarReact /> */}
         </div>
-        {/* <SideBarNav /> */}
-        {/* <SideBarReact /> */}
+        {/* </div> */}
+
       </div>
     );
   }

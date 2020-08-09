@@ -12,13 +12,10 @@ import "../style.css";
 import api from "../utils/API";
 import CustomMapMarker from "../components/CustomMapMarker";
 import DefaultMapMarker from "../components/DefaultMapMarker";
-// import { SideBarReact, SideBarReactResponsive, SideBarNav, SideBarButton } from "../components/SideBarComponent";
-// import SideBarReactResponsive from "../components/SideBarComponent";
 import {
   SideBarReact,
   SideBarButtonReact,
 } from "../components/SideBarComponent";
-// import SideBarReact from "../components/SideBarComponent";
 import Sidebar from "react-sidebar";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { SideNav, SideNavItem, Icon, Button } from "react-materialize";
@@ -368,28 +365,6 @@ class FindPark extends Component {
           <div id="right-panel" className="center-align">
             <div className="row z-depth-5 inputs">
               <div className="col s12">
-                {/* <SideBarReactResponsive /> */}
-                {/* <SideBarNav /> */}
-                {/* <SideBarButton /> */}
-
-                {/* <ProSidebar>
-                  <Menu iconShape="square">
-                    <MenuItem
-                    // icon={<FaGem />}
-                    // icon={<FaGem />}
-
-                    >
-                      Dashboard
-                    </MenuItem>
-                    <SubMenu
-                      title="Components"
-                      // icon={<FaHeart />}
-                    >
-                      <MenuItem>Component 1</MenuItem>
-                      <MenuItem>Component 2</MenuItem>
-                    </SubMenu>
-                  </Menu>
-                </ProSidebar> */}
 
                 <div className="form-group">
                   <Autocomplete
@@ -467,7 +442,7 @@ class FindPark extends Component {
                 Walk Way
               </button>
             </div>
-            <div>
+            <div className="container">
             <button
                   className="btn waves-effect waves-light z-depth-5 sideBarButton"
                   type="button"
@@ -476,14 +451,20 @@ class FindPark extends Component {
                   <Icon>chevron_right</Icon>
                 </button>
               <Sidebar
-                sidebar={<b>Sidebar content</b>}
+                sidebar={<div>
+                  <b style={{padding: 20}}>Sidebar content</b>
+                  <button
+                  className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                  type="button"
+                  onClick={() => this.onSetSidebarOpen(false)}
+                >
+                  <Icon>chevron_left</Icon>
+                </button></div>}
                 open={this.state.sidebarOpen}
                 onSetOpen={this.onSetSidebarOpen}
-                styles={{ sidebar: { background: "white" } }}
+                styles={{ sidebar: { background: "white", zIndex: 2, position: "fixed", top: 65 }, root: {position: "relative"} }}
               >
               </Sidebar>
-              {/* <SideBarButtonReact />
-              <SideBarReact /> */}
             </div>
           </div>
         </div>

@@ -11,6 +11,8 @@ import "../style.css";
 import api from "../utils/API"
 import CustomMapMarker from "../components/CustomMapMarker"
 import DefaultMapMarker from "../components/DefaultMapMarker"
+import Sidebar from "react-sidebar";
+
 
 // Convert object returned form places API to a custom one
 const getPlaceObject = (googlePlace) => {
@@ -449,6 +451,7 @@ class FindRoute extends Component {
               </div>}
               
             </div>
+            
           </div>
       </div>
     );
