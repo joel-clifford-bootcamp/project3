@@ -38,7 +38,7 @@ class FindRoute extends Component {
       travelMode: "BICYCLING",
       center: {lat: 43.65107, lng: -79.347015},
       origin: "", // input origin
-       zoom: 11,
+     zoom: 11,
       destination: "", // input destination
       originAddress: "", // full origin address from google
       destinationAddress: "", // full destination address from google
@@ -266,7 +266,7 @@ class FindRoute extends Component {
               {/* {this.setState.places} */}
               {/* Child components, such as markers, info windows, etc. */}
               {this.state.duration === "" &&
-                this.state.origin !== "" && this.state.destination !== "" &&  (
+                this.state.origin !== "" && this.state.destination !== "" && this.state.origin !== this.state.destination  && (
                   <DirectionsService
                     // required
                     options={{
