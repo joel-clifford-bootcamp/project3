@@ -43,10 +43,11 @@ class FindRoute extends Component {
       response: null,
       results:null,
       travelMode: "BICYCLING",
-      center: {lat: 43.65107, lng: -79.347015},
-      origin: "", // input origin
+      center: { lat: 43.65107, lng: -79.347015 },
       zoom: 11,
+      origin: "", // input origin
       destination: "", // input destination
+      clickedStation: "",
       originAddress: "", // full origin address from google
       destinationAddress: "", // full destination address from google
       distance: "", // distance in km
@@ -61,9 +62,6 @@ class FindRoute extends Component {
       originDuplicates:[], //Duplicates of the origin for Google DistanceMatrix use
       thead: "Your Position" // Table head(first) title
     };
-
-  
-
     this.handleSelection = this.handleSelection.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.onPlaceChanged = this.onPlaceChanged.bind(this);
@@ -71,6 +69,7 @@ class FindRoute extends Component {
     this.distancesCallback = this.distancesCallback.bind(this);
     this.getOrigin = this.getOrigin.bind(this);
     this.getDestination = this.getDestination.bind(this);
+    this.getStation = this.getStation.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
@@ -92,7 +91,7 @@ class FindRoute extends Component {
           nearbyNames: [],
           nearbydDistances: [],
           closestSations: [],
-          searchResult:null
+          searchResult: null,
         });
        
     this.origin.value = ""; // Input field reset
@@ -119,7 +118,6 @@ class FindRoute extends Component {
       });
     } 
   }
-
   directionsCallback = response => {
     console.log(response);
     if (response !== null) {
@@ -159,15 +157,8 @@ class FindRoute extends Component {
             "value": 100000000000000,
             "text": "NOT_FOUND"
           }) 
-
           }
-            
-        
         })
-       
-       
-
-    
           let bikeStations = this.state.closestSations
           nearbydDistances.forEach(distance => {
             let index = nearbydDistances.indexOf(distance);
@@ -185,10 +176,6 @@ class FindRoute extends Component {
           )
           console.log(bikeStations)
         }
-     
-      
-
-
       } else {
         this.setState(() => ({
         originAddress: results.originAddresses[0],
@@ -197,20 +184,19 @@ class FindRoute extends Component {
         duration: results.rows[0].elements[0].duration.text,
       })); 
      }
-    }
-    
+    }  
   }
 
   getOrigin= ref => {
     this.origin = ref;
-    console.log("ref origin:", ref);
-    console.log("this.origin:", this.origin);
   }
 
   getDestination = ref => {
     this.destination = ref;
-    console.log("ref destination:", ref);
-    console.log("this.destination:", this.destination);
+  }
+
+  getStation = ref => {
+    this.clickedStation = ref;
   }
 
   onClick = e => {
@@ -225,9 +211,11 @@ class FindRoute extends Component {
           distance:""
         }));
       }
+      console.log(this.state.searchResult.address)
     } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
-
+      
       if (this.state.searchResult !== null) {
+       
          originDuplicates = [];
       nearbyNames = [];
       this.state.closestSations.forEach(station => { originDuplicates.push(this.state.searchResult.address) })
@@ -236,7 +224,7 @@ class FindRoute extends Component {
         //Grabbing the origin from the user inputs to find a bixi station or a bike parking
         origin: this.origin.value,
         destination: this.origin.value,
-         originAddress: this.state.searchResult.address,
+        originAddress: this.state.searchResult.address,
         results: null,
         duration: "",
         distance: "",
@@ -244,19 +232,28 @@ class FindRoute extends Component {
          originDuplicates: originDuplicates,
          nearbyNames: nearbyNames,
        }));
-      console.log(this.state.originDuplicates)
-    console.log(this.state.nearbyNames)
+        console.log(e.target)
+        console.log(e.target.value)
+
+        if (!(e.target.id === "findBixi" || e.target.id === "findRoute" || e.target.id === "findParking")) {
+          
+          if (e.target.value) {
+              this.setState(() => ({
+              // Grabbing the clecked station name    
+                destination:e.target.value,
+              }));
+            console.log(this.state.destination)
+          }
+        }
       } else {
         prompt("Autocomplete not loaded")
         return
       }
      
-    }
-    
-    
+    } 
   }
 /*********************************************************************************************/
-/* The code below (written by Joel) retrieve the the closests bixi stations from user position 
+/* The code below (written by Joel) retrieve the closests bixi stations from user position 
 /*********************************************************************************************/
   
   //  onSearchResultChanged = autocomplete => {
@@ -270,7 +267,7 @@ class FindRoute extends Component {
   selectPlace = place => {
     if(this.state.destination === null)
       this.setState({ 
-        destination: place,    
+        destpkjjjination: place,    
         searchResult: null,             
         places: [...this.state.places].filter(p => p === place)});
     else
@@ -413,7 +410,7 @@ class FindRoute extends Component {
             <div id="right-panel" className="center-align">
               <div className="row z-depth-5 inputs">
                 <div className="col s12">
-                  <div className="form-group routeForm">
+                   <div className="form-group routeForm">
                     <Autocomplete
                       onLoad={this.onLoad}
                       onPlaceChanged={this.onPlaceChanged}
@@ -431,7 +428,7 @@ class FindRoute extends Component {
                 </div>
 
               {this.state.findWhat==="findRoute" && (<div className="col s12">
-              <div className="form-group routeForm">
+              <div className="form-group">
                 <Autocomplete
                   onLoad={this.onLoad}
                   onPlaceChanged={this.onPlaceChanged}
@@ -462,10 +459,9 @@ class FindRoute extends Component {
                 <button
                     className="findButton"
                   type="button"
-                  id="findRoute"
-                    onClick={this.onClick}
+                  onClick={this.onClick}
                   >
-                    <i className="material-icons center">map</i>
+                    <i className="material-icons center" id="findRoute">map</i>
                 </button><br/>
                 <p className="findButtonTitle">Map A Bike Route</p>
               </div>
@@ -516,36 +512,40 @@ class FindRoute extends Component {
             {(this.state.findWhat === "findStation" || this.state.distance !== "") &&
              <div>
                 <button
-                    className="findButton"
+                  className="findButton"
                   type="button"
-                  id="findStation"
-                    onClick={this.onClick}
+                  onClick={this.onClick}
                   >
-                    <i className="material-icons center">location_on</i>
+                    <i className="material-icons center" id="findBixi">location_on</i>
                 </button><br/>
                 <p className="findButtonTitle">Nearby Bixi Stations</p>
               </div>}
             {(this.state.findWhat === "findParking" || this.state.distance !== "") &&
               <div>
                 <button
-                    className="findButton"
+                  className="findButton"
                   type="button"
                   id="findStation"
                     onClick={this.onClick}
                   >
-                    <i className="material-icons center">local_parking</i>
+                    <i className="material-icons center" id="findParking">local_parking</i>
                 </button><br/>
                 <p className="findButtonTitle">Nearby Bike Parking</p>
               </div>}
              {/** If an origin and destination have been seelcted, show route */
                   (this.state.origin !== null && this.state.destination !== null && this.state.bikeAround===true) && (
                 <NearbyTable 
+                  origin={this.state.origin}
+                  destination = {this.state.destination}
                   origins={this.state.originDuplicates}
                    destinations={this.state.nearbyNames}
                   closestSations={this.state.closestSations}
                   distancesCallback={this.distancesCallback}
+                  directionsCallback={this.directionsCallback}
                   onClick={this.onClick}
                   results={this.state.results}
+                  getStation={this.getStation}
+                  clickedStation = {this.state.clickedStation}
                 />
                )
                   }
