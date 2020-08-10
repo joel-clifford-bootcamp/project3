@@ -1,6 +1,8 @@
 import "./style.css";
 import React, { Component } from "react";
 import M from "materialize-css";
+import API from "../../utils/API";
+
 
 class ModalCommentContainer extends Component {
   componentDidMount() {
@@ -59,6 +61,7 @@ class ModalCommentContainer extends Component {
     });
     console.log("this.state.comment.message", this.state.comment.message);
     console.log("event.target.value", event.target.value);
+    console.log("props", props);
 
   };
 
@@ -79,6 +82,8 @@ class ModalCommentContainer extends Component {
 
     comment['rating'] = 3;
     console.log(comment);
+    console.log("props", props);
+
 
     fetch("http://localhost:3001", {
       method: "post",
@@ -118,7 +123,7 @@ class ModalCommentContainer extends Component {
     ) : null;
   }
 
-  render() {
+  render(props) {
     return (
       <>
         <div
@@ -168,6 +173,7 @@ class ModalCommentContainer extends Component {
                 <label>
                   <div className="divAuthor">
                     Author: 
+                    {props.user.firstName + " " + props.user.lastName}
                     {/* {this.props.author} */}
                   </div>
                 </label>

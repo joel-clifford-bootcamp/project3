@@ -24,9 +24,9 @@ function NearbyTable(props) {
         <table className='row z-depth-5'>
         <thead className="thead">
           <tr>
-              <th>Location</th>
-              <th>distance</th>
-              <th>bikes</th>
+              <th className="columnTitle" id="locationColumn">Location</th>
+              <th className="columnTitle" id="distanceColumn">Distance</th>
+              <th className="columnTitle" id="bikesColumn">Bikes</th>
           </tr>
         </thead>
 
@@ -36,8 +36,8 @@ function NearbyTable(props) {
                     key={station.name}
                     value = {station.name}
                   >
-                    <td>
-                      <a id={station.name} className='btn waves-effect waves-light z-depth-5' type='button' onClick={props.onClick}>
+                    <td style={{padding: 5}}>
+                      <a id={station.name} className='btn waves-effect waves-light z-depth-3 resultsBtn' type='button' onClick={props.onClick} style={{padding: 10}}>
                        {station.name}  
                     </a> 
                     </td>

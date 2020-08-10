@@ -365,7 +365,6 @@ class FindPark extends Component {
           <div id="right-panel" className="center-align">
             <div className="row z-depth-5 inputs">
               <div className="col s12">
-
                 <div className="form-group">
                   <Autocomplete
                     onLoad={this.onLoad}
@@ -443,28 +442,84 @@ class FindPark extends Component {
               </button>
             </div>
             <div className="container">
-            <button
-                  className="btn waves-effect waves-light z-depth-5 sideBarButton"
-                  type="button"
-                  onClick={() => this.onSetSidebarOpen(true)}
-                >
-                  <Icon>chevron_right</Icon>
-                </button>
+              <button
+                className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                type="button"
+                onClick={() => this.onSetSidebarOpen(true)}
+              >
+                <Icon>chevron_right</Icon>
+              </button>
               <Sidebar
-                sidebar={<div>
-                  <b style={{padding: 20}}>Sidebar content</b>
-                  <button
-                  className="btn waves-effect waves-light z-depth-5 sideBarButton"
-                  type="button"
-                  onClick={() => this.onSetSidebarOpen(false)}
-                >
-                  <Icon>chevron_left</Icon>
-                </button></div>}
+                sidebar={
+                  <div>
+                    <b style={{ padding: 20 }}>
+                      Sidebar content
+                      </b>
+                      <ul>
+                      <li>
+                        <div className="user-view">
+                          <div className="background"></div>
+                          <a href="#user">
+                            {/* <img
+                              className="circle"
+                              src="images/yuna.jpg"
+                            /> */}
+                          </a>
+                          <a href="#name">
+                            <span className="white-text name">John Doe</span>
+                          </a>
+                          <a href="#email">
+                            <span className="white-text email">
+                              jdandturk@gmail.com
+                            </span>
+                          </a>
+                        </div>
+                      </li>
+                      <li>
+                        <a href="#!">
+                          <i class="material-icons">cloud</i>First Link With
+                          Icon
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#!">Second Link</a>
+                      </li>
+                      <li>
+                        <div className="divider"></div>
+                      </li>
+                      <li>
+                        <h6 className="subheader">Subheader</h6>
+                      </li>
+                      <li>
+                        <a classNName="waves-effect" href="#!">
+                          Third Link With Waves
+                        </a>
+                      </li>
+                    </ul>
+                    {/* <div> */}
+
+                  {/* </div> */}
+                  {/* <button
+                      className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                      type="button"
+                      onClick={() => this.onSetSidebarOpen(false)}
+                    >
+                      <Icon>chevron_left</Icon>
+                    </button> */}
+                  </div>
+                }
                 open={this.state.sidebarOpen}
                 onSetOpen={this.onSetSidebarOpen}
-                styles={{ sidebar: { background: "white", zIndex: 2, position: "fixed", top: 65 }, root: {position: "relative"} }}
-              >
-              </Sidebar>
+                styles={{
+                  sidebar: {
+                    background: "white",
+                    zIndex: 2,
+                    position: "fixed",
+                    top: 65,
+                  },
+                  root: { position: "relative" },
+                }}
+              ></Sidebar>
             </div>
           </div>
         </div>
