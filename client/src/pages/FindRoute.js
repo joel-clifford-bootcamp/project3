@@ -85,7 +85,8 @@ class FindRoute extends Component {
           duration: "",
           distance: "",
           bikeAround: false,
-          thead: "Your Position"
+          thead: "Your Position",
+          travelMode: "BICYCLING"
         });
        
     this.origin.value = ""; // Input field reset
@@ -93,7 +94,8 @@ class FindRoute extends Component {
       if (value === 'findRoute') {
       this.setState({
         searchBoxMessage: 'Origin (e.g. "CN Tower")',
-        thead: "Origin"
+        thead: "Origin",
+        travelMode:"WALKING"
         });
     }
   }
@@ -148,6 +150,9 @@ class FindRoute extends Component {
             })
         })
        
+       
+
+    
           let bikeStations = this.state.closestSations
           nearbydDistances.forEach(distance => {
             let index = nearbydDistances.indexOf(distance);
@@ -214,15 +219,16 @@ class FindRoute extends Component {
         //Grabbing the origin from the user inputs to find a bixi station or a bike parking
         origin: this.origin.value,
         destination: this.origin.value,
-        originAddress:this.state.searchResult.address,
+         originAddress: this.state.searchResult.address,
+        results: null,
         duration: "",
         distance: "",
          bikeAround: true,
          originDuplicates: originDuplicates,
-         nearbyNames: nearbyNames
+         nearbyNames: nearbyNames,
        }));
-      console.log(this.state.originDuplicates, originDuplicates)
-    console.log(this.state.nearbyNames, nearbyNames)
+      console.log(this.state.originDuplicates)
+    console.log(this.state.nearbyNames)
     }
     
     
@@ -339,8 +345,8 @@ class FindRoute extends Component {
                     // required
                     options={{
                       // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                      destinations: this.state.closestSations,
-                      origins: this.state.originDuplicates,
+                      destination: this.state.destination,
+                      origin: this.state.origin,
                       travelMode: this.state.travelMode,
                     }}
                     callback={this.directionsCallback}
@@ -517,6 +523,7 @@ class FindRoute extends Component {
                   closestSations={this.state.closestSations}
                   distancesCallback={this.distancesCallback}
                   onClick={this.onClick}
+                  results={this.state.results}
                 />
                )
                   }

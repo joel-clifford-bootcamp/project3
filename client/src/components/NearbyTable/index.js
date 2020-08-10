@@ -3,7 +3,9 @@ import {DistanceMatrixService} from "@react-google-maps/api"
 
 
 function NearbyTable(props) {
-    console.log(props.closestSations)
+  console.log(props.closestSations)
+  console.log(props.destinations)
+  console.log(props.origins)
 
   return(
     <div>
@@ -42,7 +44,7 @@ function NearbyTable(props) {
                     </a> 
                     </td>
                     <td>{station.distanceText}</td>
-                    <td>{station.bikes}</td>
+                    <td>{station.currentData.bikes}</td>
           </tr>))}
         </tbody>
       </table>
