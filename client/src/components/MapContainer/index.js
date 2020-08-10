@@ -17,6 +17,8 @@ import FindBike from "../FindBike";
 import FindParking from "../FindParking";
 import Nav from "../Nav";
 import MapSearch from "../../pages/MapSearch"
+import RateBike from "../../pages/RateBike"
+
 
 // api libraries for LoadScript
 const libraries = ['places']
@@ -59,7 +61,8 @@ class MapContainer extends Component {
                     <FindRoute />
                 </Route>
                 <Route exact path={["/station"]}>
-                  <FindBike />
+                  {/* <FindBike /> */}
+                  <RateBike />
                 </Route>
                 <Route exact path={["/parking"]}>
                   {/* <FindParking /> */}
