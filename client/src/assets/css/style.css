@@ -17,7 +17,7 @@ body {
     border-radius: 15px;
 }
 
-#right-panel, #rightPanelPark {
+#right-panel, #rightPanelPark, #rightPanelRate {
     position: absolute;
     top: 64px;
     left: 63%;
@@ -25,6 +25,15 @@ body {
     width: 37%;
     padding: 8px;
     border-radius: 15px;
+    background-image: url("../homepage.png");
+    /* background-image: url("../profile.png");  */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 160% 15000%;
+}
+
+.routeForm {
+    opacity: 1;
 }
 
 .inputs {
@@ -130,11 +139,11 @@ thead:first-child tr:first-child th:first-child {
     border-radius: 5px 5px 0 0;
 }
 
-#locationColumn {
+#locationColumn, #locationColumnRate {
     border-radius: 5px 0 0 0;
 }
 
-#bikesColumn {
+#bikesColumn, #bikesColumnRate {
     border-radius: 0 5px 0 0;
 }
 

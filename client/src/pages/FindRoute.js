@@ -413,7 +413,7 @@ class FindRoute extends Component {
             <div id="right-panel" className="center-align">
               <div className="row z-depth-5 inputs">
                 <div className="col s12">
-                  <div className="form-group">
+                  <div className="form-group routeForm">
                     <Autocomplete
                       onLoad={this.onLoad}
                       onPlaceChanged={this.onPlaceChanged}
