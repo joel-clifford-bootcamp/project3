@@ -431,7 +431,7 @@ class FindRoute extends Component {
                 </div>
 
               {this.state.findWhat==="findRoute" && (<div className="col s12">
-              <div className="form-group">
+              <div className="form-group routeForm">
                 <Autocomplete
                   onLoad={this.onLoad}
                   onPlaceChanged={this.onPlaceChanged}
@@ -448,7 +448,7 @@ class FindRoute extends Component {
               </div>
               </div>)}
                 <div className="select-field left">
-                  <label className="slct-label left">LOOKING FOR?</label>
+                  <label className="slct-label left">FIND</label>
                   <select className="browser-default"
                       onChange={this.handleSelection}>
                       <option value="findStation">BIXI STATION</option>
