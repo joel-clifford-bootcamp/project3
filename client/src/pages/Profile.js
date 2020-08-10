@@ -5,7 +5,7 @@ import { UserCard } from "../components/ProfileCard";
 import Nav from "../components/Nav";
 import "../style.css";
 
-function Profile() {
+function Profile(props) {
   // Setting our component's initial state
   const [user, setUser] = useState({
     firstName: "",
