@@ -29,7 +29,9 @@ const getPlaceObject = (googlePlace) => {
   };
 };
 
-let duplicates =[]//stores duplicates of the origin for Google DistanceMatrix use
+let originDuplicates =[]//stores duplicates of the origin for Google DistanceMatrix use
+let nearbyNames = []; // nearby stations names
+let nearbydDistances=[]
 
 class FindRoute extends Component {
   constructor(props) {
@@ -39,6 +41,7 @@ class FindRoute extends Component {
       searchBoxMessage: 'Enter your position',
       findWhat: "findStation",
       response: null,
+      results:null,
       travelMode: "BICYCLING",
       center: {lat: 43.65107, lng: -79.347015},
       origin: "", // input origin
@@ -54,6 +57,7 @@ class FindRoute extends Component {
       places: [],
       bikeAround: false, // true when button clicked to find closer stations or parkings
       closestSations: [], // list of 10 closest stations with distance
+      nearbyNames: [], // list of 10 closest stations'names
       originDuplicates:[], //Duplicates of the origin for Google DistanceMatrix use
       thead: "Your Position" // Table head(first) title
     };
@@ -124,19 +128,57 @@ class FindRoute extends Component {
     }
   }
 
-  distancesCallback= results => {
+  distancesCallback = results => {
+     console.log(results)
     if (
       results !== null &&
       results.rows[0].elements[0].distance !== null &&
       results.rows[0].elements[0].duration !== null
     ) {
-      this.setState(() => ({
+    
+
+      if (this.state.findWhat!=="findRoute") {
+      if (results.rows.length) {
+        nearbydDistances = []
+        
+        results.rows.forEach(distance => {
+            nearbydDistances.push({
+            "value": distance.elements[0].distance.value,
+            "text": distance.elements[0].distance.text
+            })
+        })
+       
+          let bikeStations = this.state.closestSations
+          nearbydDistances.forEach(distance => {
+            let index = nearbydDistances.indexOf(distance);
+            bikeStations[index].distanceValue = nearbydDistances[index].value;
+            bikeStations[index].distanceText = nearbydDistances[index].text;
+            console.log(index, bikeStations[index])
+          })
+        
+          console.log(bikeStations)
+          bikeStations.sort((a, b) => (a.distanceValue > b.distanceValue) ? 1 : -1);
+          this.setState(
+            () => ({
+              closestSations: bikeStations,
+            })
+          )
+          console.log(bikeStations)
+        }
+     
+      
+
+
+      } else {
+        this.setState(() => ({
         originAddress: results.originAddresses[0],
         destinationAddress: results.destinationAddresses[0],
         distance: results.rows[0].elements[0].distance.text,
         duration: results.rows[0].elements[0].duration.text,
-      }));
+      })); 
+     }
     }
+    
   }
 
   getOrigin= ref => {
@@ -164,8 +206,10 @@ class FindRoute extends Component {
         }));
       }
     } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
-      duplicates = [];
-      this.state.closestSations.forEach(station =>{duplicates.push(this.state.searchResult.address)})
+      originDuplicates = [];
+      nearbyNames = [];
+      this.state.closestSations.forEach(station => { originDuplicates.push(this.state.searchResult.address) })
+      this.state.closestSations.forEach(station =>{nearbyNames.push(station.name)})
        this.setState(() => ({
         //Grabbing the origin from the user inputs to find a bixi station or a bike parking
         origin: this.origin.value,
@@ -174,9 +218,13 @@ class FindRoute extends Component {
         duration: "",
         distance: "",
          bikeAround: true,
-        originDuplicates: duplicates
+         originDuplicates: originDuplicates,
+         nearbyNames: nearbyNames
        }));
+      console.log(this.state.originDuplicates, originDuplicates)
+    console.log(this.state.nearbyNames, nearbyNames)
     }
+    
     
   }
 /*********************************************************************************************/
@@ -464,9 +512,9 @@ class FindRoute extends Component {
              {/** If an origin and destination have been seelcted, show route */
                   (this.state.origin !== null && this.state.destination !== null && this.state.bikeAround===true) && (
                 <NearbyTable 
-                  origin={this.state.origin}
+                  origins={this.state.originDuplicates}
+                   destinations={this.state.nearbyNames}
                   closestSations={this.state.closestSations}
-                  destination={this.state.destination}
                   distancesCallback={this.distancesCallback}
                   onClick={this.onClick}
                 />
