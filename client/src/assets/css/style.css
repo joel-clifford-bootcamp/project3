@@ -25,11 +25,14 @@ body {
     width: 37%;
     padding: 8px;
     border-radius: 15px;
-    background-image: url("../homepage.png");
-    /* background-image: url("../profile.png");  */
+    /* background-image: url("../homepage.png"); */
+    background-image: url("../profile.png"); 
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: 160% 15000%;
+    background-position: 90% 100%;
+    /* background-size: auto; */
+    background-size: 30%;
+
 }
 
 .routeForm {
@@ -188,23 +191,25 @@ button {
 /* START FIND BIKE PAGE STYLING */
 
 
-.sideBarButton {
+.sideBarButton, .sideBarButtonClose {
     background-color: #78bcc5ff;
-    width: 5%;
+    width: 5rem;
     border-radius: 25px;
+    align-content: center;
+    /* line-height: 20px; */
 }
 
-.sideBarButton:hover {
+.sideBarButton:hover, .sideBarButtonClose:hover {
     background-color: #00bfa5;
 }
 
-.sideBarButton:active {
+.sideBarButton:active, .sideBarButtonClose:active {
     background-color: #00bfa5;
     box-shadow: 0 2px #666;
     transform: translateY(4px);
 }
 
-.sideBarButton:focus {
+.sideBarButton:focus, .sideBarButtonClose:focus {
     background-color: #78bcc5ff;
 }
 
