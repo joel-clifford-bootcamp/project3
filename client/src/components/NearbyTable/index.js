@@ -4,13 +4,10 @@ import {DistanceMatrixService} from "@react-google-maps/api"
 
 function NearbyTable(props) {
   console.log(props.closestSations)
-  console.log(props.destinations)
-  console.log(props.origins)
-
   return(
     <div>
     {
-            (props.origins!==[]) &&(
+            (props.origins!==[]) && props.results ===null && (
                 <DistanceMatrixService
                   // required
                   options={{ // eslint-disable-line react-perf/jsx-no-new-object-as-prop
@@ -20,6 +17,7 @@ function NearbyTable(props) {
                   }}
                    // required
                   callback={props.distancesCallback}
+                  results ={props.results}
                 />)
           }
           

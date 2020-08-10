@@ -131,7 +131,6 @@ class FindRoute extends Component {
   }
 
   distancesCallback = results => {
-     console.log(results)
     if (
       results !== null &&
       results.rows[0].elements[0].distance !== null &&
@@ -139,15 +138,28 @@ class FindRoute extends Component {
     ) {
     
 
-      if (this.state.findWhat!=="findRoute") {
-      if (results.rows.length) {
+      if (this.state.findWhat !== "findRoute") {
+        console.log(results.rows[0].elements.length)
+      if (results.rows[0].elements.length) {
         nearbydDistances = []
-        
-        results.rows.forEach(distance => {
+       console.log(results) 
+        results.rows[0].elements.forEach(station => {
+          
+          if (station.status !== "NOT_FOUND") {
             nearbydDistances.push({
-            "value": distance.elements[0].distance.value,
-            "text": distance.elements[0].distance.text
-            })
+            "value": station.distance.value,
+            "text": station.distance.text
+            }) 
+          } else {
+            // if no distance found
+          nearbydDistances.push({
+            "value": 100000000000000,
+            "text": "NOT_FOUND"
+          }) 
+
+          }
+            
+        
         })
        
        
