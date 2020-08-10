@@ -79,6 +79,7 @@ class FindRoute extends Component {
         // Updating the selection input value
         this.setState({
           findWhat: value,
+          results:null,
           response: null,
           origin: "",
           destination:"",
@@ -86,7 +87,12 @@ class FindRoute extends Component {
           distance: "",
           bikeAround: false,
           thead: "Your Position",
-          travelMode: "BICYCLING"
+          travelMode: "BICYCLING",
+          originDuplicates: [],
+          nearbyNames: [],
+          nearbydDistances: [],
+          closestSations: [],
+          searchResult:null
         });
        
     this.origin.value = ""; // Input field reset
@@ -111,10 +117,7 @@ class FindRoute extends Component {
         searchResult: getPlaceObject(this.autocomplete.getPlace()),
         distance: "zero" // used to stop continuous querry
       });
-    } else {
-      console.log("Autocomplete is not loaded yet!");
-    }
-    console.log(this.state.searchResult)
+    } 
   }
 
   directionsCallback = response => {
@@ -223,7 +226,9 @@ class FindRoute extends Component {
         }));
       }
     } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
-      originDuplicates = [];
+
+      if (this.state.searchResult !== null) {
+         originDuplicates = [];
       nearbyNames = [];
       this.state.closestSations.forEach(station => { originDuplicates.push(this.state.searchResult.address) })
       this.state.closestSations.forEach(station =>{nearbyNames.push(station.name)})
@@ -241,6 +246,11 @@ class FindRoute extends Component {
        }));
       console.log(this.state.originDuplicates)
     console.log(this.state.nearbyNames)
+      } else {
+        prompt("Autocomplete not loaded")
+        return
+      }
+     
     }
     
     
