@@ -11,8 +11,8 @@ import "../style.css";
 import api from "../utils/API"
 import CustomMapMarker from "../components/CustomMapMarker"
 import DefaultMapMarker from "../components/DefaultMapMarker"
+import NearbyTable from "../components/NearbyTable"
 import Sidebar from "react-sidebar";
-
 
 // Convert object returned form places API to a custom one
 const getPlaceObject = (googlePlace) => {
@@ -28,6 +28,8 @@ const getPlaceObject = (googlePlace) => {
     address: googlePlace.formatted_address,
   };
 };
+
+let duplicates =[]//stores duplicates of the origin for Google DistanceMatrix use
 
 class FindRoute extends Component {
   constructor(props) {
@@ -51,8 +53,12 @@ class FindRoute extends Component {
       infoWindowPosition: {},
       places: [],
       bikeAround: false, // true when button clicked to find closer stations or parkings
+      closestSations: [], // list of 10 closest stations with distance
+      originDuplicates:[], //Duplicates of the origin for Google DistanceMatrix use
       thead: "Your Position" // Table head(first) title
     };
+
+  
 
     this.handleSelection = this.handleSelection.bind(this);
     this.onLoad = this.onLoad.bind(this);
@@ -79,7 +85,6 @@ class FindRoute extends Component {
         });
        
     this.origin.value = ""; // Input field reset
-    
     
       if (value === 'findRoute') {
       this.setState({
@@ -159,16 +164,20 @@ class FindRoute extends Component {
         }));
       }
     } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
+      duplicates = [];
+      this.state.closestSations.forEach(station =>{duplicates.push(this.state.searchResult.address)})
        this.setState(() => ({
         //Grabbing the origin from the user inputs to find a bixi station or a bike parking
         origin: this.origin.value,
-         destination: this.origin.value,
-          originAddress:this.state.searchResult.address,
+        destination: this.origin.value,
+        originAddress:this.state.searchResult.address,
         duration: "",
-         distance: "",
-        bikeAround: true
+        distance: "",
+         bikeAround: true,
+        originDuplicates: duplicates
        }));
     }
+    
   }
 /*********************************************************************************************/
 /* The code below (written by Joel) retrieve the the closests bixi stations from user position 
@@ -227,7 +236,10 @@ class FindRoute extends Component {
     if (this.state.searchResult !== null){
       api.getBixiBikeLocations(this.state.searchResult.location.lat, this.state.searchResult.location.lng)
         .then(stationsResp => {
-        console.log(stationsResp.data)
+          console.log(stationsResp.data)
+        this.setState({
+          closestSations:stationsResp.data
+        });
         // parse floats that sequeslize query literal is returning as strings
         stationsResp.data.forEach(x => {
           x.lat = parseFloat(x.lat);
@@ -279,8 +291,8 @@ class FindRoute extends Component {
                     // required
                     options={{
                       // eslint-disable-line react-perf/jsx-no-new-object-as-prop
-                      destination: this.state.destination,
-                      origin: this.state.origin,
+                      destinations: this.state.closestSations,
+                      origins: this.state.originDuplicates,
                       travelMode: this.state.travelMode,
                     }}
                     callback={this.directionsCallback}
@@ -449,9 +461,19 @@ class FindRoute extends Component {
                 </button><br/>
                 <p className="findButtonTitle">Nearby Bike Parking</p>
               </div>}
-              
+             {/** If an origin and destination have been seelcted, show route */
+                  (this.state.origin !== null && this.state.destination !== null && this.state.bikeAround===true) && (
+                <NearbyTable 
+                  origin={this.state.origin}
+                  closestSations={this.state.closestSations}
+                  destination={this.state.destination}
+                  distancesCallback={this.distancesCallback}
+                  onClick={this.onClick}
+                />
+               )
+                  }
+
             </div>
-            
           </div>
       </div>
     );
