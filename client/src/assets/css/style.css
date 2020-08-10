@@ -37,6 +37,7 @@ body {
 
 .routeForm {
     opacity: 1;
+    background-color: white;
 }
 
 .inputs {
@@ -53,11 +54,32 @@ label {
     margin: 5px;
     width: 70%;
     height: 30px;
+    /* max-height: 90%; */
+    /* min-height: 40%; */
     margin-left: 18%;
+    opacity: 1;
+    background-color: white;
 }
+
+/* 
+select {
+    max-height: 40px;
+    min-height: 90px;
+} */
+
+/* 
+.browser-default {
+    max-height: 40%;
+    min-height: 90%;
+} */
 
 .slct-label {
     width: 40%;
+    /* max-width: 90%;
+    min-width: 40%; */
+    /* max-height: 40%;
+    min-height: 90%; */
+    /* height: 100%; */
     padding: 0px;
     background-color: #78bcc5ff;
     color: white;
