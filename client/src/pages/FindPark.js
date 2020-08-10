@@ -499,13 +499,13 @@ class FindPark extends Component {
                     {/* <div> */}
 
                   {/* </div> */}
-                  {/* <button
-                      className="btn waves-effect waves-light z-depth-5 sideBarButton"
+                  <button
+                      className="btn waves-effect waves-light z-depth-5 sideBarButtonClose"
                       type="button"
                       onClick={() => this.onSetSidebarOpen(false)}
                     >
                       <Icon>chevron_left</Icon>
-                    </button> */}
+                    </button>
                   </div>
                 }
                 open={this.state.sidebarOpen}
