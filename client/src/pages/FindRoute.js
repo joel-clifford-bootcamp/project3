@@ -13,6 +13,7 @@ import CustomMapMarker from "../components/CustomMapMarker"
 import DefaultMapMarker from "../components/DefaultMapMarker"
 import NearbyTable from "../components/NearbyTable"
 import Sidebar from "react-sidebar";
+import { ModalComment } from "../components/Modal";
 
 // Convert object returned form places API to a custom one
 const getPlaceObject = (googlePlace) => {
@@ -377,7 +378,8 @@ class FindRoute extends Component {
             
             {this.state.searchResult !== null &&
             <DefaultMapMarker location={this.state.searchResult.location}/>}
-             <BicyclingLayer/>
+              <ModalComment />
+                <BicyclingLayer/>
 
              
               {this.state.response !== null && (

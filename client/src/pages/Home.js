@@ -16,7 +16,8 @@ function Home() {
       <div className="row hide-on-small-only">
         <div className="col s12 m12 l12">
           <ul className="tabs s12 m12 buttonBackground center-align">
-            <li className="tab col s4">
+            <li className="tab col s12">
+              {/* <li className="tab col s4"> */}
               {/* <li className="tab col s3"> */}
               <Link to="/route" className="buttonLink">
                 <button className="button buttonHome">
@@ -24,12 +25,12 @@ function Home() {
                 </button>
               </Link>
               <a className="linkNames" href="/route">
-                Map A Safe Route
+                  <li>Find a Bixi Bike and Map A Safe Route</li>
               </a>
             </li>
-            <li className="tab col s4">
-              {/* <li className="tab col s3"> */}
-              <Link to="/bikeshare" className="buttonLink">
+            {/* <li className="tab col s4"> */}
+            {/* <li className="tab col s3"> */}
+            {/* <Link to="/bikeshare" className="buttonLink">
                 <button className="button buttonHome">
                   <i className="medium material-icons center">location_on</i>
                 </button>
@@ -37,12 +38,12 @@ function Home() {
               <a className="active linkNames" href="/bikeshare">
                 Find a Bixi Bike
               </a>
-            </li>
+            </li> */}
             {/* "Park Your Bike" Still to be completed */}
-            <li className="tab col s4">
-              {/* <li className="tab col s3"> */}
-              {/* <Link  to="/parking" className="buttonLink"> */}
-              <Link to="#" className="buttonLink disabled">
+            {/* <li className="tab col s4"> */}
+            {/* <li className="tab col s3"> */}
+            {/* <Link  to="/parking" className="buttonLink"> */}
+            {/* <Link to="#" className="buttonLink disabled">
                 <button className="button buttonHome">
                   <i className="medium material-icons center">local_parking</i>
                 </button>
@@ -50,7 +51,7 @@ function Home() {
               <a className="linkNames" href="/station">
                 Park Your Bike
               </a>
-            </li>
+            </li> */}
             {/* "Rate a Parking Spot" Still to be completed */}
             {/* <li className="tab col s3">
               <Link  to="/station" className="buttonLink">
@@ -73,12 +74,23 @@ function Home() {
             </Link>
           </li>
           <li>
+            {/* <a className="linkNames" href="/route">
+              Map A Safe Route
+            </a> */}
+            <a className="linkNames" href="/route">
+              Find a Bixi Bike
+            </a>
+          </li>
+          <li>
             <a className="linkNames" href="/route">
               Map A Safe Route
             </a>
+            {/* <a className="linkNames" href="/route">
+                Find a Bixi Bike
+            </a> */}
           </li>
           {/* <li className="col s12"> */}
-          <li className="col s12 disabled">
+          {/* <li className="col s12 disabled">
             <Link to="/bikeshare" className="buttonLink">
               <button className="button buttonHome">
                 <i className="medium material-icons center">location_on</i>
@@ -101,7 +113,7 @@ function Home() {
             <a className="linkNames" href="/station">
               Park Your Bike
             </a>
-          </li>
+          </li> */}
           {/* <li className="col s12">
               <Link  to="/station" className="buttonLink">
                   <button className="button buttonHome">
