@@ -449,7 +449,7 @@ class FindRoute extends Component {
                   <select className="browser-default"
                       onChange={this.handleSelection}>
                       <option value="findStation">BIXI STATION</option>
-                      <option value="findParking">BIKE PARKING</option>
+                      {/* <option value="findParking">BIKE PARKING</option> */}
                       <option value="findRoute">CYCLING ROUTE</option>
                     </select>
                 </div>
