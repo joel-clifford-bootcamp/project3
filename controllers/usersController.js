@@ -63,7 +63,8 @@ module.exports = {
             firstName: result[0].firstName,
             lastName: result[0].lastName,
             email: result[0].email,
-            id: req.user.id
+            id: req.user.id,
+            // pic: ""
           });
         })
         .catch(err => res.status(401).send());

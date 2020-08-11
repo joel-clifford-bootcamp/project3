@@ -17,4 +17,7 @@ router.route("/logout")
 router.route("/user_data")
   .get(usersController.userData)
 
+// router.route("/profile_pic")
+//   .post(usersController.userData)
+
 module.exports = router;

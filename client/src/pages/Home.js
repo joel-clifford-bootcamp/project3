@@ -17,7 +17,8 @@ function Home() {
       <div className="row hide-on-small-only">
         <div className="col s12 m12 l12">
           <ul className="tabs s12 m12 buttonBackground center-align">
-            <li className="tab col s3">
+            <li className="tab col s4">
+            {/* <li className="tab col s3"> */}
               <Link  to="/route" className="buttonLink">
                   <button className="button buttonHome">
                     <i className="medium material-icons center">map</i>
@@ -25,7 +26,8 @@ function Home() {
               </Link>
               <a className="linkNames" href="/route">Map A Safe Route</a>
             </li>
-            <li className="tab col s3">
+            <li className="tab col s4">
+            {/* <li className="tab col s3"> */}
              <Link  to="/bikeshare" className="buttonLink">
                   <button className="button buttonHome">
                     <i className="medium material-icons center">location_on</i>
@@ -34,9 +36,10 @@ function Home() {
               <a className="active linkNames" href="/bikeshare">Find a Bixi Bike</a>
             </li>
             {/* "Park Your Bike" Still to be completed */}
-            <li className="tab col s3">
-              <Link  to="/parking" className="buttonLink">
-              {/* <Link  to="#" className="buttonLink disabled"> */}
+            <li className="tab col s4">
+            {/* <li className="tab col s3"> */}
+              {/* <Link  to="/parking" className="buttonLink"> */}
+              <Link  to="#" className="buttonLink disabled">
                 <button className="button buttonHome">
                   <i className="medium material-icons center">local_parking</i>
                 </button>
@@ -44,15 +47,14 @@ function Home() {
               <a className="linkNames" href="/station">Park Your Bike</a>
             </li>
             {/* "Rate a Parking Spot" Still to be completed */}
-            <li className="tab col s3">
+            {/* <li className="tab col s3">
               <Link  to="/station" className="buttonLink">
-              {/* <Link  to="#" className="buttonLink disabled"> */}
                   <button className="button buttonHome">
                       <i className="medium material-icons center">star</i>
                   </button>
               </Link>
               <a href="/" className="linkNames">Rate a Parking Spot</a>
-            </li>
+            </li> */}
           </ul>
         </div> 
         </div>

@@ -17,6 +17,7 @@ import FindBike from "../FindBike";
 import FindParking from "../FindParking";
 import Nav from "../Nav";
 import MapSearch from "../../pages/MapSearch"
+import ParkSearch from "../../pages/ParkSearch"
 import RateBike from "../../pages/RateBike"
 
 
@@ -67,6 +68,7 @@ class MapContainer extends Component {
                 <Route exact path={["/parking"]}>
                   {/* <FindParking /> */}
                   <FindPark />
+                  {/* <ParkSearch /> */}
                 </Route>
                  <Route exact path={["/bikeshare"]}>
                   <MapSearch />
