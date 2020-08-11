@@ -101,7 +101,7 @@ class FindRoute extends Component {
       this.setState({
         searchBoxMessage: 'Origin (e.g. "CN Tower")',
         thead: "Origin",
-        travelMode:"WALKING"
+        travelMode:"BICYCLING"
         });
     }
   }
