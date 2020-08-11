@@ -67,8 +67,8 @@ function NearbyTable(props) {
                     value={station.name}
                     ref={props.getStation}
                   >
-                    <td style={{padding: 5}}>
-                      <a value={station.name} className='btn waves-effect waves-light z-depth-3 resultsBtn' type='button' onClick={props.onClick} style={{padding: 10}}>
+                    <td style={{padding: 5}} id={station.name}>
+                      <a id={station.name} ref={props.getStation}className='btn waves-effect waves-light z-depth-3 resultsBtn' type='button' onClick={props.onClick} style={{padding: 10}}>
                        {station.name}  
                     </a> 
                     </td>
