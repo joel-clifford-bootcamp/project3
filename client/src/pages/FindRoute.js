@@ -31,7 +31,8 @@ const getPlaceObject = (googlePlace) => {
 
 let originDuplicates =[]//stores duplicates of the origin for Google DistanceMatrix use
 let nearbyNames = []; // nearby stations names
-let nearbydDistances=[]
+let nearbydDistances = []
+let clickedStation = "";
 
 class FindRoute extends Component {
   constructor(props) {
@@ -213,11 +214,11 @@ class FindRoute extends Component {
       }
       console.log(this.state.searchResult.address)
     } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
-      
       if (this.state.searchResult !== null) {
        
-         originDuplicates = [];
-      nearbyNames = [];
+       originDuplicates = [];
+        nearbyNames = [];
+          clickedStation = "";
       this.state.closestSations.forEach(station => { originDuplicates.push(this.state.searchResult.address) })
       this.state.closestSations.forEach(station =>{nearbyNames.push(station.name)})
        this.setState(() => ({
@@ -232,18 +233,18 @@ class FindRoute extends Component {
          originDuplicates: originDuplicates,
          nearbyNames: nearbyNames,
        }));
-        console.log(e.target)
-        console.log(e.target.value)
-
+        console.log(e.target.id);
+        clickedStation = e.target.id;
+        console.log(clickedStation)
         if (!(e.target.id === "findBixi" || e.target.id === "findRoute" || e.target.id === "findParking")) {
           
-          if (e.target.value) {
+
               this.setState(() => ({
               // Grabbing the clecked station name    
-                destination:e.target.value,
+                destination: clickedStation
               }));
             console.log(this.state.destination)
-          }
+
         }
       } else {
         prompt("Autocomplete not loaded")
