@@ -212,7 +212,6 @@ class FindRoute extends Component {
           distance:""
         }));
       }
-      console.log(this.state.searchResult.address)
     } else if (this.origin.value !== "" && this.state.findWhat !== "findRoute") {
       if (this.state.searchResult !== null) {
        
@@ -521,7 +520,7 @@ class FindRoute extends Component {
                 </button><br/>
                 <p className="findButtonTitle">Nearby Bixi Stations</p>
               </div>}
-            {(this.state.findWhat === "findParking" || this.state.distance !== "") &&
+            {/* {(this.state.findWhat === "findParking" || this.state.distance !== "") &&
               <div>
                 <button
                   className="findButton"
@@ -532,7 +531,7 @@ class FindRoute extends Component {
                     <i className="material-icons center" id="findParking">local_parking</i>
                 </button><br/>
                 <p className="findButtonTitle">Nearby Bike Parking</p>
-              </div>}
+              </div>} */}
              {/** If an origin and destination have been seelcted, show route */
                   (this.state.origin !== null && this.state.destination !== null && this.state.bikeAround===true) && (
                 <NearbyTable 
