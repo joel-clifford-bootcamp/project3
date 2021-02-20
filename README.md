@@ -168,5 +168,5 @@ THEN...I am presented with a list of cards.
 * In order to run the seed files and populate the databases, navigate to http://localhost:3001/api/bixi/seed
 
 ## Links
-* Deployed URL: https://link-n-park.herokuapp.com/ (not yet functional due to issues with build)
+* Deployed URL: https://link-n-park.herokuapp.com/
 * GitHub repository: https://github.com/joel-clifford-bootcamp/project3
