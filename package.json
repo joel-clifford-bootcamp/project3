@@ -33,7 +33,7 @@
     "lorem-ipsum": "^2.0.3",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.27.0",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "mysql2": "^2.1.0",
     "node-cron": "^2.0.3",
     "passport": "^0.4.1",
